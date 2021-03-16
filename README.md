@@ -1,9 +1,12 @@
 # BanNoiThat
 
-1/ Tai Folder Angular, Lí do không chạy được vì thiếu folder node_module. Cho nên hãy mở terminal nhập dòng lệnh này
+1/ Tai Folder Angular, Lí do không chạy được vì thiếu folder node_module. Cho nên hay thu hien cac buoc sau day
 
-clone your repository
+B1: clone your repository
 
-run "npm -i"
+B2: Mo source code = vscode, tao folder node_module: 
+cd angular 
+npm install
 
-ng serve
+B3: chay CT
+ng serve -o

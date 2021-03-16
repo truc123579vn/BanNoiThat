@@ -4,9 +4,11 @@
 
 B1: clone your repository
 
-B2: Mo source code = vscode, tao folder node_module: 
+B2: Mo source code = vscode, tao folder node_module bang lenh: 
+
 cd angular 
+
 npm install
 
-B3: chay CT
+B3: chay CT dung lenh
 ng serve -o

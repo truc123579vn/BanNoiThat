@@ -28,9 +28,25 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/style.css",
+              "node_modules/AdminLTE-master/plugins/fontawesome-free/css/all.min.css",
+              "node_modules/AdminLTE-master/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "node_modules/AdminLTE-master/docs/assets/css/adminlte.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/AdminLTE-master/plugins/jquery/jquery.js",
+              "node_modules/AdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.js",
+              "node_modules/AdminLTE-master/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js",
+              "node_modules/AdminLTE-master/dist/js/adminlte.js",
+              "node_modules/AdminLTE-master/plugins/chart.js/Chart.js",
+              "node_modules/AdminLTE-master/dist/js/demo.js",
+              "node_modules/AdminLTE-master/plugins/jquery-mousewheel/jquery.mousewheel.js",
+              "node_modules/AdminLTE-master/plugins/raphael/raphael.js",
+              "node_modules/AdminLTE-master/plugins/jquery-mapael/jquery.mapael.js",
+              "node_modules/AdminLTE-master/plugins/jquery-mapael/maps/usa_states.js",
+              "node_modules/AdminLTE-master/plugins/chart.js/Chart.js",
+              "node_modules/AdminLTE-master/dist/js/pages/dashboard2.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,7 +107,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/style.css"
             ],
             "scripts": []
           }
@@ -122,6 +138,11 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "css"
     }
   },
   "defaultProject": "angular"

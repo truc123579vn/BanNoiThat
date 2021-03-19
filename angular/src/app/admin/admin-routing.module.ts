@@ -9,7 +9,9 @@ const routes: Routes = [
       {path: 'products',component:ProductsComponent}
 
     ]
-  }
+  },
+  {path:'', redirectTo: '/admin', pathMatch:'prefix'},
+
 ];
 
 @NgModule({

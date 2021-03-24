@@ -32,6 +32,7 @@
               "node_modules/AdminLTE-master/plugins/fontawesome-free/css/all.min.css",
               "node_modules/AdminLTE-master/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
               "node_modules/AdminLTE-master/docs/assets/css/adminlte.css"
+              
             ],
             "scripts": [
               "node_modules/AdminLTE-master/plugins/jquery/jquery.js",

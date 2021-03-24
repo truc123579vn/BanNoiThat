@@ -1,0 +1,57 @@
+  <!-- Nav Bar Start -->
+  <div class="nav-commerce" >
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-inverse navbar-fixed-topp">
+            <a href="#" class="navbar-brand">MENU</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    <a routerLink="" class="nav-item nav-link">Home</a>
+                    <a routerLink="/e-commerce/product-list" class="nav-item nav-link">Products</a>     
+                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>  
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                        <div class="dropdown-menu">
+                            <a href="/e-commerce/login" class="dropdown-item">Login</a>
+                            <a href="/e-commerce/register" class="dropdown-item">Register</a>
+                            <a href="/e-commerce/account" class="dropdown-item">My Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Nav Bar End -->     
+<div class="bottom-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <div class="logo">
+                    <a href="/e-commerce">
+                        <img src="../../../assets/logo.png" alt="Logo" width="150px"  >
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="search">
+                    <input type="text" placeholder="Search">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="user">
+                    <a routerLink="/e-commerce/cart" class="btn cart" id="cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>(0)</span>  
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 /**********************************/
 /********** General CSS ***********/
 /**********************************/
-body,#id1 {
+body {
     color: #353535;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -102,17 +102,15 @@ h2 {
     box-shadow: none;
 }
 
-.btn-ecommerce {
+.btn {
     color: #FF6F61;
     background: #ffffff;
     border: 1px solid #FF6F61;
-    border-radius: 5px;
-    margin: 5px;
 }
 
-.btn-ecommerce:hover,
-.btn-ecommerce:active,
-.btn-ecommerce:focus {
+.btn:hover,
+.btn:active,
+.btn:focus {
     color: #ffffff;
     background: #FF6F61;
     box-shadow: none;
@@ -236,74 +234,71 @@ h2 {
 /**********************************/
 /*********** Nav Bar CSS **********/
 /**********************************/
-.nav-commerce {
+.nav {
     position: relative;
-}
-#navbarCollapse{
-    background: #FF6F61;
 }
 
 @media (min-width: 992px) {
-    .nav-commerce .container-fluid {
+    .nav .container-fluid {
         padding-left: 52px;
         padding-right: 52px;
     }
 }
 
-.nav-commerce .navbar {
+.nav .navbar {
     height: 100%;
     padding: 0;
 }
 
-.nav-commerce .dropdown-menu {
+.nav .dropdown-menu {
     margin-top: 0;
     border: 0;
     border-radius: 0;
     background: #FF6F61;
 }
 
-.nav-commerce .dropdown-menu a.active {
+.nav .dropdown-menu a.active {
     color: #353535;
     background: #f8f9fa;
 }
 
 @media (min-width: 768px) {
-    .nav-commerce,
+    .nav,
     .nav .navbar {
         background: #FF6F61 !important;
     }
     
-    .nav-commerce .navbar-brand {
+    .nav .navbar-brand {
         display: none;
     }
     
-    .nav-commerce .navbar-dark a.nav-link {
+    .nav .navbar-dark a.nav-link {
         color: #ffffff;
         font-size: 14px;
         text-transform: uppercase;
     }
     
-    .nav-commerce .navbar-dark a.nav-link:hover,
-    .nav-commerce .navbar-dark a.nav-link.active {
+    .nav .navbar-dark a.nav-link:hover,
+    .nav .navbar-dark a.nav-link.active {
         color: #000000;
     }
 }
 
 @media (max-width: 768px) {
-    .nav-commerce {
+    .nav {
         padding: 5px 0;
     }
     
-    .nav-commerce,
-    .nav-commerce .navbar {
+    .nav,
+    .nav .navbar {
         background: #000000 !important;
     }
     
-    .nav-commerce a.nav-link {
+    .nav a.nav-link {
         padding: 5px 0;
     }
     
-    .nav-commerce .dropdown-menu {
+    .nav .dropdown-menu {
         box-shadow: none;
     }
 }
@@ -491,11 +486,11 @@ h2 {
     font-weight: 700;
 }
 
-.header-slider .header-slider-caption .btn-ecommerce {
+.header-slider .header-slider-caption .btn {
     border-color: #ffffff;
 }
 
-.header-slider .header-slider-caption .btn-ecommerce i {
+.header-slider .header-slider-caption .btn i {
     margin-right: 5px;
 }
 
@@ -561,18 +556,12 @@ h2 {
 .breadcrumb-wrap {
     position: relative;
     width: 100%;
-    padding-left: 50px;
-    
 }
 
 .breadcrumb-wrap .breadcrumb {
     margin: 0;
     padding: 0;
     background: transparent;
-   
-}
-.breadcrumb li{
-    color: #FF6F61 !important;
 }
 
 
@@ -809,9 +798,9 @@ h2 {
 }
 
 .product-item .product-price {
-    padding: 010px;
+    padding: 20px;
     background: #000000;
-    display:grid;
+    transition: all .3s;
 }
 
 .product-item:hover .product-price {
@@ -828,23 +817,20 @@ h2 {
     font-size: 16px;
 }
 
-.product-item .product-price .btn-ecommerce {
+.product-item .product-price .btn {
     float: right;
     border: none;
     color: #000000;
     background: #FF6F61;
 }
 
-.product-item:hover .product-price .btn-ecommerce,
-.product-item .product-price .btn-ecommerce:hover {
+.product-item:hover .product-price .btn,
+.product-item .product-price .btn:hover {
     color: #FF6F61;
     background: #ffffff;
-
-
-
 }
 
-.product-item .product-price .btn-ecommerce i {
+.product-item .product-price .btn i {
     margin-right: 5px;
 }
 
@@ -2213,7 +2199,6 @@ h2 {
 .login {
     position: relative;
     padding-top: 30px;
-
 }
 
 .login .login-form,
@@ -2221,7 +2206,6 @@ h2 {
     padding: 30px;
     background: #ffffff;
     margin-bottom: 30px;
-   
 }
 
 
@@ -2403,22 +2387,10 @@ h2 {
 .footer-bottom .template-by p a:hover {
     color: #ffffff;
 }
+
 @media (max-width: 768.98px) {
     .footer-bottom .copyright,
     .footer-bottom .template-by {
         text-align: center; 
     } 
-}
-
-
-
-/* My CSS */
-.btn-cart{
-    color: #000000;
-    background: #FF6F61;
-    border: 1px solid #FF6F61;
-    border-radius: 5px;
-    height: 45px;
-    text-align: center;
-    font-size: 25px;
 }

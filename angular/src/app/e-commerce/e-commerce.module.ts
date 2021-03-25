@@ -4,10 +4,19 @@ import { CommonModule } from '@angular/common';
 import { ECommerceRoutingModule,routingECommerceComponents } from './e-commerce-routing.module';
 import { ECommerceComponent } from './e-commerce.component';
 import { ProductsComponent } from './products/products.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { AccountComponent } from './account/account.component';
+
 
 
 @NgModule({
-  declarations: [ECommerceComponent, ProductsComponent],
+  declarations: [ECommerceComponent, ProductsComponent, HeaderComponent, FooterComponent, CartComponent, ProductListComponent, ProductDetailComponent, RegisterComponent, LoginComponent, AccountComponent],
   imports: [
     CommonModule,
     ECommerceRoutingModule

@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AdminComponent} from './admin.component';
+import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
-  {path: '',component:AdminComponent, 
+  {path: '',component:LoginComponent, 
     children: [
       {path: 'products',component:ProductsComponent}
-
     ]
   },
-  {path:'', redirectTo: '/admin', pathMatch:'prefix'},
+ // {path:'', redirectTo: '/admin', pathMatch:'prefix'},
+ // {path:'login', component:LoginComponent}
 
 ];
 

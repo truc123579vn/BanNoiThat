@@ -5,19 +5,20 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
-  {path: '',component:LoginComponent, 
+  {path:'',component:LoginComponent ,
     children: [
-      {path: 'products',component:ProductsComponent}
+      {path: 'products',component:ProductsComponent},
+     
     ]
   },
- // {path:'', redirectTo: '/admin', pathMatch:'prefix'},
- // {path:'login', component:LoginComponent}
-
+  {path:"index", component:AdminComponent},
+ //{path:'', redirectTo: '/admin', pathMatch:'prefix'},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
+
 export class AdminRoutingModule { }
 export const routingAdminComponents=[ProductsComponent]

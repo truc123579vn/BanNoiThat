@@ -6,13 +6,16 @@ import { ProductsComponent } from './products/products.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent ,
+    // children: [
+    //   {path: 'products',component:ProductsComponent},
+    // ]
+  },
+  {path:"index", component:AdminComponent,
     children: [
       {path: 'products',component:ProductsComponent},
-     
     ]
   },
-  {path:"index", component:AdminComponent},
- //{path:'', redirectTo: '/admin', pathMatch:'prefix'},
+  {path:'', redirectTo: '/admin', pathMatch:'prefix'},
 ];
 
 @NgModule({

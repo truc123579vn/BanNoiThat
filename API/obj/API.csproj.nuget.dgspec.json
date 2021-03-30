@@ -1,20 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\BanNoiThat\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {
+    "C:\\Users\\Admin\\Desktop\\BanNoiThat\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\BanNoiThat\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\BanNoiThat\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\BanNoiThat\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -67,27 +68,9 @@
               "target": "Package",
               "version": "[5.0.4, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
-              "target": "Package",
-              "version": "[5.0.4, )"
-            },
             "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[5.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.4, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[5.0.2, )"
             }
           },
           "imports": [

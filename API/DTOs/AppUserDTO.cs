@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class AppUserDTO : IdentityUser
+    public class AppUserDTO 
     {
         public string FirstName { get; set; }
 

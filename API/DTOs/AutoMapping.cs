@@ -1,3 +1,5 @@
+using API.DTOs;
+using API.Models;
 using AutoMapper;
 using DTOs;
 using Models;

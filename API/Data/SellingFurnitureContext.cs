@@ -1,3 +1,5 @@
+using API.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
@@ -5,7 +7,7 @@ using Models;
 
 namespace Data
 {
-    public class SellingFurnitureContext : DbContext
+    public class SellingFurnitureContext : IdentityDbContext
     {
         public SellingFurnitureContext(DbContextOptions<SellingFurnitureContext> options) : base(options)
         {

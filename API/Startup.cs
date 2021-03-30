@@ -1,6 +1,8 @@
+using API.Models;
 using Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +30,19 @@ namespace ProductApi
 
             services.AddControllers();
 
-       
+            //Cấu hình Identity
+            services.AddDefaultIdentity<AppUser>().AddEntityFrameworkStores<SellingFurnitureContext>();
+           
+            //Cấu hình đặt password
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+            });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,7 +55,6 @@ namespace ProductApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
 
             app.UseAuthorization();
 

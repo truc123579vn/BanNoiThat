@@ -29,6 +29,12 @@ namespace API.Data
                     new Category {
                         Name = "Ghế"
                     },
+                      new Category {
+                        Name = "Giường"
+                    },
+                    new Category {
+                        Name = "Tủ"
+                    },
                 
                 });
 

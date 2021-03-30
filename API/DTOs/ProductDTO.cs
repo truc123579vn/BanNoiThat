@@ -1,6 +1,7 @@
 using Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace DTOs
 {
@@ -22,6 +23,8 @@ namespace DTOs
         [ForeignKey(nameof(Category))]
         public virtual Category Category { get; set; }
         public int Category_Id {get;set;}
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         
     }
 }

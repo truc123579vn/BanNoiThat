@@ -12,5 +12,8 @@ public class AutoMapping : Profile
         CreateMap<Category, CategoryDTO>();
         CreateMap<CategoryDTO, Category>();
 
+        
+
+
     }
 }

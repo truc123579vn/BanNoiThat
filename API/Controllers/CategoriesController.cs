@@ -70,6 +70,7 @@ namespace Controllers
             if (category == null) return NotFound();
 
             _mapper.Map<CategoryDTO,Category>(categoryDTO,category);
+            //category = _mapper.Map<Category>(categoryDTO);
             _context.Categories.Update(category);
 
             try
@@ -81,7 +82,7 @@ namespace Controllers
                 return NotFound();
             }
 
-            return NoContent();
+           return CreatedAtAction(nameof(GetCategories), new { Id = category.Id }, category);
         }
 
         [HttpDelete("{id}")]

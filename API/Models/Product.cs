@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Models
 {
     public class Product
@@ -17,6 +19,10 @@ namespace Models
         public Category Category { get; set; }
 
         public int Category_Id { get; set; }
+
+        // 1 Product co nhieu OrderDetails
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
 
 
 

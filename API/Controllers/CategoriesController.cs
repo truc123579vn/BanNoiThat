@@ -28,7 +28,7 @@ namespace Controllers
         public async Task<IEnumerable<CategoryDTO>> GetCategories()
         {
             // lay DL tu model
-            var categories =  await _context.Categories.ToListAsync();
+            var categories =  await _context.Categories.Include(p=>p.Products).ToListAsync();
             // Chuyen doi list category tu model sang DTO
             var categoriesDTO = _mapper.Map<List<Category>,List<CategoryDTO>>(categories);
             //Tra ve DL DTO

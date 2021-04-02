@@ -173,3 +173,13 @@ C:\Users\Admin\Desktop\BanNoiThat\API\obj\Debug\net5.0\scopedcss\bundle\API.styl
 C:\Users\Admin\Desktop\BanNoiThat\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
 C:\Users\Admin\Desktop\BanNoiThat\API\obj\Debug\net5.0\API.csproj.CopyComplete
 C:\Users\Admin\Desktop\BanNoiThat\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\API.StaticWebAssets.xml
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs

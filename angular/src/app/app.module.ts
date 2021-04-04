@@ -1,10 +1,11 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {ReactiveFormsModule} from '@angular/forms'
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +14,12 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right'
+    }),
+    BrowserAnimationsModule,  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

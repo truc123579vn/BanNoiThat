@@ -11,14 +11,23 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{MatInputModule} from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
   declarations: [ECommerceComponent, ProductsComponent, HeaderComponent, FooterComponent, CartComponent, ProductListComponent, ProductDetailComponent, RegisterComponent, LoginComponent, AccountComponent],
   imports: [
     CommonModule,
-    ECommerceRoutingModule
+    ECommerceRoutingModule,
+    ReactiveFormsModule,
+    MatInputModule,
+
+
+
+
+
   ]
 })
 export class ECommerceModule { }

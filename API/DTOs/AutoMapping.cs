@@ -14,6 +14,12 @@ public class AutoMapping : Profile
         CreateMap<Category, CategoryDTO>();
         CreateMap<CategoryDTO, Category>();
 
+        CreateMap<Order, OrderDTO>();
+        CreateMap<OrderDTO, Order>();
+
+        CreateMap<OrderDetail, OrderDetailDTO>();
+        CreateMap<OrderDetailDTO, OrderDetail>();
+
         
 
 

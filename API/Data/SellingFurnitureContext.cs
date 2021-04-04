@@ -14,23 +14,28 @@ namespace Data
         }
 
         //Lap bang Products và Categories
-        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Product> Products { get; set; }
+  
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        //public DbSet<AppUser> AppUsers { get; set; }
 
         //Ung dung Fluent Api
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            base.OnModelCreating(modelBuilder);
+            
             //Map entity to table
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<Category>().ToTable("Categories");
             modelBuilder.Entity<Order>().ToTable("Orders");
             modelBuilder.Entity<OrderDetail>().ToTable("OrderDetails");
-            //modelBuilder.Entity<User>().ToTable("Users");
+            //modelBuilder.Entity<AppUser>().ToTable("AppUsers");
 
 
             //Configure primary key
@@ -42,7 +47,8 @@ namespace Data
 
             modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
 
-            //modelBuilder.Entity<User>().HasKey(u => u.)
+
+            //modelBuilder.Entity<AppUser>().HasKey(u => u.Id);
 
             //Configure Constraint Unique Column
             modelBuilder.Entity<Category>().HasIndex(c => c.Name).IsUnique();
@@ -62,22 +68,26 @@ namespace Data
                 .HasForeignKey(p => p.Category_Id);// Lap khoa ngoai;
 
             modelBuilder.Entity<Product>()
-                .Property(p => p.Price).HasColumnType("decimal(7,5)");
+                .Property(p => p.Price).HasColumnType("decimal(18,2)"); //mặc định để 18,2
                 
 
-            modelBuilder.Entity<OrderDetail>()
+            modelBuilder.Entity<OrderDetail>() 
                 .HasOne<Order>(od => od.Order)
                 .WithMany(o => o.OrderDetails)
                 .HasForeignKey(od => od.OrderID);
-
-            modelBuilder.Entity<Order>()
-                .Property(o => o.Total).HasColumnType("decimal(10,5)");
-
 
             modelBuilder.Entity<OrderDetail>()
                 .HasOne<Product>(od => od.Product)
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(od => od.ProductID);
+            
+            // modelBuilder.Entity<Order>()
+            //     .HasOne<AppUser>(o => o.AppUser)
+            //     .WithMany(u => u.Orders)
+            //     .HasForeignKey(o => o.UserId);
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Total).HasColumnType("decimal(18,2)"); //mặc định để 18,2
 
         }
 

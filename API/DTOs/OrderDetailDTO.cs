@@ -15,10 +15,10 @@ namespace DTOs
 
         public int Amount { get; set; }
 
-        [ForeignKey(nameof(Order))]
+        [ForeignKey("OrderID")]
         public virtual Order Order { get; set; }  
 
-        [ForeignKey(nameof(Product))]
+        [ForeignKey("ProductID ")]
         public virtual Product Product { get; set; }
     }
 }

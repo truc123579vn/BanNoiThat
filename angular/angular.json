@@ -31,10 +31,13 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/style.css",
               "node_modules/AdminLTE-master/plugins/fontawesome-free/css/all.min.css",
               "node_modules/AdminLTE-master/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
-              "node_modules/AdminLTE-master/docs/assets/css/adminlte.css"
+              "node_modules/AdminLTE-master/docs/assets/css/adminlte.css",
+              "node_modules/ngx-toastr/toastr.css"
+
               
             ],
             "scripts": [

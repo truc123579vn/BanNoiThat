@@ -6,7 +6,7 @@ using Data;
 using DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Models;
+using Models;   
 
 namespace Controllers
 {

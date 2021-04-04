@@ -1,3 +1,4 @@
+<form [formGroup]="profileForm"  >
 <div class="login">
     <div class="container">
         <div class="col-lg-12">
@@ -5,33 +6,110 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>First Name</label>
-                        <input class="form-control" type="text" placeholder="First Name">
+                        <input class="form-control" type="text" formControlName="firstName" placeholder="First Name" >
+                        
+                        <mat-error *ngIf="firstName && firstName.hasError('pattern') && (firstName.dirty || firstName.touched)" class="has-text-danger" >
+                            First Name is invalid
+                         </mat-error>   
+                        <mat-error *ngIf="firstName && firstName.hasError('required') && (firstName.dirty || firstName.touched)" class="has-text-danger" >
+                           First Name is required
+                        </mat-error>       
+                        <mat-error *ngIf="firstName && firstName.hasError('maxlength') && (firstName.dirty || firstName.touched)" class="has-text-danger" >
+                            First Name is too Long
+                        </mat-error>                      
+            
                     </div>
                     <div class="col-md-6">
                         <label>Last Name"</label>
-                        <input class="form-control" type="text" placeholder="Last Name">
+                        <input class="form-control" type="text" formControlName="lastName" placeholder="Last Name">
+                       
+                        <mat-error *ngIf="lastName && lastName.hasError('pattern') && (lastName.dirty || lastName.touched)" class="has-text-danger" >
+                            Last Name is invalid
+                         </mat-error>  
+                        
+                        <mat-error *ngIf="lastName && lastName.hasError('required') && (lastName.dirty || lastName.touched)" class="has-text-danger" >
+                            Last Name is required
+                         </mat-error>       
+                         <mat-error *ngIf="lastName && lastName.hasError('maxlength') && (lastName.dirty || lastName.touched)" class="has-text-danger" >
+                            Last Name is too Long
+                         </mat-error>            
                     </div>
                     <div class="col-md-6">
                         <label>E-mail</label>
-                        <input class="form-control" type="text" placeholder="E-mail">
+                        <input class="form-control" type="text" formControlName="email" placeholder="E-mail">
+
+                        <mat-error *ngIf="email && email.hasError('required') && (email.dirty || email.touched)" class="has-text-danger" >
+                            Email is required
+                         </mat-error>       
+                         <mat-error *ngIf="email && email.hasError('email') && (email.dirty || email.touched)" class="has-text-danger" >
+                            This is not the email address, email address must be like test@gmail.com
+                         </mat-error>  
+                       
+                       
+                       
+                       
+                        <!-- <span class="error" *ngIf="email && email.invalid && (email.dirty || email.touched)"  >
+                            Email is required.
+                        </span> -->
                     </div>
                     <div class="col-md-6">
                         <label>Mobile No</label>
-                        <input class="form-control" type="text" placeholder="Mobile No">
+                        <input class="form-control" type="text" formControlName="mobileNo" placeholder="Mobile No">
+                        
+                        <mat-error *ngIf="mobileNo && mobileNo.hasError('required') && (mobileNo.dirty || mobileNo.touched)" class="has-text-danger" >
+                            Phone number is required
+                         </mat-error>       
+                         <mat-error *ngIf="mobileNo && mobileNo.hasError('pattern') && (mobileNo.dirty || mobileNo.touched)" class="has-text-danger" >
+                            Phone number should be like 0932961035.
+                         </mat-error>  
+                        
+                        
+                        
+                        
+                        <!-- <span class="error" *ngIf="mobileNo && mobileNo.invalid && (mobileNo.dirty || mobileNo.touched)"  >
+                            Mobile number is required.
+                        </span> -->
                     </div>
                     <div class="col-md-6">
                         <label>Password</label>
-                        <input class="form-control" type="text" placeholder="Password">
+                        <input class="form-control" type="password" formControlName="password" placeholder="Password">
+                        
+                        <mat-error *ngIf="password && password.hasError('required') && (password.dirty || password.touched)" class="has-text-danger" >
+                            Password is required
+                         </mat-error>   
+
+
                     </div>
                     <div class="col-md-6">
                         <label>Retype Password</label>
-                        <input class="form-control" type="text" placeholder="Password">
+                        <input class="form-control" type="password" formControlName="retypePassword" placeholder="Password">
+                        
+            
+                        <mat-error *ngIf="retypePassword&& retypePassword.hasError('confirmedValidator') ">
+                            Passwords don't match
+                        </mat-error>
+
+                       
+                        <!-- <span class="error" *ngIf="email && email.invalid && (email.dirty || email.touched)"  >
+                            Email is required.
+                        </span> -->
                     </div>
-                    <div class="col-md-12">
-                        <button class="btn-ecommerce">Register</button>
+                    <div class="col-md-12" >
+                        <button mat-riesd-button [disabled]="profileForm.invalid" color="primary"
+                        (click)="onSubmit()"
+                        >Register</button>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<p>
+Value: {{profileForm.value| json}}
+</p>
+<p>
+    Form Status: {{ profileForm.status }}
+</p>
+</form>

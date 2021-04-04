@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "m5nr9wDfnuq9wbUa81zTdgRLMJSfHIeG3sH3feVKCIf1+pVfLXVg1Li+kXMsIrmApnHdu32lJND7f1HwzuEj1g==",
+  "dgSpecHash": "zPNULGmpCzQ+PkJYfu4bsEhOqj8GsJksE/SV5e4rWkpyxg4rvvQx2M5x3BWoKY0Q/wDTJCh+d6YXfnAk7L4+OA==",
   "success": true,
-  "projectFilePath": "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
+  "projectFilePath": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

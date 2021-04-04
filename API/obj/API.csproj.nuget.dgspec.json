@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {}
+    "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {}
   },
   "projects": {
-    "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {
+    "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
+        "projectUniqueName": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
+        "projectPath": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\API.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "e:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\obj\\",
+        "outputPath": "E:\\Git-Workspace\\BanNoiThat-Admin\\BanNoiThat\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -74,7 +74,7 @@ h2 {
     padding: 0 15px;
     color: #999999;
     border: 1px solid #dddddd;
-    margin-bottom: 15px
+    margin-bottom: 10px
 }
 
 .form-control:focus,
@@ -2422,3 +2422,13 @@ h2 {
     text-align: center;
     font-size: 25px;
 }
+
+@import '~ngx-toastr/toastr';
+
+
+@import '~ngx-toastr/toastr-bs4-alert';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';

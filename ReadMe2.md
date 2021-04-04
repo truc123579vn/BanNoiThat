@@ -27,3 +27,14 @@ Nhập dotnet ef database update
 
 
 B4: nhâp dotnet watch run
+
+
+4/ Tải thêm một số package cho Angular 
+
+B1: Dùng Terminal nhập lệnh sau đây
+
+npm install ngx-toastr --save
+
+npm install @angular/animations --save
+
+B2: Lúc này tại Node-Modules, folder template Admin-TLE sẽ bị mất, hãy copy paste foder Admin-TLE và đặt vào đó.  

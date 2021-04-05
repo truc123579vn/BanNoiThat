@@ -1,27 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj": {}
+    "C:\\Users\\ASUS\\Documents\\GitHub\\BanNoiThat\\API\\API.csproj": {}
   },
   "projects": {
-    "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj": {
+    "C:\\Users\\ASUS\\Documents\\GitHub\\BanNoiThat\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\GitHub\\BanNoiThat\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\obj\\",
+        "projectPath": "C:\\Users\\ASUS\\Documents\\GitHub\\BanNoiThat\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Documents\\GitHub\\BanNoiThat\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
+<<<<<<< Updated upstream
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+=======
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> Stashed changes
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -77,6 +82,16 @@
             "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Migrations": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [

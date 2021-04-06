@@ -41,8 +41,6 @@
           "Microsoft.EntityFrameworkCore.Design": "5.0.4",
           "Microsoft.EntityFrameworkCore.InMemory": "5.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite.Core": "5.0.4",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.4",
-          "Migrations": "1.0.1",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -429,17 +427,6 @@
           "lib/net5.0/Microsoft.AspNetCore.Identity.UI.dll": {}
         }
       },
-      "log4net/2.0.5": {
-        "runtime": {
-          "lib/net45-full/log4net.dll": {
-            "assemblyVersion": "1.2.15.0",
-            "fileVersion": "1.2.15.0"
-          }
-        },
-        "compile": {
-          "lib/net45-full/log4net.dll": {}
-        }
-      },
       "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.Sqlite/5.0.4": {
         "dependencies": {
@@ -567,11 +554,6 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/5.0.4": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "5.0.4"
-        }
-      },
       "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.0"
@@ -684,20 +666,6 @@
         }
       },
       "Microsoft.Extensions.Primitives/5.0.0": {},
-      "Migrations/1.0.1": {
-        "dependencies": {
-          "log4net": "2.0.5"
-        },
-        "runtime": {
-          "lib/net40-Client/Migrations.dll": {
-            "assemblyVersion": "1.0.1.0",
-            "fileVersion": "1.0.1.0"
-          }
-        },
-        "compile": {
-          "lib/net40-Client/Migrations.dll": {}
-        }
-      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
         "dependencies": {
           "SQLitePCLRaw.core": "2.0.4",
@@ -816,16 +784,8 @@
           "lib/netstandard2.0/SQLitePCLRaw.provider.dynamic_cdecl.dll": {}
         }
       },
-      "System.Collections.Immutable/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
-        }
-      },
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
+      "System.Collections.Immutable/5.0.0": {},
+      "System.ComponentModel.Annotations/5.0.0": {},
       "System.Diagnostics.DiagnosticSource/5.0.1": {
         "runtime": {
           "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {
@@ -2524,7 +2484,6 @@
       "path": "humanizer.core/2.8.26",
       "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
     },
-<<<<<<< Updated upstream
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.4": {
       "type": "package",
       "serviceable": true,
@@ -2552,14 +2511,6 @@
       "sha512": "sha512-i+apnZXZAgfZcORLrMf13nCkqG94qUEeDknP/AeatYBV6jd3IcPhOLOV9hjiOs47d37Srbcvm5d7RqeegpqeTg==",
       "path": "microsoft.aspnetcore.identity.ui/5.0.4",
       "hashPath": "microsoft.aspnetcore.identity.ui.5.0.4.nupkg.sha512"
-=======
-    "log4net/2.0.5": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-AEqPZz+v+OikfnR2SqRVdQPnSaLq5y9Iz1CfRQZ9kTKPYCXHG6zYmDHb7wJotICpDLMr/JqokyjiqKAjUKp0ng==",
-      "path": "log4net/2.0.5",
-      "hashPath": "log4net.2.0.5.nupkg.sha512"
->>>>>>> Stashed changes
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -2637,13 +2588,6 @@
       "sha512": "sha512-rcNIIyon8HEidlMDO7DMr7CHPesadHUU+BWamw1dL6fhtwCZzMnZOc6ZWZHzlHFF5JduCd7OydWVTHMNwPQOwQ==",
       "path": "microsoft.entityframeworkcore.sqlite.core/5.0.4",
       "hashPath": "microsoft.entityframeworkcore.sqlite.core.5.0.4.nupkg.sha512"
-    },
-    "Microsoft.EntityFrameworkCore.Tools/5.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ldiZtmhBXJBvBHLUUglCL2n0RFoaXwR3fnvY0Tn0U70V4gafA2ny7vf1d/Gh4ai9qyj/wVJOj4RN8HAy4wjqTw==",
-      "path": "microsoft.entityframeworkcore.tools/5.0.4",
-      "hashPath": "microsoft.entityframeworkcore.tools.5.0.4.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
       "type": "package",
@@ -2742,13 +2686,6 @@
       "sha512": "sha512-cI/VWn9G1fghXrNDagX9nYaaB/nokkZn0HYAawGaELQrl8InSezfe9OnfPZLcJq3esXxygh3hkq2c3qoV3SDyQ==",
       "path": "microsoft.extensions.primitives/5.0.0",
       "hashPath": "microsoft.extensions.primitives.5.0.0.nupkg.sha512"
-    },
-    "Migrations/1.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-udBzfD8ALn1uc1cOfk+inSO++xliThW+llQ0URIYxVDtjiTSp2s5N0l81Bcy4wAlaAeJIdlX3qh+cX+GJGRatA==",
-      "path": "migrations/1.0.1",
-      "hashPath": "migrations.1.0.1.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_e_sqlite3/2.0.4": {
       "type": "package",

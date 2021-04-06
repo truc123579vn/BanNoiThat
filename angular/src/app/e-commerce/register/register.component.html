@@ -77,6 +77,9 @@
                         <mat-error *ngIf="password && password.hasError('required') && (password.dirty || password.touched)" class="has-text-danger" >
                             Password is required
                          </mat-error>   
+                         <mat-error *ngIf="password && password.hasError('minlength') && (password.dirty || password.touched)" class="has-text-danger" >
+                            Password is too short
+                         </mat-error>  
 
 
                     </div>

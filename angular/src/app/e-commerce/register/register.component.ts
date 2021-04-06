@@ -12,10 +12,7 @@ import {ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
   profileForm! : FormGroup  ;
 
-  constructor(
-    private fb: FormBuilder,
-    private toastr: ToastrService
-    ) { }
+  constructor(private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 

@@ -1,14 +1,22 @@
 <div class="container">
-    <div class="login  ">
+    <div class="login">
         <div class="container-fluid">
-            <form class="login-form center " >
+            <form class="login-form center"  [formGroup]="formModel" autocomplete="off" (submit)="login(formModel)">
                 <div class="form-group center">
                     <label>E-mail / Username</label>
-                    <input class="form-control" type="text" placeholder="E-mail / Username" />
+                    <input class="form-control" type="text" placeholder="Username" formControlName="UserName" />
+                    <mat-error *ngIf="
+              formModel.get('UserName')?.touched &&
+              formModel.get('UserName')?.errors?.required
+            ">Tài khoản không được bỏ trống</mat-error>
                 </div>
                 <div class="form-group center">
                     <label>Password</label>
-                    <input  class="form-control" type="password" placeholder="Password" />
+                    <input class="form-control" type="password" placeholder="Password" formControlName="Password" />
+                    <mat-error *ngIf="
+              formModel.get('Password')?.touched &&
+              formModel.get('Password')?.errors?.required
+            ">Mật khẩu không được bỏ trống</mat-error>
                 </div>
                 <div class="form-group center">
                     <div class="custom-control custom-checkbox">
@@ -16,11 +24,10 @@
                         <label class="custom-control-label" for="newaccount">Keep me signed in</label>
                     </div>
                 </div>
-                <div class="form-group center">
-                    <button class="btn-ecommerce center ">Login</button>
+                <div class="col-md-12">
+                    <button class="btn-ecommerce">Log in</button>
                 </div>
             </form>
         </div>
     </div>
-    
 </div>

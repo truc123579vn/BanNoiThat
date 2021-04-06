@@ -15,7 +15,8 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="profile">{{profile.userName}}</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="!profile">User Account</a>
                         <div class="dropdown-menu">
                             <a href="/e-commerce/login" class="dropdown-item">Login</a>
                             <a href="/e-commerce/register" class="dropdown-item">Register</a>

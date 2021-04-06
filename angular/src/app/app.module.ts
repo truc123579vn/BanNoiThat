@@ -1,3 +1,4 @@
+import { UserService } from './shared/user.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,12 +17,12 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-top-right'
     }),
     BrowserAnimationsModule,  
 
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

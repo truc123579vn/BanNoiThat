@@ -14,7 +14,8 @@ public class AutoMapping : Profile
         CreateMap<Category, CategoryDTO>();
         CreateMap<CategoryDTO, Category>();
 
-        
+        CreateMap<AppUser, AppUserDTO>();
+        CreateMap<AppUserDTO, AppUser>();
 
 
     }

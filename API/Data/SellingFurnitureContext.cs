@@ -2,12 +2,11 @@ using API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
-
-
+using System.Reflection;
 
 namespace Data
 {
-    public class SellingFurnitureContext : IdentityDbContext
+    public class SellingFurnitureContext : IdentityDbContext<AppUser>
     {
         public SellingFurnitureContext(DbContextOptions<SellingFurnitureContext> options) : base(options)
         {
@@ -55,11 +54,11 @@ namespace Data
             modelBuilder.Entity<Category>().Property(c => c.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Order>().Property(o => o.Id).ValueGeneratedOnAdd();
 
-
+          
 
             // configures one-to-many relationship
             modelBuilder.Entity<Product>()//bat dau voi Entity Product
-                .HasOne<Category>(p => p.Category)//Chi ra co 1 thuoc tinh Category trong Entity Product, dong thoi cau hinh Entity Category
+                .HasOne(p => p.Category)//Chi ra co 1 thuoc tinh Category trong Entity Product, dong thoi cau hinh Entity Category
                 .WithMany(c => c.Products)// Chi ra Entity Categories chua nhieu Products 
                 .HasForeignKey(p => p.Category_Id);// Lap khoa ngoai;
 
@@ -80,6 +79,10 @@ namespace Data
                 .HasOne<Product>(od => od.Product)
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(od => od.ProductID);
+            
+
+           
+             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //apply tất cả mà không phải thêm từng cái config
 
         }
 

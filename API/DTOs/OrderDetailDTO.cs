@@ -2,7 +2,7 @@ using Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
-
+//test
 namespace DTOs
 {
     public class OrderDetailDTO
@@ -15,10 +15,10 @@ namespace DTOs
 
         public int Amount { get; set; }
 
-        [ForeignKey(nameof(Order))]
+        [ForeignKey("OrderID")]
         public virtual Order Order { get; set; }  
 
-        [ForeignKey(nameof(Product))]
+        [ForeignKey("ProductID ")]
         public virtual Product Product { get; set; }
     }
 }

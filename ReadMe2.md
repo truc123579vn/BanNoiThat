@@ -39,4 +39,6 @@ npm install ngx-toastr --save
 
 npm install @angular/animations --save
 
+ng add @angular/material (Được áp dụng trong trang register)  
+
 B2: Lúc này tại Node-Modules, folder template Admin-TLE sẽ bị mất, hãy copy paste foder Admin-TLE và đặt vào đó.  

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210406071352_Init")]
-    partial class Init
+    [Migration("20210406162629_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -249,7 +249,7 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Total")
-                        .HasColumnType("decimal(10,5)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -296,7 +296,7 @@ namespace API.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(7,5)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");

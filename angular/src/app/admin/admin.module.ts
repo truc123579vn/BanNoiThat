@@ -10,11 +10,14 @@ import { AsidebarComponent } from './asidebar/asidebar.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { Component } from '@fullcalendar/core';
+import { AccountComponent } from './account/account.component';
+import { OrdersComponent } from './orders/orders.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent,LoginComponent],
+  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent,LoginComponent, AccountComponent, OrdersComponent, StatisticsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

@@ -16,6 +16,13 @@ public class AutoMapping : Profile
 
         CreateMap<AppUser, AppUserDTO>();
         CreateMap<AppUserDTO, AppUser>();
+        CreateMap<Order, OrderDTO>();
+        CreateMap<OrderDTO, Order>();
+
+        CreateMap<OrderDetail, OrderDetailDTO>();
+        CreateMap<OrderDetailDTO, OrderDetail>();
+
+        
 
 
     }

@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
+//import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

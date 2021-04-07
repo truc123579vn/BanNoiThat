@@ -1,3 +1,4 @@
+import { UserService } from './shared/user.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,10 +19,10 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-bottom-right'
+      positionClass: 'toast-top-right'
     }),
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

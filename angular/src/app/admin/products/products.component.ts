@@ -18,21 +18,29 @@ export class ProductsComponent implements OnInit {
   constructor(private proSer: ProductsService) {}
 
   ngOnInit(): void {
-    // Perry
-    /*  this.proSer.AllProducts.subscribe(res => {
-       this.products = res
-      console.log(this.products);
-     }); */
+    
   }
 
-  // Perry
   search(input: any) {
     //this.proSer.getFromDb(input);
   }
   onSelect(event: any) {
-    // Perry
-    /* var tmppath = URL.createObjectURL(event.target.files[0]);
-    $("#AddEmpImage").fadeIn("fast").attr('src',tmppath);
-    this.SelectedImage=<File>event.target.files[0]; */
+
   }
+  add(){
+
+  }
+  selectForUpdate(){
+
+  }
+  update(){
+
+  }
+  deleteConForm(){
+
+  }
+  selectForDelete(){
+
+  }
+  
 }

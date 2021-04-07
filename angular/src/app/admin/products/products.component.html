@@ -19,7 +19,7 @@
     <!-- /.card-header -->
     <div class="card-body p-0">
       <div class="mailbox-controls">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-default btn-sm">
+        <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm">
           <i class="fas fa-plus-circle"> Thêm sản phẩm</i>
         </button>
         <!-- Check all button -->
@@ -101,7 +101,7 @@
               <td>a</td>
               <td>a</td>
               <td>
-                <select class="status-select" style="width:110px;" data-sortorder="">
+                <select class="status-select" style="width:110px; cursor: pointer;" data-sortorder="">
                   <option value="index">Kinh doanh </option>
                   <option value="sortData"> Ngừng kinh doanh </option>
                 </select>
@@ -169,12 +169,12 @@
 <!-- Modal for add products -->
 <!-- Button trigger modal -->
 <!-- Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+        <h3 class="modal-title" id="exampleModalLabel"><b>Add Product</b></h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="border: none;">x</button>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -186,6 +186,46 @@
               <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
             </div>
           </div><br>
+          <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm" style="width: 200px;"></td>
+              </tr>
+          </div>
+          <div class="row" style="padding: 5%;">
+            <tr>
+              <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
+              <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm" style="width: 200px;"></td>
+            </tr>
+        </div>
+        <div class="row" style="padding: 5%;">
+          <tr>
+            <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
+            <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng" style="width: 200px;"></td>
+          </tr>
+      </div>
+      <div class="row" style="padding: 5%;">
+        <tr>
+          <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
+          <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm" style="width: 200px;"></td>
+        </tr>
+    </div>
+    <div class="row" style="padding: 5%;">
+      <tr>
+        <td class="col md-6" style="font-size: 17px; font-weight:500;">Chi tiết sản phẩm :</td>
+        <td class="col md-6" style="padding-left: 20px ;"><input type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;"></td>
+      </tr>
+  </div>
+  <div class="row" style="padding: 5%;">
+    <tr>
+      <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
+      <td class="col md-6" style="padding-left: 75px ;"><select class="status-select" style="width:200px; cursor: pointer;" data-sortorder="">
+        <option value="index">Kinh doanh </option>
+        <option value="sortData"> Ngừng kinh doanh </option>
+      </select>
+    </td>
+    </tr>
+</div>
         </div>
       </div>
       <div class="modal-footer">

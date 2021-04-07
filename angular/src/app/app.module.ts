@@ -15,14 +15,11 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-<<<<<<< Updated upstream
-=======
     //HttpClientModule,
-    ToastrModule.forRoot({
+    /* ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-right'
-    }),
->>>>>>> Stashed changes
+    }), */
   ],
   providers: [],
   bootstrap: [AppComponent]

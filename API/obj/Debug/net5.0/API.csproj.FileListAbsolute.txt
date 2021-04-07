@@ -207,6 +207,7 @@ C:\Users\Admin\Desktop\TMDT-new\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.
 C:\Users\Admin\Desktop\TMDT-new\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Admin\Desktop\TMDT-new\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.EntityFramework.dll
 =======
+>>>>>>> dev
 C:\Users\ASUS\Documents\GitHub\BanNoiThat\API\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\ASUS\Documents\GitHub\BanNoiThat\API\bin\Debug\net5.0\appsettings.json
 C:\Users\ASUS\Documents\GitHub\BanNoiThat\API\bin\Debug\net5.0\API.exe
@@ -266,3 +267,14 @@ C:\Users\ASUS\Documents\GitHub\BanNoiThat\API\obj\Debug\net5.0\API.pdb
 C:\Users\ASUS\Documents\GitHub\BanNoiThat\API\obj\Debug\net5.0\API.genruntimeconfig.cache
 >>>>>>> Stashed changes
 >>>>>>> 8178f9972d678350c59fdd779af08472389f8ea9
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.SqlServer.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

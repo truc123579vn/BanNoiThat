@@ -9,10 +9,11 @@ namespace API.Models
 {
     public class AppUser : IdentityUser
     {
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        //public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         
     }
 }

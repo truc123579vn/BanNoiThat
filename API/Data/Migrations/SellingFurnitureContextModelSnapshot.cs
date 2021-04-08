@@ -240,6 +240,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Date")
                         .HasColumnType("TEXT");
 
@@ -250,6 +253,8 @@ namespace API.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Orders");
                 });
@@ -360,6 +365,15 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Models.Order", b =>
+                {
+                    b.HasOne("API.Models.AppUser", "AppUser")
+                        .WithMany("Orders")
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Models.OrderDetail", b =>
                 {
                     b.HasOne("Models.Order", "Order")
@@ -388,6 +402,11 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("API.Models.AppUser", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Models.Category", b =>

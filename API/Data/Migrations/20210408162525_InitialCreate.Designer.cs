@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210406162629_Initialize")]
-    partial class Initialize
+    [Migration("20210408162525_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -242,6 +242,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Date")
                         .HasColumnType("TEXT");
 
@@ -252,6 +255,8 @@ namespace API.Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Orders");
                 });
@@ -362,6 +367,15 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Models.Order", b =>
+                {
+                    b.HasOne("API.Models.AppUser", "AppUser")
+                        .WithMany("Orders")
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Models.OrderDetail", b =>
                 {
                     b.HasOne("Models.Order", "Order")
@@ -390,6 +404,11 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("API.Models.AppUser", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Models.Category", b =>

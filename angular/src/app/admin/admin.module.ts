@@ -13,6 +13,7 @@ import { Component } from '@fullcalendar/core';
 import { AccountComponent } from './account/account.component';
 import { OrdersComponent } from './orders/orders.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,6 +22,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
+    HttpClientModule
     
   ]
 })

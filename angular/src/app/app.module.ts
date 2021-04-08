@@ -20,7 +20,7 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'
-    }),
+    })
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

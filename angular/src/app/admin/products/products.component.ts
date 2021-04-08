@@ -15,10 +15,9 @@ export class ProductsComponent implements OnInit {
   // Perry
   /* products:productModel[];
   SelectedImage:File=null; */
-  constructor(private proSer: ProductsService) {}
-
+  
   ngOnInit(): void {
-    
+
   }
 
   search(input: any) {

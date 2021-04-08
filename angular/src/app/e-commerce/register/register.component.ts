@@ -12,22 +12,19 @@ import {ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
   profileForm! : FormGroup  ;
 
-  constructor(
-    private fb: FormBuilder,
-    private toastr: ToastrService
-    ) { }
+  constructor(private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
     this.profileForm = this.fb.group(
       {
         firstName: ['', [
-          Validators.pattern('[A-Za-z]+'),
+          Validators.pattern('[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ \D]+'),
           Validators.required,
           Validators.maxLength(20)
         ]],
         lastName: ['', [
-          Validators.pattern('[A-Za-z]+'),
+          Validators.pattern('[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ \D]+'),
           Validators.required,
           Validators.maxLength(20)
 
@@ -38,10 +35,12 @@ export class RegisterComponent implements OnInit {
         ]],
         mobileNo:['', [
           Validators.required,
-          Validators.pattern('(09|01[2|6|8|9])+([0-9]{8})'),
+          Validators.pattern('^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$'),
         ]],
         password:['', [
-          Validators.required
+          Validators.required,        
+          Validators.minLength(4)
+
         ]],
         retypePassword:['', [
           Validators.required

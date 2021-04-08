@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using API.Models;
 using Data;
 using Models;
 
@@ -11,10 +12,33 @@ namespace API.Data
     {
         public static void Initialize(SellingFurnitureContext context)
         {
-            context.Database.EnsureCreated();
-
 
             if (context.Categories.Any())
+            {
+                return;   // DB has been seeded.
+            }   
+
+            if (!context.Categories.Any())
+            {
+                context.Categories.AddRange(new List<Category>()
+                {
+                    new Category {
+                        Name = "Bàn"
+                    },
+                    new Category {
+                        Name = "Ghế"
+                    },
+                      new Category {
+                        Name = "Giường"
+                    },
+                    new Category {
+                        Name = "Tủ"
+                    },
+                
+                });
+
+                context.SaveChanges();
+            }if (context.Categories.Any())
             {
                 return;   // DB has been seeded.
             }   

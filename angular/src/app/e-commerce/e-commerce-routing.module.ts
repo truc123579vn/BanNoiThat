@@ -13,7 +13,6 @@ const routes: Routes = [
   {
     path: '', component: ECommerceComponent,
       children: [
-
         { path: "product-list", component: ProductListComponent },
         {
           path: "product/:id",
@@ -24,9 +23,8 @@ const routes: Routes = [
         { path: "login", component: LoginComponent },
         { path: "register", component: RegisterComponent }
       ]
-    
   },
- 
+  {path:'/e-commerce',component : ECommerceComponent}
 ];
 
 @NgModule({

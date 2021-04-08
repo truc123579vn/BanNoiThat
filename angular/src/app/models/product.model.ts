@@ -1,6 +1,6 @@
 export class productModel{
     image: any = "";
-    productId: any = "";
+    id: any = "";
     amount: any = "";
     price: any = "";
     details: any = "";

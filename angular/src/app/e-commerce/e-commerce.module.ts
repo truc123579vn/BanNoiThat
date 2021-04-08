@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ECommerceRoutingModule,routingECommerceComponents } from './e-commerce-routing.module';
@@ -14,6 +15,8 @@ import { AccountComponent } from './account/account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http'
+import { UserService } from '../shared/user.service';
 
 
 @NgModule({
@@ -23,11 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ECommerceRoutingModule,
     ReactiveFormsModule,
     MatInputModule,
-
-
-
-
-
-  ]
+    FormsModule,
+    HttpClientModule,
+    RouterModule
+  ],
+  providers: [UserService],
 })
 export class ECommerceModule { }

@@ -1,0 +1,53 @@
+input.ng-invalid
+{
+    border-left: 5px solid red;
+}
+
+input.ng-valid
+{
+    border-left: 5px solid green;
+}
+
+.error
+{
+    color: red;
+}
+
+.col-md-6
+{
+    margin-bottom: 18px;
+}
+
+.col-md-12
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+button
+{
+    width: 20%;
+    height: 40px;
+    color: #FF6F61;
+    background: #ffffff;
+    border: 1px solid #FF6F61;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 20px;
+    
+}
+
+button:hover
+{
+    color: #ffffff;
+    background: #FF6F61;
+    box-shadow: none;
+}
+
+button[disabled] { 
+    pointer-events: none;
+
+
+}
+

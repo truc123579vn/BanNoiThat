@@ -13,6 +13,12 @@ const routes: Routes = [
   {
     path: '', component: ECommerceComponent,
       children: [
+        {
+          path:'',
+          redirectTo: 'home',
+          pathMatch: 'full' 
+      },
+        {path:"home",component:ProductsComponent,},
         { path: "product-list", component: ProductListComponent },
         {
           path: "product/:id",
@@ -24,7 +30,7 @@ const routes: Routes = [
         { path: "register", component: RegisterComponent }
       ]
   },
-  {path:'/e-commerce',component : ECommerceComponent}
+ 
 ];
 
 @NgModule({

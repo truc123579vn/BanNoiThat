@@ -47,7 +47,7 @@ namespace Data
             modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
 
 
-            //modelBuilder.Entity<AppUser>().HasKey(u => u.Id);
+            modelBuilder.Entity<AppUser>().HasKey(u => u.Id);
 
             //Configure Constraint Unique Column
             modelBuilder.Entity<Category>().HasIndex(c => c.Name).IsUnique();
@@ -83,7 +83,7 @@ namespace Data
             // modelBuilder.Entity<Order>()
             //     .HasOne<AppUser>(o => o.AppUser)
             //     .WithMany(u => u.Orders)
-            //     .HasForeignKey(o => o.UserId);
+            //     .HasForeignKey(o => o.AppUser.Id);
 
             modelBuilder.Entity<Order>()
                 .Property(o => o.Total).HasColumnType("decimal(18,2)"); //mặc định để 18,2

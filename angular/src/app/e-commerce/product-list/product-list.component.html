@@ -1,5 +1,10 @@
-  <!-- Product List Start -->
-  <div class="product-view">
+<!-- Product List Start -->
+{{list}}
+
+
+<a routerLink="/e-commerce/product/1">Hello</a>
+
+<div class="product-view">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
@@ -28,18 +33,12 @@
                                 <div class="col-md-4">
                                     <div class="product-price-range">
                                         <div class="dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
+                                            <div class="dropdown-toggle" data-toggle="dropdown">Product price range
+                                            </div>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">$0 to $50</a>
-                                                <a href="#" class="dropdown-item">$51 to $100</a>
-                                                <a href="#" class="dropdown-item">$101 to $150</a>
-                                                <a href="#" class="dropdown-item">$151 to $200</a>
-                                                <a href="#" class="dropdown-item">$201 to $250</a>
-                                                <a href="#" class="dropdown-item">$251 to $300</a>
-                                                <a href="#" class="dropdown-item">$301 to $350</a>
-                                                <a href="#" class="dropdown-item">$351 to $400</a>
-                                                <a href="#" class="dropdown-item">$401 to $450</a>
-                                                <a href="#" class="dropdown-item">$451 to $500</a>
+                                                <a class="dropdown-item">$0 to $50</a>
+                                                <a class="dropdown-item">$51 to $100</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -47,11 +46,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-3"
+                        *ngFor="let product of list | paginate:{id:'listing_pagination',itemsPerPage:4,currentPage:page}">
                     
-                    <div class="col-md-3">
-                        <div class="product-item">
+                        <div  class="product-item">
                             <div class="product-title">
-                                <a href="#">Product Name</a>
+                                <a routerLink="/e-commerce/product/{{product.id}}" *ngIf="product?.name">{{product?.name}}</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -61,8 +62,8 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../../assets/img/product-1.jpg" alt="Product Image">
+                                <a routerLink="/e-commerce/product/{{product.id}}">
+                                    <img src="../../../assets/picture/{{product?.image}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -71,116 +72,22 @@
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn-cart" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                <h3>{{product?.price|currency:"VND"}}</h3>
+                                <a class="btn-cart center" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../../assets/img/product-1.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn-cart" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../../assets/img/product-1.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn-cart" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>  <div class="col-md-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Product Name</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.html">
-                                    <img src="../../assets/img/product-1.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>99</h3>
-                                <a class="btn-cart" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                            </div>
-                        </div>
-                    </div>
-                  
                 </div>
-                
                 <!-- Pagination Start -->
                 <div class="col-md-12">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
+                        <pagination-controls class="pagination justify-content-center" id="listing_pagination"
+                            (pageChange)="page = $event"></pagination-controls>
                     </nav>
                 </div>
                 <!-- Pagination Start -->
-            </div>           
-            
+            </div>
+
             <!-- Side Bar Start -->
             <div class="col-lg-4 sidebar">
                 <div class="sidebar-widget category">
@@ -188,25 +95,14 @@
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
+                                <a class="nav-link" name="clickAllProduct" [(ngModel)]="clickAllProduct">Tất cả</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-microchip"></i>Electronics & Accessories</a>
+                            <li class="nav-item" *ngFor="let item of listCategory">
+                                <a class="nav-link">{{item.name}}</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
-                
-                
+            </div>
         </div>
     </div>
-</div>

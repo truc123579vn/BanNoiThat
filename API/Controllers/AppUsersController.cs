@@ -22,12 +22,12 @@ namespace API.Controllers
     public class AppUsersController : ControllerBase
     {
         private UserManager<AppUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
+        private RoleManager<IdentityRole<int>> _roleManager;
         private SignInManager<AppUser> _signInManager;
         private IMapper _mapper;
         private IJwtService _service;
 
-        public AppUsersController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager,SignInManager<AppUser> signInManager, IMapper mapper,IJwtService service)
+        public AppUsersController(UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager,SignInManager<AppUser> signInManager, IMapper mapper,IJwtService service)
         {
             _userManager = userManager;
             _roleManager = roleManager;

@@ -7,7 +7,6 @@ namespace DTOs
 {
     public class ProductDTO
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
 
@@ -20,7 +19,6 @@ namespace DTOs
         public string Status { get; set; }
 
         // Thiet lap quan he 1-n, mot loai san pham co nhieu san pham
-        [ForeignKey(nameof(Category))]
         public virtual Category Category { get; set; }
         public int Category_Id {get;set;}
 

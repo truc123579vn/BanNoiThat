@@ -28,7 +28,7 @@ namespace Controllers
         {
             // lay DL tu model
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
-            var orders = await _context.Orders.ToListAsync();
+            var orders = await _context.Orders.Include(oDetail => oDetail.OrderDetails).ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
             var ordersDTO = _mapper.Map<List<Order>,List<OrderDTO>>(orders);
             return ordersDTO;

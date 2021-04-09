@@ -1,4 +1,5 @@
 using API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -6,7 +7,7 @@ using System.Reflection;
 
 namespace Data
 {
-    public class SellingFurnitureContext : IdentityDbContext<AppUser>
+    public class SellingFurnitureContext : IdentityDbContext<AppUser,IdentityRole<int>, int>
     {
         public SellingFurnitureContext(DbContextOptions<SellingFurnitureContext> options) : base(options)
         {
@@ -44,8 +45,8 @@ namespace Data
 
             modelBuilder.Entity<Order>().HasKey(o => o.Id);
 
-            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
 
+            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
 
             modelBuilder.Entity<AppUser>().HasKey(u => u.Id);
 
@@ -80,10 +81,17 @@ namespace Data
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(od => od.ProductID);
             
-            // modelBuilder.Entity<Order>()
-            //     .HasOne<AppUser>(o => o.AppUser)
-            //     .WithMany(u => u.Orders)
-            //     .HasForeignKey(o => o.AppUser.Id);
+            modelBuilder.Entity<Order>()
+                .HasOne<AppUser>(o => o.AppUser)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.User_Id);
+
+                // .HasForeignKey(o => o.AppUser.Id );
+                // .HasForeignKey(o => new {o.AppUser, o.Id})
+
+
+
+   
 
             modelBuilder.Entity<Order>()
                 .Property(o => o.Total).HasColumnType("decimal(18,2)"); //mặc định để 18,2

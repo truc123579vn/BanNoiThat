@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210408162525_InitialCreate")]
+    [Migration("20210409135337_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,8 +20,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Models.AppUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
@@ -88,10 +89,11 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -114,7 +116,7 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,9 +128,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -137,7 +138,7 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,9 +150,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -160,7 +160,7 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
@@ -171,9 +171,8 @@ namespace API.Data.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -182,13 +181,13 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -197,10 +196,10 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
@@ -242,9 +241,6 @@ namespace API.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Date")
                         .HasColumnType("TEXT");
 
@@ -254,9 +250,12 @@ namespace API.Data.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("User_Id")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("User_Id");
 
                     b.ToTable("Orders");
                 });
@@ -316,16 +315,16 @@ namespace API.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("API.Models.AppUser", null)
                         .WithMany()
@@ -334,7 +333,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("API.Models.AppUser", null)
                         .WithMany()
@@ -343,9 +342,9 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -358,7 +357,7 @@ namespace API.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("API.Models.AppUser", null)
                         .WithMany()
@@ -371,7 +370,9 @@ namespace API.Data.Migrations
                 {
                     b.HasOne("API.Models.AppUser", "AppUser")
                         .WithMany("Orders")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });

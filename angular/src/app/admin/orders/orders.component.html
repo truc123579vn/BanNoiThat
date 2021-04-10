@@ -1,1 +1,266 @@
-<p>orders works!</p>
+<div style="padding: 2%;">
+    <div class="card card-primary card-outline">
+      <div class="card-header" >
+        <h2 class="card-title" style="font-weight: 700; margin-bottom: -2px;">Hóa Đơn</h2>
+  
+      
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        <div class="mailbox-controls">
+         
+          <div class="float-right">
+            1-50/200
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button type="button" class="btn btn-default btn-sm">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <!-- /.btn-group -->
+          </div>
+          <!-- /.float-right -->
+        </div>
+        <div class="table-responsive mailbox-messages">
+          <table class="table table-hover table-striped" >
+            <tbody >
+              <tr style="font-size: 16px; background-color:#DDDDDD;">
+                <th>Mã hóa đơn</th>
+                <th>Tổng số lượng</th>
+                <th>Ngày đặt</th>
+                <th>Địa chỉ</th>
+                <th>Tình trạng</th>
+                <th>Thao tác</th>
+                <th></th>
+              </tr>
+              <tr style="font-size: 16px;" *ngFor="let orders of orders |async" > 
+                <td>{{orders.id}}</td>
+                <td>{{orders.total}}</td>
+                <td>{{orders.date}}</td>
+                <td>{{orders.address}}</td>
+                <td>
+                  <select class="status-select" style="width:110px; height: 25px;; cursor: pointer;" data-sortorder="">
+                    <option value="index"> {{orders.status}}
+                    </option>
+                  </select>
+                </td>
+                <td >
+                  <button type="button" id="button_approve" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
+                    (click)="selectForDelete()" > 
+                    <i class="fas fa-check"></i>
+                  </button>
+                  
+                  <button type="button" data-toggle="modal" data-target="#DeleteModal" (click)="selectForDelete()"
+                    class="btn btn-default btn-sm" style="font-size: 18px ;border-radius: 2px ; background-color: rgb(255, 62, 62);"> 
+                    <i class="fas fa-trash-alt"></i> 
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- /.table -->
+        </div>
+        <!-- /.mail-box-messages -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer p-0" style="background-color:#DDDDDD;">
+        <div class="mailbox-controls">
+          <!-- /.btn-group -->
+          <div class="float-right">
+            1-50/200
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button type="button" class="btn btn-default btn-sm">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <!-- Modal for add products -->
+  
+  <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+          <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm sản phẩm</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                <img class="img-thumbnail" id="AddEmpImage" style="width: 100px; height: 100px" src="" alt="">
+              </div>
+              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
+                <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
+              </div>
+            </div><br>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
+                <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 20px;">
+                  <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
+                  </textarea>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding-left: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
+                <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
+                    style="width:200px; cursor: pointer;" data-sortorder="">
+                    <option value="index">Kinh doanh </option>
+                    <option value="sortData"> Ngừng kinh doanh </option>
+                  </select>
+                </td>
+              </tr>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding-right: 35%;">
+          <button type="button" class="btn btn-primary" (click)="add()">Thêm</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Modal for update products -->
+  
+  <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+          <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Sửa sản phẩm</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            style="border: none;">x</button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                <img class="img-thumbnail" id="UpdateEmpImage" style="width: 100px; height: 100px" src="" alt="">
+              </div>
+              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
+                <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
+              </div>
+            </div><br>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
+                <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 20px;">
+                  <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
+                  </textarea>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
+                <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
+                    style="width:200px; cursor: pointer;" data-sortorder="">
+                    <option value="index">Kinh doanh </option>
+                    <option value="sortData"> Ngừng kinh doanh </option>
+                  </select>
+                </td>
+              </tr>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding-right: 35%;">
+          <button type="button" class="btn btn-primary" (click)="update()">Sửa</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Modal for delete products -->
+  
+  <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="padding-left: 40%; ">
+          <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa sản phẩm</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+        </div>
+        <div class="modal-body">
+          <h3> Bạn muốn xóa sản phẩm này ?</h3>
+        </div>
+        <div class="modal-footer" style="padding-right: 35%;">
+          <button type="button" class="btn btn-primary" (click)="deleteConForm()">Xoá</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+        </div>
+      </div>
+    </div>
+  </div>

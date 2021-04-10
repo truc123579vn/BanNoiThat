@@ -1,6 +1,8 @@
+
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { productModel } from '../models/product.model';
 
 
@@ -8,6 +10,20 @@ import { productModel } from '../models/product.model';
   providedIn: 'root'
 })
 export class ProductsService {
+
+
+  urlAPI = environment.urlAPI;
+
+  constructor(private http:HttpClient){}
+
+  getProduct():Observable<productModel[]>{
+    return this.http.get<productModel[]>(this.urlAPI+"/Products");
+  }
+  
+  getProductById(id:number):Observable<productModel>{
+    return this.http.get<productModel>(this.urlAPI+"/Products/"+id.toString());
+  }
+
 
   /* AllProducts = new BehaviorSubject<productModel[]>(null);
   constructor(private http:HttpClient)

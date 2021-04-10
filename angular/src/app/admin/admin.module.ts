@@ -14,6 +14,8 @@ import { AccountComponent } from './account/account.component';
 import { OrdersComponent } from './orders/orders.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsService } from '../services/products.service';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -24,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     AdminRoutingModule,
     HttpClientModule
     
-  ]
+  ],  
+  providers: [ProductsService],
 })
 export class AdminModule { }

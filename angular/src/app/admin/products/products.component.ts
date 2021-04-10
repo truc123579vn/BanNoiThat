@@ -13,11 +13,20 @@ declare var  Toast; */
 })
 export class ProductsComponent implements OnInit {
   // Perry
-  /* products:productModel[];
-  SelectedImage:File=null; */
+  products:productModel[] = [];
+  // SelectedImage:File=null;
+
+ 
+  constructor(private service:ProductsService) {}
   
   ngOnInit(): void {
-
+    this.service.getProduct().subscribe(
+      (data:productModel[]) => {
+        console.log(data);
+        this.products = data;
+      }
+    )
+    
   }
 
   search(input: any) {

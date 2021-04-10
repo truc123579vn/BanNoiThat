@@ -1,3 +1,4 @@
+
 <div style="padding: 2%;">
   <div class="card card-primary card-outline">
     <div class="card-header">
@@ -38,7 +39,7 @@
       </div>
       <div class="table-responsive mailbox-messages">
         <table class="table table-hover table-striped">
-          <tbody>
+          <thead>
             <tr style="font-size: 16px; background-color:#DDDDDD;">
               <th>Hình ảnh</th>
               <th>Mã sản phẩm</th>
@@ -49,7 +50,9 @@
               <th>Trạng thái</th>
               <th></th>
             </tr>
-            <tr style="font-size: 16px;" >
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products" >
               <td><img src= "" style="width: 100px; height: 100px;"></td>
               <td>a</td>
               <td>a</td>

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { orderModel } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -8,7 +10,8 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  orders: any = this.orderService.getOrders();
+
+  orders: Observable<orderModel[]> = this.orderService.getOrders();
   url = 'https://localhost:5001/api';
   constructor(
     private orderService: OrderService,

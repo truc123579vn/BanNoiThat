@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -77,5 +78,33 @@ namespace API.Controllers
             return Ok(userDTO);
 
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<AppUserDTO>> GetUsers()
+        {
+           
+            var users =  await  _userManager.Users.ToListAsync();
+            var usersDTO = _mapper.Map<List<AppUser>,List<AppUserDTO>>(users);
+            return usersDTO;
+        }
+        [HttpPost]
+        public async Task<ActionResult<AppUserDTO>> CreateUser(AppUserDTO appUserDTO)
+        {
+            var user = _mapper.Map<AppUserDTO,AppUser>(appUserDTO);
+            await _userManager.CreateAsync(user,appUserDTO.Password);
+
+            return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null) return NotFound();
+
+            await _userManager.DeleteAsync(user);
+            return NoContent();
+        }
+
+      
     }
 }

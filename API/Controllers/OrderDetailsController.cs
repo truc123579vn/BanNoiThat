@@ -38,11 +38,22 @@ namespace Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<OrderDetailDTO>> CreateProduct(OrderDetailDTO orderdetailDTO)
+        public async Task<ActionResult<OrderDetailDTO>> CreateOrderDetail(OrderDetailDTO orderdetailDTO)
         {
             //chuyen doi 1 category tu DTO sang model
             var orderdetail = _mapper.Map<OrderDetailDTO,OrderDetail>(orderdetailDTO);
             _context.OrderDetails.Add(orderdetail);
+            
+            decimal subTotalPrice =  0;
+            subTotalPrice = subTotalPrice + (orderdetail.Price * orderdetail.Amount );
+
+            var order = await _context.Orders.FindAsync(orderdetail.OrderID);
+            order.Total= order.Total + subTotalPrice;
+            _context.Orders.Update(order);
+    
+            var product= await _context.Products.FindAsync(orderdetail.ProductID);
+            product.Amount = product.Amount - orderdetail.Amount;
+
             // Luu du lieu len _context
             await _context.SaveChangesAsync();
 

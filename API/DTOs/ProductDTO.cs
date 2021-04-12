@@ -19,10 +19,8 @@ namespace DTOs
         public string Status { get; set; }
 
         // Thiet lap quan he 1-n, mot loai san pham co nhieu san pham
-        public virtual Category Category { get; set; }
         public int Category_Id {get;set;}
-
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Category Category {get;set;}
         
     }
 }

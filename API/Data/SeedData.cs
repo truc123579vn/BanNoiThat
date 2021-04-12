@@ -52,8 +52,7 @@ namespace API.Data
                     Image="/Tủ/1.jpg",
                     Status="Còn hàng",
                     Category=null,
-                    Category_Id=1,
-                    OrderDetails = null,
+                    
                     },
                     new Product {
                     Name = "Product 2",

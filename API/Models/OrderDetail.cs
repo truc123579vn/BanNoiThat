@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Models;
 
 namespace Models
@@ -10,7 +11,13 @@ namespace Models
 
         public int Amount { get; set; }
 
+        public decimal Price { get; set; }
+
+
+    [JsonIgnore]
+
         public Order Order { get; set; }  
+    [JsonIgnore]
 
         public Product Product { get; set; }
     }

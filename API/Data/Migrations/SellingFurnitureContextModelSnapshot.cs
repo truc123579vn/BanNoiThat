@@ -269,6 +269,9 @@ namespace API.Data.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("OrderID", "ProductID");
 
                     b.HasIndex("ProductID");

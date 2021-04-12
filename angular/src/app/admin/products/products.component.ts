@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ICategory } from 'src/app/models/category.model';
 import { productModel } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 // Perry
@@ -15,11 +17,20 @@ export class ProductsComponent implements OnInit {
   // Perry
   /* products:productModel[];
   SelectedImage:File=null; */
-  constructor(private proSer: ProductsService) {}
+  // category: ICategory;
+  
+  constructor(private proSer: ProductsService, private categoryService: CategoryService) {
+  }
 
   ngOnInit(): void {
     
   }
+
+  // getList () {
+  //   this.categoryService.getCategory(this.category.id).subscribe(result =>{
+  //     this.category = result;
+  //   })
+  // }
 
   search(input: any) {
     //this.proSer.getFromDb(input);

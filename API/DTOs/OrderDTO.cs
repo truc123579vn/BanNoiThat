@@ -22,8 +22,8 @@ namespace DTOs{
         
         // public string UserId { get; set; }
 
-        // [ForeignKey("UserId")]
-        // public virtual AppUser AppUser { get; set; }
+        public int User_Id {get;set;}
+
 
         // 1 Order co nhieu OrderDetails
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

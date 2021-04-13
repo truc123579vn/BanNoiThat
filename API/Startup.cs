@@ -38,7 +38,7 @@ namespace ProductApi
             services.AddControllers();
 
             //Cấu hình Identity
-            services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<SellingFurnitureContext>();
+            services.AddIdentity<AppUser,IdentityRole<int>>().AddEntityFrameworkStores<SellingFurnitureContext>().AddDefaultTokenProviders();
            
             //Cấu hình đặt password
             services.Configure<IdentityOptions>(options =>

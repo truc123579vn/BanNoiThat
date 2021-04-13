@@ -5,8 +5,14 @@
 
       <div class="card-tools">
         <div class="input-group input-group-sm">
-          <input #inputForSearch (keyup)="search(inputForSearch.value)" type="text" class="form-control"
-            placeholder="Tìm sản phẩm">
+          <!-- <input #inputForSearch (keyup)="search(inputForSearch.value)" type="text" class="form-control"
+            placeholder="Tìm sản phẩm"> -->
+          <!-- <input class="form-control" type="text" name="productName" 
+          #myInput [(ngModel)]="productName" (ngModelChange)="Search()"
+          placeholder="Tìm sản phẩm"/> -->
+          <input class="form-control" type="text" name="productName" 
+          #myInput [(ngModel)]="productName" (input)="Search()"
+          placeholder="Tìm sản phẩm"/>
           <div class="input-group-append">
             <div class="btn btn-primary">
               <i class="fas fa-search"></i>
@@ -22,59 +28,50 @@
           style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
           <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm sản phẩm</i>
         </button>
-        <div class="float-right">
-          1-50/200
-          <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button type="button" class="btn btn-default btn-sm">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-          <!-- /.btn-group -->
-        </div>
+        
         <!-- /.float-right -->
       </div>
       <div class="table-responsive mailbox-messages">
         <table class="table table-hover table-striped">
-          <tbody>
+          <thead>
             <tr style="font-size: 16px; background-color:#DDDDDD;">
               <th>Hình ảnh</th>
-              <th>Mã sản phẩm</th>
-              <th>Tên sản phẩm</th>
+              <th (click)="Sort('id')">Mã sản phẩm&nbsp;<i class="fa fa-sort"></i></th>
+              <th (click)="Sort('name')">Tên sản phẩm&nbsp;<i class="fa fa-sort"></i></th>
               <th>Số lượng</th>
               <th>Giá</th>
               <th>Chi tiết</th>
               <th>Trạng thái</th>
-              <th></th>
+              <th>Thao tác</th>
             </tr>
-            <tr style="font-size: 16px;">
-              <td><img src="" style="width: 100px; height: 100px;"></td>
-              <td>a</td>
-              <td>a</td>
-              <td>a</td>
-              <td>a</td>
-              <td>a</td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p};">
+              <td><img src= "../assets/picture/{{product.image}}" alt= {{product.name}} style="width: 100px; height: 100px;"></td>
+              <td>{{product.id}}</td>
+              <td>{{product.name}}</td>
+              <td>{{product.amount}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.details}}</td>             
+              <td>{{product.status}}</td>
               <td>
-                <select class="status-select" style="width:110px; height: 25px;; cursor: pointer;" data-sortorder="">
-                  <option value="index"></option>
-                </select>
-              </td>
-              <td>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                  (click)="selectForDelete()" style="font-size: 18px;">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteModal"
+                  (click)="selectForDelete()" style="font-size: 18px;" title="Xóa">
                   <i class="fas fa-trash"></i>
                 </button>
                 <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="selectForUpdate()"
-                  class="btn btn-default btn-sm" style="font-size: 18px;">
+                  class="btn btn-warning btn-sm" style="font-size: 18px;" title="Cập nhật">
                   <i class="fas fa-edit"></i>
                 </button>
               </td>
             </tr>
+                 
           </tbody>
+        
+         
         </table>
         <!-- /.table -->
+        
       </div>
       <!-- /.mail-box-messages -->
     </div>
@@ -82,17 +79,7 @@
     <div class="card-footer p-0" style="background-color:#DDDDDD;">
       <div class="mailbox-controls">
         <!-- /.btn-group -->
-        <div class="float-right">
-          1-50/200
-          <div class="btn-group">
-            <button type="button" class="btn btn-default btn-sm">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button type="button" class="btn btn-default btn-sm">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
+        <pagination-controls (pageChange)="p = $event" style="text-align: center;" ></pagination-controls>
       </div>
     </div>
   </div>
@@ -107,7 +94,7 @@
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
         <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm sản phẩm</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
       </div>
       <div class="modal-body">
@@ -172,12 +159,11 @@
       </div>
       <div class="modal-footer" style="padding-right: 35%;">
         <button type="button" class="btn btn-primary" (click)="add()">Thêm</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- Modal for update products -->
 
@@ -186,7 +172,7 @@
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
         <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Sửa sản phẩm</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
       </div>
       <div class="modal-body">
@@ -251,7 +237,7 @@
       </div>
       <div class="modal-footer" style="padding-right: 35%;">
         <button type="button" class="btn btn-primary" (click)="update()">Sửa</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
       </div>
     </div>
   </div>
@@ -265,7 +251,7 @@
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; ">
         <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa sản phẩm</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
       </div>
       <div class="modal-body">
@@ -273,7 +259,7 @@
       </div>
       <div class="modal-footer" style="padding-right: 35%;">
         <button type="button" class="btn btn-primary" (click)="deleteConForm()">Xoá</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
       </div>
     </div>
   </div>

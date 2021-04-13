@@ -43,7 +43,7 @@
 }
 
 // Backgrund Color Disabled
-[class^='bg-'].disabled {
+[class^="bg-"].disabled {
   opacity: .65;
 }
 
@@ -87,5 +87,18 @@ a.text-muted:hover {
     a.btn-#{$name} {
       color: color-yiq($color);
     }
+  }
+}
+
+.dark-mode {
+  .bg-light {
+    background-color: lighten($dark, 7.5%) !important;
+    color: $white !important;
+  }
+  .text-black,
+  .text-dark,
+  .link-black,
+  .link-dark {
+    color: $gray-400;
   }
 }

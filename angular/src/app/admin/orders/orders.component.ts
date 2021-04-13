@@ -16,7 +16,7 @@ export class OrdersComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private http: HttpClient
-  ) { }
+  ) {}
 
 
   ngOnInit(): void {

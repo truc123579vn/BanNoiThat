@@ -19,6 +19,13 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProduct().subscribe((data: productModel[]) => {this.products = data});
   }
+
+  // getList () {
+  //   this.categoryService.getCategory(this.category.id).subscribe(result =>{
+  //     this.category = result;
+  //   })
+  // }
+
   search(input: any) {
   }
 

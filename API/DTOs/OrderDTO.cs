@@ -7,7 +7,7 @@ using API.Models;
 namespace DTOs{
     public class OrderDTO
     {
-        [Key]
+
         public int Id { get; set; }
 
         public decimal Total { get; set; }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210410090629_CSDL104")]
-    partial class CSDL104
+    [Migration("20210413151727_CSDL")]
+    partial class CSDL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -270,6 +270,9 @@ namespace API.Data.Migrations
 
                     b.Property<int>("Amount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("OrderID", "ProductID");
 

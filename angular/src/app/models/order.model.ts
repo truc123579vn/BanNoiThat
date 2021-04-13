@@ -1,18 +1,19 @@
-//import { orderDetailsModel } from 'src/app/models/OrderDetails';
-import { orderDetailsModel } from 'src/app/models/orderDetails';
+import { orderDetailsModel } from 'src/app/models/orderDetails.model';
 export class orderModel{
     constructor(
-        public  Id : number ,
+        public  id : number ,
 
-        public  Total : number,
+        public  total : number,
         
-        public  Date : number ,
+        public  date : number ,
 
-        public  Address : number ,
+        public  address : number ,
         
-        public  Status : number,
+        public  status : number,
+
+        public orderDetails : orderDetailsModel[]
         
-        public orderDetail: orderDetailsModel[])
+      )
     {}
 }
 

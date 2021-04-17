@@ -13,7 +13,9 @@ namespace API.DTOs
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-        public string Password { get; set; }
+        
+        public String Role {get;set;}
 
+        public String Token {get;set;}
     }
 }

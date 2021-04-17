@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210413151727_CSDL")]
-    partial class CSDL
+    [Migration("20210417133054_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.4");
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("API.Models.AppUser", b =>
                 {

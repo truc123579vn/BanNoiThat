@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Data;
 using DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -12,6 +13,7 @@ namespace Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ProductsController : ControllerBase
     {
         private readonly SellingFurnitureContext _context;

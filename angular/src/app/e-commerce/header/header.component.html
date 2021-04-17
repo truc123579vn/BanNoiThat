@@ -10,17 +10,16 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
                     <a routerLink="/e-commerce/home" class="nav-item nav-link">Home</a>
-                    <a routerLink="/e-commerce/product-list" class="nav-item nav-link">Products</a>     
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>  
+                    <a routerLink="/e-commerce/product-list" class="nav-item nav-link">Products</a>   
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="profile">{{profile.userName}}</a>
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="!profile">User Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="(currentUser$|async)">{{(currentUser$|async)?.userName}}</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="!(currentUser$|async)">User Account</a>
                         <div class="dropdown-menu">
-                            <a href="/e-commerce/login" class="dropdown-item">Login</a>
+                            <a href="/e-commerce/login" class="dropdown-item" *ngIf="!(currentUser$|async)">Login</a>
                             <a href="/e-commerce/register" class="dropdown-item">Register</a>
-                            <a href="/e-commerce/account" class="dropdown-item">My Account</a>
+                            <a href="/e-commerce/account" class="dropdown-item" *ngIf="(currentUser$|async)">My Account</a>
                         </div>
                     </div>
                 </div>

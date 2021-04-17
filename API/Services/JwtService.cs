@@ -13,13 +13,18 @@ namespace API.Services
 {
     public class JwtService : IJwtService
     {
+
         private string key = "This is the private key";
-        public string Generate(AppUser user)
+
+
+        public string Generate(AppUser user, String roleName)
         {
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[] {
-                        new Claim("UserID",user.Id.ToString())
+                        new Claim("UserID",user.Id.ToString()),
+                        new Claim("Role",roleName)
                     }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)), SecurityAlgorithms.HmacSha256Signature)

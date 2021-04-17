@@ -14,7 +14,6 @@ namespace Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class CategoriesController : ControllerBase
     {
         //Khai bao database context

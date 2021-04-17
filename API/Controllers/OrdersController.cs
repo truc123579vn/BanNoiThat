@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs.InputModels;
+using API.Models;
 using AutoMapper;
 using Data;
 using DTOs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -16,11 +19,13 @@ namespace Controllers
     {
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
+        private UserManager<AppUser> _userManager;
 
-        public OrdersController(SellingFurnitureContext context, IMapper mapper )
+        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager  )
         {
             _context = context;
             _mapper = mapper ;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -51,17 +56,31 @@ namespace Controllers
             return orderDTO;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<ProductDTO>> CreateOrder(OrderDTO orderDTO)
-        {
-            //chuyen doi 1 category tu DTO sang model
-            var order = _mapper.Map<OrderDTO,Order>(orderDTO);
-            _context.Orders.Add(order);
-            // Luu du lieu len _context
-            await _context.SaveChangesAsync();
+        // [HttpPost]
+        // public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
+        // {
+        //     var user = await _userManager.FindByNameAsync(orderInput.Username);
 
-            return CreatedAtAction(nameof(GetOrders), new { Id = order.Id }, order);
-        }
+        //     var order = new Order(orderInput.FirstName,orderInput.LastName, orderInput.Address);
+
+        //     order.OrderDetails = orderInput.OrderDetails.Select(item =>
+        //     {
+        //         var product = _context.Products.Find(item.ProductId);
+        //         return new OrderDetail
+        //         {
+        //             Amount = item.Amount > 0 ? item.Amount : 1,
+        //             Price = product.Price,
+        //             Product = product
+        //         };
+        //     }).ToList();
+
+        //     var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+
+        //     _context.Orders.Add(order);
+        //     await _context.SaveChangesAsync();
+
+        //     return Ok(_mapper.Map<Order,OrderDTO>(order));
+        // }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOrder(OrderDTO orderDTO)

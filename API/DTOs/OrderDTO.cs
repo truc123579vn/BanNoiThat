@@ -10,9 +10,9 @@ namespace DTOs{
 
         public int Id { get; set; }
 
-        public decimal Total { get; set; }
+        public decimal TotalPrice { get; set; }
         
-        public string Date { get; set; }
+        public string DateCreated { get; set; }
 
         public string Address { get; set; }
         

@@ -119,7 +119,7 @@ namespace API.Controllers
             }
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public async Task<IEnumerable<AppUserDTO>> GetUsers()
         {
            
@@ -128,22 +128,22 @@ namespace API.Controllers
             return usersDTO;
         }
         [HttpPost]
-        public async Task<ActionResult<AppUserDTO>> CreateUser(AppUserDTO appUserDTO)
+        public async Task<ActionResult<AppUserDTO>> CreateUser(RegisterDTO registerDTO)
         {
-            var user = _mapper.Map<AppUserDTO,AppUser>(appUserDTO);
-            await _userManager.CreateAsync(user,appUserDTO.Password);
+            var user = _mapper.Map<RegisterDTO,AppUser>(registerDTO);
+            await _userManager.CreateAsync(user,registerDTO.Password);
 
             return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
-        }*/
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteUser(int id)
-        // {
-        //     var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-        //     if (user == null) return NotFound();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null) return NotFound();
 
-        //     await _userManager.DeleteAsync(user);
-        //     return NoContent();
-        // }
+            await _userManager.DeleteAsync(user);
+            return NoContent();
+        }
 
 
     }

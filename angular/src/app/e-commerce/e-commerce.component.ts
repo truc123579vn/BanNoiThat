@@ -1,5 +1,6 @@
 import { UserService } from './../shared/user.service';
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-e-commerce',
@@ -8,14 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ECommerceComponent implements OnInit {
 
-  userDetails:any;
-
   constructor(private service:UserService) { }
 
   ngOnInit(): void {
-    this.service.getUserProfile().subscribe(
-      res => {this.userDetails = res,console.log(res)},
-      err => {console.log(err)}
-    );
+    this.loadCurrentUser();
+  }
+
+   loadCurrentUser(){
+    const token = localStorage.getItem('token');
+      this.service.loadCurrentUser(token).subscribe(() => {
+        console.log('Đã có user đăng nhập');
+      }, error => {
+        console.log(error);
+      });
   }
 }

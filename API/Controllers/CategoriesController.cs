@@ -7,23 +7,24 @@ using DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Models;   
+using Models;
 
 namespace Controllers
 {
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController: ControllerBase
+    [AllowAnonymous]
+    public class CategoriesController : ControllerBase
     {
         //Khai bao database context
         private readonly SellingFurnitureContext _context;
-         //Khai bao Auto Mapper
+        //Khai bao Auto Mapper
         private readonly IMapper _mapper;
-        public CategoriesController(SellingFurnitureContext context, IMapper mapper )
+        public CategoriesController(SellingFurnitureContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper ;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -31,9 +32,9 @@ namespace Controllers
         {
             // lay DL tu model
             // Include la de lay ProductsList, khong co Include thi KHONG lay duoc bat cu thuoc tinh nao trong table Product
-            var categories =  await _context.Categories.Include(p=>p.Products).ToListAsync();
+            var categories = await _context.Categories.Include(p => p.Products).ToListAsync();
             // Chuyen doi list category tu model sang DTO
-            var categoriesDTO = _mapper.Map<List<Category>,List<CategoryDTO>>(categories);
+            var categoriesDTO = _mapper.Map<List<Category>, List<CategoryDTO>>(categories);
             //Tra ve DL DTO
             return categoriesDTO;
 
@@ -49,16 +50,16 @@ namespace Controllers
                 return NotFound();
             }
             // Chuyen doi 1 category tu model sang DTO
-            var categoryDTO = _mapper.Map<Category,CategoryDTO>(category);
+            var categoryDTO = _mapper.Map<Category, CategoryDTO>(category);
             //Tra ve DL DTO
-            return categoryDTO ; 
+            return categoryDTO;
         }
 
-       [HttpPost]
+        [HttpPost]
         public async Task<ActionResult<CategoryDTO>> CreateCategory(CategoryDTO categoryDTO)
         {
             //chuyen doi 1 category tu DTO sang model
-            var category = _mapper.Map<CategoryDTO,Category>(categoryDTO);
+            var category = _mapper.Map<CategoryDTO, Category>(categoryDTO);
             _context.Categories.Add(category);
             // Luu du lieu len _context
             await _context.SaveChangesAsync();
@@ -72,7 +73,7 @@ namespace Controllers
 
             if (category == null) return NotFound();
 
-            _mapper.Map<CategoryDTO,Category>(categoryDTO,category);
+            _mapper.Map<CategoryDTO, Category>(categoryDTO, category);
             //category = _mapper.Map<Category>(categoryDTO);
             _context.Categories.Update(category);
 
@@ -85,7 +86,7 @@ namespace Controllers
                 return NotFound();
             }
 
-           return CreatedAtAction(nameof(GetCategories), new { Id = category.Id }, category);
+            return CreatedAtAction(nameof(GetCategories), new { Id = category.Id }, category);
         }
 
         [HttpDelete("{id}")]
@@ -105,5 +106,5 @@ namespace Controllers
             return _context.Categories.Any(c => c.Id == id);
         }
     }
-      
-    }
+
+}

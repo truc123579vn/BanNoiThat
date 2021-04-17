@@ -14,6 +14,7 @@ namespace Controllers
     [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ProductsController : ControllerBase
     {
         private readonly SellingFurnitureContext _context;

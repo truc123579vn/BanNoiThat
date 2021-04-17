@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Models;
 using API.Models;
+using System.Text.Json.Serialization;
 
 namespace DTOs{
     public class OrderDTO
@@ -10,6 +11,10 @@ namespace DTOs{
 
         public int Id { get; set; }
 
+        [JsonIgnore]
+        public AppUser AppUser {get;set;}
+        public int User_Id { get; set; }
+        public string FullName { get; set; }
         public decimal TotalPrice { get; set; }
         
         public string DateCreated { get; set; }
@@ -22,10 +27,9 @@ namespace DTOs{
         
         // public string UserId { get; set; }
 
-        public int User_Id {get;set;}
 
 
         // 1 Order co nhieu OrderDetails
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public  IEnumerable<OrderDetailDTO> OrderDetails { get; set; }
     }
 }

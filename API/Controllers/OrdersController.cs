@@ -35,7 +35,9 @@ namespace Controllers
         {
             // lay DL tu model
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
-            var orders = await _context.Orders.Include(oDetail => oDetail.OrderDetails).ToListAsync();
+            var orders = await _context.Orders.Include(u => u.AppUser).
+            Include(oDetail => oDetail.OrderDetails).ThenInclude(p => p.Product).
+            ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
             var ordersDTO = _mapper.Map<List<Order>,List<OrderDTO>>(orders);
             return ordersDTO;
@@ -58,31 +60,32 @@ namespace Controllers
             return orderDTO;
         }
 
-        // [HttpPost]
-        // public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
-        // {
-        //     var user = await _userManager.FindByNameAsync(orderInput.Username);
+        [HttpPost]
+        public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
+        {
+            var user = await _userManager.FindByNameAsync(orderInput.Username);
 
-        //     var order = new Order(orderInput.FirstName,orderInput.LastName, orderInput.Address);
+            var order = new Order(user,orderInput.FirstName,orderInput.LastName, orderInput.Address);
 
-        //     order.OrderDetails = orderInput.OrderDetails.Select(item =>
-        //     {
-        //         var product = _context.Products.Find(item.ProductId);
-        //         return new OrderDetail
-        //         {
-        //             Amount = item.Amount > 0 ? item.Amount : 1,
-        //             Price = product.Price,
-        //             Product = product
-        //         };
-        //     }).ToList();
+            order.OrderDetails = orderInput.OrderDetails.Select(item =>
+            {
+                var product = _context.Products.Find(item.ProductId);
+                return new OrderDetail
+                {
+                    Amount = item.Amount > 0 ? item.Amount : 1,
+                    Price = product.Price,
+                    Product = product
+                };
+            }).ToList();
 
-        //     var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+            order.TotalPrice = subTotal;
 
-        //     _context.Orders.Add(order);
-        //     await _context.SaveChangesAsync();
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
 
-        //     return Ok(_mapper.Map<Order,OrderDTO>(order));
-        // }
+            return Ok(_mapper.Map<Order,OrderDTO>(order));
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateOrder(OrderDTO orderDTO)

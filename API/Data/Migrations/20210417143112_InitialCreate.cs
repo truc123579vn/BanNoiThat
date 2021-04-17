@@ -182,7 +182,8 @@ namespace API.Data.Migrations
                     DateCreated = table.Column<string>(type: "TEXT", nullable: true),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
-                    AppUserId = table.Column<int>(type: "INTEGER", nullable: true)
+                    AppUserId = table.Column<int>(type: "INTEGER", nullable: true),
+                    User_Id = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

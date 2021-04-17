@@ -81,10 +81,10 @@ namespace Data
                 .WithMany(p => p.OrderDetails)
                 .HasForeignKey(od => od.ProductID);
             
-            // modelBuilder.Entity<Order>()
-            //     .HasOne<AppUser>(o => o.AppUser)
-            //     .WithMany(u => u.Orders)
-            //     .HasForeignKey(o => o.User_Id);
+            modelBuilder.Entity<Order>()
+                .HasOne<AppUser>(o => o.AppUser)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.User_Id);
 
                 // .HasForeignKey(o => o.AppUser.Id );
                 // .HasForeignKey(o => new {o.AppUser, o.Id})

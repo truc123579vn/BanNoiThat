@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210417140401_InitialCreate")]
+    [Migration("20210417143112_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,6 +262,9 @@ namespace API.Data.Migrations
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("User_Id")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -380,9 +383,11 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("Models.Order", b =>
                 {
-                    b.HasOne("API.Models.AppUser", null)
+                    b.HasOne("API.Models.AppUser", "AppUser")
                         .WithMany("Orders")
                         .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Models.OrderDetail", b =>

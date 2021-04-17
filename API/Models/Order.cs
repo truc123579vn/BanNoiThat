@@ -10,12 +10,12 @@ namespace Models
     {
 
         public Order() { }
-        public Order( string firstName,string lastName, string address)
+        public Order( AppUser appUser, string firstName,string lastName, string address)
         {
-            // AppUser = appUser;
+            AppUser = appUser;
             FullName = firstName + "" +lastName;
             Address = address;
-            DateCreated = DateTime.Now.ToString();
+            DateCreated = DateTime.Now.ToString("dd/MM/yyyy");
             Status = "Chưa Duyệt";
         }
         public int Id { get; set; }
@@ -34,12 +34,12 @@ namespace Models
         // thiết lập quan hệ 1-n, 1 user có nhiều order
         //public string UserId { get; set; }
 
-        // public AppUser AppUser { get; set; }
-        // public int User_Id {get;set;}
+        public AppUser AppUser { get; set; }
+        public int User_Id {get;set;}
 
         // 1 Order co nhieu OrderDetails
 
         [JsonIgnore]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual  IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

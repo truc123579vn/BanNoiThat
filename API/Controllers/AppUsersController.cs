@@ -20,6 +20,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
 
     public class AppUsersController : ControllerBase
     {
@@ -127,23 +128,23 @@ namespace API.Controllers
             var usersDTO = _mapper.Map<List<AppUser>,List<AppUserDTO>>(users);
             return usersDTO;
         }
-        [HttpPost]
-        public async Task<ActionResult<AppUserDTO>> CreateUser(RegisterDTO registerDTO)
-        {
-            var user = _mapper.Map<RegisterDTO,AppUser>(registerDTO);
-            await _userManager.CreateAsync(user,registerDTO.Password);
+        // [HttpPost]
+        // public async Task<ActionResult<AppUserDTO>> CreateUser(RegisterDTO registerDTO)
+        // {
+        //     var user = _mapper.Map<RegisterDTO,AppUser>(registerDTO);
+        //     await _userManager.CreateAsync(user,registerDTO.Password);
 
-            return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
-        {
-            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-            if (user == null) return NotFound();
+        //     return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
+        // }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteUser(int id)
+        // {
+        //     var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+        //     if (user == null) return NotFound();
 
-            await _userManager.DeleteAsync(user);
-            return NoContent();
-        }
+        //     await _userManager.DeleteAsync(user);
+        //     return NoContent();
+        // }
 
 
     }

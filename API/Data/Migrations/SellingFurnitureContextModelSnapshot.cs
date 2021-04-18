@@ -239,9 +239,6 @@ namespace API.Data.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("AppUserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("DateCreated")
                         .HasColumnType("TEXT");
 
@@ -265,7 +262,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("User_Id");
 
                     b.ToTable("Orders");
                 });
@@ -383,7 +380,9 @@ namespace API.Data.Migrations
                 {
                     b.HasOne("API.Models.AppUser", "AppUser")
                         .WithMany("Orders")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });

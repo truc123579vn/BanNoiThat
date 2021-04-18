@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'
 import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartService } from '../services/cart.service';
 
 
 @NgModule({
@@ -34,6 +35,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule,
     NgxPaginationModule
   ],
-  providers: [UserService,ProductsService,CategoryService],
+  providers: [UserService,ProductsService,CategoryService,CartService],
 })
 export class ECommerceModule { }

@@ -1,4 +1,3 @@
-
 import { CategoryService } from './../services/category.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { RouterModule } from '@angular/router';
@@ -18,10 +17,10 @@ import { AccountComponent } from './account/account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http'
 import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { CartService } from '../services/cart.service';
 
 
 @NgModule({
@@ -34,13 +33,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     FormsModule,
     HttpClientModule,
     RouterModule,
-    NgxPaginationModule,
-
+    NgxPaginationModule
   ],
-  providers: [UserService,ProductsService,CategoryService,{
-    provide: HTTP_INTERCEPTORS,
-    useClass:AuthInterceptor,
-    multi:true
-  }],
+  providers: [UserService,ProductsService,CategoryService,CartService],
 })
 export class ECommerceModule { }

@@ -1,12 +1,14 @@
 export class productModel{
+    [x: string]: any;
     id: number;
     name: string;
-    amount: number;
+    amount: number=1;
     price: number;
     details: string;
     image: string;
     status: string;
     categoryId: number;
+    qty:number=1
 
     constructor(id: number, name: string, amount: number, price: number, details: string, image: string, status: string, categoryId: number)
     {

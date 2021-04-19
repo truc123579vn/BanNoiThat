@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using API.Models;
 using Data;
-using Microsoft.AspNetCore.Identity;
 using Models;
 
 namespace API.Data
@@ -17,7 +16,7 @@ namespace API.Data
             if (context.Categories.Any())
             {
                 return;   // DB has been seeded.
-            }
+            }   
 
             if (!context.Categories.Any())
             {
@@ -35,7 +34,7 @@ namespace API.Data
                     new Category {
                         Name = "Tủ"
                     },
-
+                
                 });
 
                 context.SaveChanges();
@@ -53,8 +52,7 @@ namespace API.Data
                     Image="/Tủ/1.jpg",
                     Status="Còn hàng",
                     Category=null,
-                    Category_Id=1,
-                    OrderDetails = null,
+                    
                     },
                     new Product {
                     Name = "Product 2",
@@ -66,37 +64,18 @@ namespace API.Data
                     Category=null,
                     Category_Id=1,
                     OrderDetails = null,
-                    },
+                    },           
                 });
 
-
                 context.SaveChanges();
+            }if (context.Categories.Any())
+            {
+                return;   // DB has been seeded.
+            }   
 
-                if (context.Roles.Any())
-                {
-                    return;
-                }
-                else
-                {
-                    context.Roles.AddRange(new List<IdentityRole<int>>(){
-                            new IdentityRole<int>{
-                                Name = "Admin",
-                                NormalizedName = "ADMIN"
-                            },
-                            new IdentityRole<int>{
-                                Name = "Manager",
-                                NormalizedName = "MANAGER"
-                            },
-                            new IdentityRole<int>{
-                                Name = "Customer",
-                                NormalizedName = "CUSTOMER"
-                            }
 
-                    });
-                    context.SaveChanges();
-
-                }
-            }
+            
         }
+
     }
 }

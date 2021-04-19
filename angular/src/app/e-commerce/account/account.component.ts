@@ -1,8 +1,5 @@
-import { UserService } from './../../shared/user.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'src/app/models/user.model';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -11,20 +8,13 @@ import { take } from 'rxjs/operators';
 })
 export class AccountComponent implements OnInit {
 
-  user!:IUser;
-
-  constructor(private router:Router,private service:UserService) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-     this.service.currentUser$.pipe(take(1)).subscribe(
-       user =>{
-         this.user = user;
-       }
-     )
   }
 
   logOut(){
-    this.service.logout();
-    this.router.navigateByUrl("/e-commerce/home");
+    sessionStorage.removeItem('token');
+    this.router.navigateByUrl('/e-commerce');
   }
 }

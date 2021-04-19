@@ -20,7 +20,6 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class AppUsersController : ControllerBase
     {
         private UserManager<AppUser> _userManager;
@@ -29,7 +28,7 @@ namespace API.Controllers
         private IMapper _mapper;
         private IJwtService _service;
 
-        public AppUsersController(UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager, SignInManager<AppUser> signInManager, IMapper mapper, IJwtService service)
+        public AppUsersController(UserManager<AppUser> userManager, RoleManager<IdentityRole<int>> roleManager,SignInManager<AppUser> signInManager, IMapper mapper,IJwtService service)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -38,88 +37,49 @@ namespace API.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        [Authorize(Policy = "Admin")]
-        [Route("GetDemo")]
-        public String Demo()
-        {
-            return "Hello";
-        }
+       
 
         [HttpPost]
         [Route("Login")]
-        [AllowAnonymous]
         public async Task<ActionResult<AppUserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await _userManager.FindByNameAsync(loginDTO.UserName);
-            if (user == null)
+            
+           
+            if(user!=null && await _userManager.CheckPasswordAsync(user, loginDTO.Password))
             {
-                return BadRequest(new { message = "Tài khoản này chưa tồn tại" });
+
+                var token = _service.Generate(user);
+                return Ok(new { token });
             }
             else
             {
-                if (await _userManager.CheckPasswordAsync(user, loginDTO.Password))
-                {
-                    var role = await _userManager.GetRolesAsync(user);
-                    var roleName = "";
-                    if (role.Contains("Customer"))
-                    {
-                        roleName = "Customer";
-                    }
-                    else if (role.Contains("Admin"))
-                    {
-                        roleName = "Admin";
-                    }
-                    else if (role.Contains("Manager"))
-                    {
-                        roleName = "Manager";
-                    }
-                    var appUserDTO = _mapper.Map<AppUserDTO>(user);
-                    appUserDTO.Role = roleName;
-                    appUserDTO.Token = _service.Generate(user, roleName);
-
-                    return Ok(appUserDTO);
-                }
-                else
-                {
-                    return BadRequest(new { message = "Mật khẩu không đúng" });
-                }
+                return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng" });
             }
-
-
         }
+
+       
 
         [HttpPost]
         [Route("User/Customer")]
-        [AllowAnonymous]
         public async Task<Object> Register(RegisterDTO registerDTO)
         {
-            var user = await _userManager.FindByNameAsync(registerDTO.UserName);
-            if (user != null)
+            var userDTO = new AppUserDTO
             {
-                return BadRequest(new { message = "Username này đã tồn tại" });
-            }
-            else
-            {
-                var userDTO = new AppUserDTO
-                {
-                    UserName = registerDTO.UserName,
-                    FirstName = registerDTO.FirstName,
-                    LastName = registerDTO.LastName,
-                    Role = "Customer"
-                };
-                user = _mapper.Map<AppUser>(userDTO);
-                var result = await _userManager.CreateAsync(user, registerDTO.Password);
-                var setRole = await _userManager.AddToRoleAsync(user, userDTO.Role);
-                if (!setRole.Succeeded)
-                {
-                    return BadRequest(new { message = "Không set được quyền" });
-                }
-                return Ok(_userManager.GetRolesAsync(user));
-            }
+                UserName = registerDTO.UserName,
+                FirstName = registerDTO.FirstName,
+                LastName = registerDTO.LastName,
+                
+            };
+            var user = _mapper.Map<AppUser>(userDTO);
+         
+            var result = await _userManager.CreateAsync(user, registerDTO.Password);
+       
+            return Ok(userDTO);
+
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public async Task<IEnumerable<AppUserDTO>> GetUsers()
         {
            
@@ -134,17 +94,17 @@ namespace API.Controllers
             await _userManager.CreateAsync(user,appUserDTO.Password);
 
             return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
-        }*/
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteUser(int id)
-        // {
-        //     var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
-        //     if (user == null) return NotFound();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user == null) return NotFound();
 
-        //     await _userManager.DeleteAsync(user);
-        //     return NoContent();
-        // }
+            await _userManager.DeleteAsync(user);
+            return NoContent();
+        }
 
-
+      
     }
 }

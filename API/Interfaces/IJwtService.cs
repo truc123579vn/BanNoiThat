@@ -8,6 +8,6 @@ namespace API.Interfaces
 {
     public interface IJwtService
     {
-        string Generate(AppUser user,String roleName);
+        string Generate(AppUser user);
     }
 }

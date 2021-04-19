@@ -51,7 +51,8 @@ namespace API.Data
                     Details="Bàn cà phê là món đồ dùng không thể thiếu trong bất kỳ phòng khách nào. Đến BAYA và mang về bàn cà phê GONZALES được làm từ chất liệu gỗ MDF cao cấp, bền chắc, phủ lớp sơn đen sang trọng. Chân bàn vững chắc với kết cấu lạ mắt cùng chất liệu kim loại không gỉ. Kết hợp bàn cùng các sản phẩm khác trong cùng bộ sưu tập để hoàn thiện nội thất gia đình bạn. ",
                     Image="/Tủ/1.jpg",
                     Status="Còn hàng",
-                    Category=null,
+                    Category_Id=1,
+                    OrderDetails = null,
                     
                     },
                     new Product {

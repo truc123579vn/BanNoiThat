@@ -2,7 +2,6 @@ using API.Interfaces;
 using API.Models;
 using API.Services;
 using Data;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;

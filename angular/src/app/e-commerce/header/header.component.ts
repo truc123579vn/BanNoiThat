@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   currentUser$!:Observable<IUser>
   user! : IUser;
 
-  constructor(public router:Router,public service:UserService) { }
+  constructor(public router:Router,public service:UserService) { } 
 
   ngOnInit(): void {
     this.currentUser$ = this.service.currentUser$;
-  }
+  } 
 
   getUserProfile(){
     this.currentUser$.pipe(take(1)).subscribe(

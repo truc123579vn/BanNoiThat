@@ -22,7 +22,7 @@ namespace API.Services
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[] {
+                Subject = new ClaimsIdentity(new Claim[] { 
                         new Claim("UserID",user.Id.ToString()),
                         new Claim("Role",roleName)
                     }),

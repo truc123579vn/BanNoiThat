@@ -16,6 +16,6 @@ namespace API.DTOs
         
         public String Role {get;set;}
 
-        public String Token {get;set;}
+        public String Token {get;set;}  
     }
 }

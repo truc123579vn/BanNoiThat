@@ -39,7 +39,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
   ],
   providers: [UserService,ProductsService,CategoryService,{
     provide: HTTP_INTERCEPTORS,
-    useClass:AuthInterceptor,
+    useClass:AuthInterceptor,  
     multi:true
   }],
 })

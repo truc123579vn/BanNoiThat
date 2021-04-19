@@ -60,7 +60,7 @@ namespace API.Controllers
             {
                 if (await _userManager.CheckPasswordAsync(user, loginDTO.Password))
                 {
-                    var role = await _userManager.GetRolesAsync(user);
+                    var role = await _userManager.GetRolesAsync(user); 
                     var roleName = "";
                     if (role.Contains("Customer"))
                     {

@@ -40,7 +40,7 @@ export class UserService {
       this.currentUser.next(null!);
     }
     return this.http
-      .get<IUser>(this.urlAPI + '/UserProfile')
+      .get<IUser>(this.urlAPI + '/UserProfile') 
       .pipe(
         map((user: IUser) => {
           if (user) {

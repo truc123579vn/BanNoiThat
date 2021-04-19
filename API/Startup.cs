@@ -39,7 +39,7 @@ namespace ProductApi
                                   .RequireAuthenticatedUser()
                                   .Build();
                  config.Filters.Add(new AuthorizeFilter(policy));
-             }).AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); });
+             }).AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); }); 
 
 
             services.AddAuthorization(options =>

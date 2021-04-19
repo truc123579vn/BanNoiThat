@@ -18,10 +18,10 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
      this.service.currentUser$.pipe(take(1)).subscribe(
        user =>{
-         this.user = user;
+         this.user = user; 
        }
      )
-  }
+  } 
 
   logOut(){
     this.service.logout();

@@ -24,3 +24,4 @@ export class ECommerceComponent implements OnInit {
       });
   }
 }
+ 

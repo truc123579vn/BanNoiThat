@@ -27,4 +27,4 @@ export class AccountComponent implements OnInit {
     this.service.logout();
     this.router.navigateByUrl("/e-commerce/home");
   }
-}
+} 

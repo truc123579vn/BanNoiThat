@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   formModel = this.fb.group({
     UserName: ['', Validators.required],
     Password: ['', Validators.required],
-  });
+  }); 
 
   ngOnInit(): void {
     this.currentUser$ = this.service.currentUser$;

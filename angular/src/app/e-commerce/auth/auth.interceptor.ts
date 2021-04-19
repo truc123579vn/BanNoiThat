@@ -12,7 +12,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
-  intercept(
+  intercept( 
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {

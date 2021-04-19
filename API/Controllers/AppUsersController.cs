@@ -128,14 +128,14 @@ namespace API.Controllers
             var usersDTO = _mapper.Map<List<AppUser>,List<AppUserDTO>>(users);
             return usersDTO;
         }
-        // [HttpPost]
-        // public async Task<ActionResult<AppUserDTO>> CreateUser(RegisterDTO registerDTO)
-        // {
-        //     var user = _mapper.Map<RegisterDTO,AppUser>(registerDTO);
-        //     await _userManager.CreateAsync(user,registerDTO.Password);
+        [HttpPost]
+        public async Task<ActionResult<AppUserDTO>> CreateUser(RegisterDTO registerDTO)
+        {
+            var user = _mapper.Map<RegisterDTO,AppUser>(registerDTO);
+            await _userManager.CreateAsync(user,registerDTO.Password);
 
-        //     return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
-        // }
+            return CreatedAtAction(nameof(GetUsers), new { Id = user.Id }, user);
+        }
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> DeleteUser(int id)
         // {

@@ -7,16 +7,11 @@ namespace DTOs
 {
     public class OrderDetailDTO
     {
-        public int OrderID { get; set; }
-        
-        public int ProductID { get; set; }
-
+   
         public int Amount { get; set; }
-
         public decimal Price {get;set;}
+        public string ProductName { get; set; }
 
-        public virtual Order Order { get; set; }  
 
-        public virtual Product Product { get; set; }
     }
 }

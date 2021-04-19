@@ -66,3 +66,6 @@ API/obj/Debug/net5.0/apphost.exe
 API/obj/Debug/net5.0/ref/API.dll
 API/obj/project.assets.json
 API/obj/project.nuget.cache
+API/bin/Debug/net5.0/API.dll
+API/bin/Debug/net5.0/API.pdb
+API/bin/Debug/net5.0/API.dll

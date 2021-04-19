@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Data;
 using DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -12,15 +13,16 @@ namespace Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class OrdersController : ControllerBase
     {
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
 
-        public OrdersController(SellingFurnitureContext context, IMapper mapper )
+        public OrdersController(SellingFurnitureContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper ;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,7 +32,7 @@ namespace Controllers
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
             var orders = await _context.Orders.Include(oDetail => oDetail.OrderDetails).ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
-            var ordersDTO = _mapper.Map<List<Order>,List<OrderDTO>>(orders);
+            var ordersDTO = _mapper.Map<List<Order>, List<OrderDTO>>(orders);
             return ordersDTO;
 
             // var products = await _context.Products.Include(p => p.Category.Name).ToListAsync();
@@ -46,8 +48,8 @@ namespace Controllers
             {
                 return NotFound();
             }
-         // Chuyen doi 1 product tu model sang DTO
-            var orderDTO = _mapper.Map<Order,OrderDTO>(order);
+            // Chuyen doi 1 product tu model sang DTO
+            var orderDTO = _mapper.Map<Order, OrderDTO>(order);
             return orderDTO;
         }
 
@@ -55,7 +57,7 @@ namespace Controllers
         public async Task<ActionResult<ProductDTO>> CreateOrder(OrderDTO orderDTO)
         {
             //chuyen doi 1 category tu DTO sang model
-            var order = _mapper.Map<OrderDTO,Order>(orderDTO);
+            var order = _mapper.Map<OrderDTO, Order>(orderDTO);
             _context.Orders.Add(order);
             // Luu du lieu len _context
             await _context.SaveChangesAsync();
@@ -70,7 +72,7 @@ namespace Controllers
 
             if (order == null) return NotFound();
 
-            _mapper.Map<OrderDTO,Order>(orderDTO,order);
+            _mapper.Map<OrderDTO, Order>(orderDTO, order);
             _context.Orders.Update(order);
 
             try

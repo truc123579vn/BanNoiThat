@@ -19,10 +19,10 @@ namespace Controllers
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
 
-        public ProductsController(SellingFurnitureContext context, IMapper mapper )
+        public ProductsController(SellingFurnitureContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper ;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Controllers
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
             var products = await _context.Products.ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
-            var productsDTO = _mapper.Map<List<Product>,List<ProductDTO>>(products);
+            var productsDTO = _mapper.Map<List<Product>, List<ProductDTO>>(products);
             return productsDTO;
 
             // var products = await _context.Products.Include(p => p.Category.Name).ToListAsync();
@@ -48,8 +48,8 @@ namespace Controllers
             {
                 return NotFound();
             }
-         // Chuyen doi 1 product tu model sang DTO
-            var productDTO = _mapper.Map<Product,ProductDTO>(product);
+            // Chuyen doi 1 product tu model sang DTO
+            var productDTO = _mapper.Map<Product, ProductDTO>(product);
             return productDTO;
         }
 
@@ -57,7 +57,7 @@ namespace Controllers
         public async Task<ActionResult<ProductDTO>> CreateProduct(ProductDTO productDTO)
         {
             //chuyen doi 1 category tu DTO sang model
-            var product = _mapper.Map<ProductDTO,Product>(productDTO);
+            var product = _mapper.Map<ProductDTO, Product>(productDTO);
             _context.Products.Add(product);
             // Luu du lieu len _context
             await _context.SaveChangesAsync();
@@ -72,7 +72,7 @@ namespace Controllers
 
             if (product == null) return NotFound();
 
-            _mapper.Map<ProductDTO,Product>(productDTO,product);
+            _mapper.Map<ProductDTO, Product>(productDTO, product);
             _context.Products.Update(product);
 
             try

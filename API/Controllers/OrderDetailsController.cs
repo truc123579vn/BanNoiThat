@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Data;
 using DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -12,15 +13,16 @@ namespace Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class OrderDetailsController : ControllerBase
     {
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
 
-        public OrderDetailsController(SellingFurnitureContext context, IMapper mapper )
+        public OrderDetailsController(SellingFurnitureContext context, IMapper mapper)
         {
             _context = context;
-            _mapper = mapper ;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -30,7 +32,7 @@ namespace Controllers
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
             var orderdetails = await _context.OrderDetails.ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
-            var orderdetailsDTO = _mapper.Map<List<OrderDetail>,List<OrderDetailDTO>>(orderdetails);
+            var orderdetailsDTO = _mapper.Map<List<OrderDetail>, List<OrderDetailDTO>>(orderdetails);
             return orderdetailsDTO;
 
             // var products = await _context.Products.Include(p => p.Category.Name).ToListAsync();
@@ -41,17 +43,17 @@ namespace Controllers
         public async Task<ActionResult<OrderDetailDTO>> CreateOrderDetail(OrderDetailDTO orderdetailDTO)
         {
             //chuyen doi 1 category tu DTO sang model
-            var orderdetail = _mapper.Map<OrderDetailDTO,OrderDetail>(orderdetailDTO);
+            var orderdetail = _mapper.Map<OrderDetailDTO, OrderDetail>(orderdetailDTO);
             _context.OrderDetails.Add(orderdetail);
-            
-            decimal subTotalPrice =  0;
-            subTotalPrice = subTotalPrice + (orderdetail.Price * orderdetail.Amount );
+
+            decimal subTotalPrice = 0;
+            subTotalPrice = subTotalPrice + (orderdetail.Price * orderdetail.Amount);
 
             var order = await _context.Orders.FindAsync(orderdetail.OrderID);
-            order.Total= order.Total + subTotalPrice;
+            order.Total = order.Total + subTotalPrice;
             _context.Orders.Update(order);
-    
-            var product= await _context.Products.FindAsync(orderdetail.ProductID);
+
+            var product = await _context.Products.FindAsync(orderdetail.ProductID);
             product.Amount = product.Amount - orderdetail.Amount;
 
             // Luu du lieu len _context

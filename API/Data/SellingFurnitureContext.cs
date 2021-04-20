@@ -94,7 +94,7 @@ namespace Data
    
 
             modelBuilder.Entity<Order>()
-                .Property(o => o.Total).HasColumnType("decimal(18,2)"); //mặc định để 18,2
+                .Property(o => o.TotalPrice).HasColumnType("decimal(18,2)"); //mặc định để 18,2
 
         }
 

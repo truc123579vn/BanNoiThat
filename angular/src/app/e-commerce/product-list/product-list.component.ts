@@ -1,7 +1,6 @@
 import { CategoryService } from './../../services/category.service';
 import { ICategory } from './../../models/category.model';
 
-
 import { productModel } from './../../models/product.model';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +9,7 @@ import { CartService } from './../../services/cart.service'
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
 
@@ -23,7 +22,16 @@ export class ProductListComponent implements OnInit {
 
 
 
-  constructor(private productService: ProductsService, private categoryService: CategoryService, private cartService: CartService) { }
+  constructor(private productService: ProductsService,
+     private categoryService: CategoryService,
+      private cartService: CartService) { 
+        this.productService.getProduct().subscribe((data: productModel[]) => {
+          this.list = data;
+        });
+        this.categoryService.getCategoryList().subscribe((data: ICategory[]) => {
+          this.listCategory = data;
+        });
+      }
 
   ngOnInit(): void {
     this.productService.getProduct().subscribe(
@@ -59,7 +67,7 @@ export class ProductListComponent implements OnInit {
     let productExists = 1
     window.alert('Product has been added to the cart');
 
-    let cartDataNull= localStorage.getItem('token');
+    let cartDataNull= localStorage.getItem('cart');
     if(cartDataNull==null)
     {
       let storeDataGet:any=[];
@@ -72,14 +80,14 @@ export class ProductListComponent implements OnInit {
         amount: category.amount
 
       })
-      localStorage.setItem('token',JSON.stringify(storeDataGet));
+      localStorage.setItem('cart',JSON.stringify(storeDataGet));
     }
     else
     {
 
       var id= category.id;
       let index:number=-1;
-      this.itemsCart= JSON.parse(localStorage.getItem('token') || '{}')
+      this.itemsCart= JSON.parse(localStorage.getItem('cart') || '{}')
       for(let i=0; i<this.itemsCart.length;i++)
       {
         if(id===parseInt(this.itemsCart[i].id)){
@@ -88,7 +96,7 @@ export class ProductListComponent implements OnInit {
             break;
         }
       }
-      localStorage.setItem('token', JSON.stringify(this.itemsCart))
+      localStorage.setItem('cart', JSON.stringify(this.itemsCart))
       if(index==-1)
       {
 
@@ -114,11 +122,11 @@ export class ProductListComponent implements OnInit {
                   amount: category.amount
                 })
           }
-        localStorage.setItem('token', JSON.stringify(this.itemsCart))
+        localStorage.setItem('cart', JSON.stringify(this.itemsCart))
       }
       else
       {
-        localStorage.setItem('token', JSON.stringify(this.itemsCart))
+        localStorage.setItem('cart', JSON.stringify(this.itemsCart))
       }
 
     }
@@ -130,8 +138,9 @@ export class ProductListComponent implements OnInit {
 
   cartNumber: number = 0;
   cartNumberFunc() {
-    var cartValue = JSON.parse(localStorage.getItem('token') || '{}')
+    var cartValue = JSON.parse(localStorage.getItem('cart') || '{}')
     this.cartNumber = cartValue.length
     this.cartService.cartSubject.next(this.cartNumber)
   }
+
 }

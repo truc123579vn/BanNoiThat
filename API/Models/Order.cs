@@ -2,16 +2,30 @@ using System.Collections.Generic;
 using API.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System;
 
 namespace Models
 {
     public class Order
     {
-        public int Id { get; set; }
 
-        public decimal Total { get; set; }
+        public Order() { }
+        public Order( AppUser appUser, string firstName,string lastName, string address)
+        {
+            AppUser = appUser;
+            FullName = firstName + "" +lastName;
+            Address = address;
+            DateCreated = DateTime.Now.ToString("dd/MM/yyyy");
+            Status = "Chưa Duyệt";
+        }
+        public int Id { get; set; }
+        public string FirstName {get;set;}
+        public string LastName{get;set;}
+        public string FullName{get;set;}
+
+        public decimal TotalPrice { get; set; }
         
-        public string Date { get; set; }
+        public string DateCreated { get; set; }
 
         public string Address { get; set; }
         
@@ -26,6 +40,6 @@ namespace Models
         // 1 Order co nhieu OrderDetails
 
         [JsonIgnore]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual  IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

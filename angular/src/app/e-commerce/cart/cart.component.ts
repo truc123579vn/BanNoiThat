@@ -19,9 +19,9 @@ export class CartComponent implements OnInit {
     this.cartDetail()  
   }
   cartDetail(){
-    if(localStorage.getItem('token'))
+    if(localStorage.getItem('cart'))
     {
-        this.items= JSON.parse(localStorage.getItem('token') || '{}')
+        this.items= JSON.parse(localStorage.getItem('cart') || '{}')
         console.log(this.items)
 
         this.cartTotal=0
@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
 
   }
   increaseQty(product: productModel){
-    this.items= JSON.parse(localStorage.getItem('token') || '{}')
+    this.items= JSON.parse(localStorage.getItem('cart') || '{}')
       for(let i=0; i<this.items.length;i++)
       {
          if(product.productId===parseInt(this.items[i].productId) && this.items[i].qty< this.items[i].amount){
@@ -44,13 +44,13 @@ export class CartComponent implements OnInit {
         this.items.forEach((item: any) => {
         this.cartTotal += (item.qty * item.price)
         })
-      localStorage.setItem('token', JSON.stringify(this.items))
+      localStorage.setItem('cart', JSON.stringify(this.items))
       location.reload()
       
   }
   
   decreaseQty(product: any){
-    this.items= JSON.parse(localStorage.getItem('token') || '{}')
+    this.items= JSON.parse(localStorage.getItem('cart') || '{}')
       for(let i=0; i<this.items.length;i++)
       {
          if(product.productId===parseInt(this.items[i].productId) && this.items[i].qty>1){
@@ -67,18 +67,18 @@ export class CartComponent implements OnInit {
         this.items.forEach((item: any) => {
         this.cartTotal += (item.qty * item.price)
         })
-      localStorage.setItem('token', JSON.stringify(this.items))
+      localStorage.setItem('cart', JSON.stringify(this.items))
       location.reload() //reload page to update cart total's quality on header
   }
   deleteItem(product: any)
   {
     console.log(product)
-    if(localStorage.getItem('token')){
-      this.items=JSON.parse(localStorage.getItem('token')||'{}')
+    if(localStorage.getItem('cart')){
+      this.items=JSON.parse(localStorage.getItem('cart')||'{}')
       for(let i=0;i<this.items.length;i++){
         if(product.productId===parseInt(this.items[i].productId)){
           this.items.splice(i,1)
-          localStorage.setItem('token',JSON.stringify(this.items))
+          localStorage.setItem('cart',JSON.stringify(this.items))
           this.cartDetail()
           location.reload()
         }
@@ -87,7 +87,7 @@ export class CartComponent implements OnInit {
   }
 
   removeallCart(){
-    localStorage.removeItem('token')
+    localStorage.removeItem('cart')
     this.items=[]
     location.reload()
   }

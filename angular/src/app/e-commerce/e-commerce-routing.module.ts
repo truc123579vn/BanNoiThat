@@ -11,31 +11,31 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    path: '', component: ECommerceComponent,
-      children: [
-        {
-          path:'',
-          redirectTo: 'home',
-          pathMatch: 'full' 
+    path: '',
+    component: ECommerceComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
       },
-        {path:"home",component:ProductsComponent,},
-        { path: "product-list", component: ProductListComponent },
-        {
-          path: "product/:id",
-          component: ProductDetailComponent
-        },
-        { path: "cart", component: CartComponent },
-        { path: "account", component: AccountComponent },
-        { path: "login", component: LoginComponent },
-        { path: "register", component: RegisterComponent }
-      ]
+      { path: 'home', component: ProductsComponent },
+      { path: 'product-list', component: ProductListComponent },
+      {
+        path: 'product/:id',
+        component: ProductDetailComponent,
+      },
+      { path: 'cart', component: CartComponent },
+      { path: 'account', component: AccountComponent },
+    ],
   },
- 
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ECommerceRoutingModule { }
-export const routingECommerceComponents = [ProductsComponent]
+export class ECommerceRoutingModule {}
+export const routingECommerceComponents = [ProductsComponent];

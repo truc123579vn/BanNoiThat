@@ -1,26 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs.InputModels;
+using API.Models;
 using AutoMapper;
 using Data;
 using DTOs;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
+        private UserManager<AppUser> _userManager;
 
-        public OrdersController(SellingFurnitureContext context, IMapper mapper )
+        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager  )
         {
             _context = context;
             _mapper = mapper ;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -28,7 +35,9 @@ namespace Controllers
         {
             // lay DL tu model
             // Include la bao gom khoa ngoai, tuc la co the lay thuoc tinh trong khoa ngoai
-            var orders = await _context.Orders.Include(oDetail => oDetail.OrderDetails).ToListAsync();
+            var orders = await _context.Orders.Include(u => u.AppUser).
+            Include(oDetail => oDetail.OrderDetails).ThenInclude(p => p.Product).
+            ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
             var ordersDTO = _mapper.Map<List<Order>,List<OrderDTO>>(orders);
             return ordersDTO;
@@ -52,15 +61,30 @@ namespace Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDTO>> CreateOrder(OrderDTO orderDTO)
+        public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
         {
-            //chuyen doi 1 category tu DTO sang model
-            var order = _mapper.Map<OrderDTO,Order>(orderDTO);
+            var user = await _userManager.FindByNameAsync(orderInput.Username);
+
+            var order = new Order(user,orderInput.FirstName,orderInput.LastName, orderInput.Address);
+
+            order.OrderDetails = orderInput.OrderDetails.Select(item =>
+            {
+                var product = _context.Products.Find(item.ProductId);
+                return new OrderDetail
+                {
+                    Amount = item.Amount > 0 ? item.Amount : 1,
+                    Price = product.Price,
+                    Product = product
+                };
+            }).ToList();
+
+            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+            order.TotalPrice = subTotal;
+
             _context.Orders.Add(order);
-            // Luu du lieu len _context
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOrders), new { Id = order.Id }, order);
+            return Ok(_mapper.Map<Order,OrderDTO>(order));
         }
 
         [HttpPut("{id}")]

@@ -3,7 +3,9 @@ export class orderModel{
     constructor(
         public  id : number ,
 
-        public  total : number,
+        public user_id: number,
+
+        public  totalPrice : number,
         
         public  date : number ,
 

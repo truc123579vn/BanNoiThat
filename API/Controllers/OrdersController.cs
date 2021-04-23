@@ -60,31 +60,40 @@ namespace Controllers
             return orderDTO;
         }
 
-        [HttpPost]
+        // [HttpPost]
+        [Route("Hello")]
+        [Authorize(Policy = "Customer")]
         public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
         {
-            var user = await _userManager.FindByNameAsync(orderInput.Username);
+            var user = await _userManager.FindByIdAsync(orderInput.user_id.ToString());
 
-            var order = new Order(user,orderInput.FirstName,orderInput.LastName, orderInput.Address);
+            var order = new Order(user,orderInput.Address);
 
             order.OrderDetails = orderInput.OrderDetails.Select(item =>
             {
                 var product = _context.Products.Find(item.ProductId);
                 return new OrderDetail
                 {
-                    Amount = item.Amount > 0 ? item.Amount : 1,
+                    Amount = item.Qty > 0 ? item.Qty : 1,
                     Price = product.Price,
                     Product = product
                 };
             }).ToList();
 
-            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount) + 300000;
             order.TotalPrice = subTotal;
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
+            if (orderInput==null)
+            {
+                return BadRequest(new {message = "Error"});
+            }
+            else
+            {
             return Ok(_mapper.Map<Order,OrderDTO>(order));
+            }
         }
 
         [HttpPut("{id}")]

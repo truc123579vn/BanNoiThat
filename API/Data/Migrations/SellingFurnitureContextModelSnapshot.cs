@@ -242,15 +242,6 @@ namespace API.Data.Migrations
                     b.Property<string>("DateCreated")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 

@@ -5,6 +5,8 @@ export class orderDetailsModel{
         public  ProductId : number,
         
         public  Amount : number ,
+
+        public Price: number,
         )
     {}
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from 'src/app/models/user.model';
 import { take } from 'rxjs/operators';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,14 @@ export class HeaderComponent implements OnInit {
   @Input() profile:any;
   currentUser$!:Observable<IUser>
   user! : IUser;
-
-  constructor(public router:Router,public service:UserService) { }
+  items:any=[];
+  constructor(public router:Router,public service:UserService, private cartService: CartService) {this.cartService.cartSubject.subscribe((data)=>{
+    this.cartItem=data
+  }) }
 
   ngOnInit(): void {
     this.currentUser$ = this.service.currentUser$;
+    this.cartItemFunc();
   }
 
   getUserProfile(){
@@ -29,5 +33,15 @@ export class HeaderComponent implements OnInit {
       }
     )
   }
-  
+  cartItem:number=0
+  cartItemFunc(){
+
+    this.items= JSON.parse(localStorage.getItem('cart') || '{}')
+      for(let i=0; i<this.items.length;i++)
+      {     
+        this.cartItem=this.cartItem + this.items[i].qty;
+
+      }
+
+  }
 }

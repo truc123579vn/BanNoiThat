@@ -2,6 +2,7 @@
 using API.Interfaces;
 using API.Models;
 using AutoMapper;
+using Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -117,6 +118,103 @@ namespace API.Controllers
                 }
                 return Ok(_userManager.GetRolesAsync(user));
             }
+        }
+
+        //Tạo tài khoản cho Manager
+        [HttpPost]
+        [Route("User/Manager")]
+        [AllowAnonymous]
+        public async Task<Object> CreateManager(RegisterDTO registerDTO)
+        {
+            var user = await _userManager.FindByNameAsync(registerDTO.UserName);
+            if (user != null)
+            {
+                return BadRequest(new { message = "Username này đã tồn tại" });
+            }
+            else
+            {
+                var userDTO = new AppUserDTO
+                {
+                    UserName = registerDTO.UserName,
+                    FirstName = registerDTO.FirstName,
+                    LastName = registerDTO.LastName,
+                    Role = "Manager"
+                };
+                user = _mapper.Map<AppUser>(userDTO);
+                var result = await _userManager.CreateAsync(user, registerDTO.Password);
+                var setRole = await _userManager.AddToRoleAsync(user, userDTO.Role);
+                if (!setRole.Succeeded)
+                {
+                    return BadRequest(new { message = "Không set được quyền" });
+                }
+                return Ok(_userManager.GetRolesAsync(user));
+            }
+        }
+
+        //Cập nhật tài khoản
+        [HttpPut("{userName}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateProduct(AppUserDTO appuserDTO)
+        {
+            AppUser user = await _userManager.FindByNameAsync(appuserDTO.UserName);
+
+            if (user == null) 
+                return NotFound();
+            
+
+           // _mapper.Map<AppUser>(user);
+            _mapper.Map<AppUserDTO,AppUser>(appuserDTO,user);
+            IdentityResult result = await _userManager.UpdateAsync(user);
+
+            //await _signInManager.RefreshSignInAsync(user);
+
+            
+            if(!result.Succeeded)
+            {
+                return BadRequest(new { message = "Không cập nhật được tài khoản" });
+            }
+            return NoContent();
+        }
+
+        //Xóa tài khoản
+         [HttpDelete("{username}")]
+         [AllowAnonymous]
+        public async Task<IActionResult> DeleteProduct(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null) return NotFound();
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            if(!result.Succeeded)
+                return BadRequest(new { message = "Không xóa được tài khoản" });
+            return NoContent();
+        }
+
+        //Get users by Role
+        [HttpGet]
+        [Route("GetByRole/{role}")]
+        [AllowAnonymous]
+        public async Task<IEnumerable<AppUserDTO>> GetManagers(String role)
+        {
+            var users = (await  _userManager.GetUsersInRoleAsync(role)).ToList();
+
+            var usersDTO = _mapper.Map<List<AppUser>,List<AppUserDTO>>(users);
+            return usersDTO;
+        }
+
+        //Get users by UserName
+        [HttpGet("{username}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<AppUserDTO>> GetUserByName(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+         
+            var userDTO = _mapper.Map<AppUser,AppUserDTO>(user);
+            return userDTO;
         }
 
         /*[HttpGet]

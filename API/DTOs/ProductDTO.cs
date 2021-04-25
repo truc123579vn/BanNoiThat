@@ -7,10 +7,10 @@ namespace DTOs
 {
     public class ProductDTO
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string Name { get; set; }
 
-        public int Amount {get;set; }
+        public int Amount { get; set; }
         public decimal Price { get; set; }
 
         public string Details { get; set; }
@@ -19,8 +19,8 @@ namespace DTOs
         public string Status { get; set; }
 
         // Thiet lap quan he 1-n, mot loai san pham co nhieu san pham
-        public int Category_Id {get;set;}
-        public virtual Category Category {get;set;}
-        
+        public int Category_Id { get; set; }
+        public virtual Category Category { get; set; }
+
     }
 }

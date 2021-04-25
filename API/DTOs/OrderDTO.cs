@@ -13,8 +13,9 @@ namespace DTOs{
 
         [JsonIgnore]
         public AppUser AppUser {get;set;}
+
         public int User_Id { get; set; }
-        public string FullName { get; set; }
+        //public string FullName { get; set; }
         public decimal TotalPrice { get; set; }
         
         public string DateCreated { get; set; }
@@ -25,7 +26,7 @@ namespace DTOs{
 
         // thiết lập quan hệ 1-n, 1 user có nhiều order
         
-        // public string UserId { get; set; }
+        //public string UserId { get; set; }
 
 
 

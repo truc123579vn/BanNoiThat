@@ -10,18 +10,18 @@ namespace Models
     {
 
         public Order() { }
-        public Order( AppUser appUser, string firstName,string lastName, string address)
+        public Order( AppUser appUser, string address)
         {
-            AppUser = appUser;
-            FullName = firstName + "" +lastName;
+            this.AppUser = appUser;
+            //FullName = firstName + "" +lastName;
             Address = address;
             DateCreated = DateTime.Now.ToString("dd/MM/yyyy");
             Status = "Chưa Duyệt";
         }
         public int Id { get; set; }
-        public string FirstName {get;set;}
-        public string LastName{get;set;}
-        public string FullName{get;set;}
+        //public string FirstName {get;set;}
+        //public string LastName{get;set;}
+        //public string FullName{get;set;}
 
         public decimal TotalPrice { get; set; }
         

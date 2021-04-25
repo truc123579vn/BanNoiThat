@@ -1,10 +1,13 @@
-export class orderDetailsModel{
+export class orderDetailsModel {
     constructor(
-        public  OrderId : number ,
+        public OrderId: number,
 
-        public  ProductId : number,
-        
-        public  Amount : number ,
-        )
-    {}
+        public productId: number,
+
+        public productName: string,
+
+        public amount: number,
+
+        public price: number,
+    ) { }
 }

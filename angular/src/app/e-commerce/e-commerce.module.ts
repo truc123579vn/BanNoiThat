@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartService } from '../services/cart.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 
 
@@ -37,10 +38,12 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     NgxPaginationModule,
 
   ],
-  providers: [UserService,ProductsService,CategoryService,{
+
+  providers: [UserService,ProductsService,CategoryService,CartService ,{
     provide: HTTP_INTERCEPTORS,
     useClass:AuthInterceptor,
     multi:true
   }],
+
 })
 export class ECommerceModule { }

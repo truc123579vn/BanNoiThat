@@ -68,7 +68,7 @@ namespace Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduct(ProductDTO productDTO)
         {
-            var product = await _context.Products.FindAsync(productDTO.Id);
+            var product = await _context.Products.FindAsync(productDTO.id);
 
             if (product == null) return NotFound();
 

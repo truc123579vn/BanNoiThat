@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs.InputModels;
@@ -23,10 +23,10 @@ namespace Controllers
         private readonly IMapper _mapper;
         private UserManager<AppUser> _userManager;
 
-        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager  )
+        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager)
         {
             _context = context;
-            _mapper = mapper ;
+            _mapper = mapper;
             _userManager = userManager;
         }
 
@@ -39,7 +39,7 @@ namespace Controllers
             Include(oDetail => oDetail.OrderDetails).ThenInclude(p => p.Product).
             ToListAsync();
             // Chuyen doi list Products tu model sang DTO     
-            var ordersDTO = _mapper.Map<List<Order>,List<OrderDTO>>(orders);
+            var ordersDTO = _mapper.Map<List<Order>, List<OrderDTO>>(orders);
             return ordersDTO;
 
             // var products = await _context.Products.Include(p => p.Category.Name).ToListAsync();
@@ -53,61 +53,91 @@ namespace Controllers
 
             if (order == null)
             {
-                return NotFound();
+                return NotFound(order);
             }
-         // Chuyen doi 1 product tu model sang DTO
-            var orderDTO = _mapper.Map<Order,OrderDTO>(order);
+            // Chuyen doi 1 product tu model sang DTO
+            var orderDTO = _mapper.Map<Order, OrderDTO>(order);
             return orderDTO;
         }
 
         [HttpPost]
+
+        [Authorize(Policy = "Customer")]
         public async Task<ActionResult<OrderDTO>> CreateOrder(OrderInput orderInput)
         {
-            var user = await _userManager.FindByNameAsync(orderInput.Username);
+            var user = await _userManager.FindByIdAsync(orderInput.user_id.ToString());
+            //if (orderInput != null)
+            //{
 
-            var order = new Order(user,orderInput.FirstName,orderInput.LastName, orderInput.Address);
+            var order = new Order(user, orderInput.Address);
+
 
             order.OrderDetails = orderInput.OrderDetails.Select(item =>
             {
                 var product = _context.Products.Find(item.ProductId);
                 return new OrderDetail
                 {
-                    Amount = item.Amount > 0 ? item.Amount : 1,
+                    Amount = item.Qty > 0 ? item.Qty : 1,
                     Price = product.Price,
-                    Product = product
+                    Product = product,
+                    ProductID = item.ProductId
                 };
+
             }).ToList();
 
-            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount);
+            var subTotal = order.OrderDetails.Sum(od => od.Price * od.Amount) + 300000;
             order.TotalPrice = subTotal;
+
+            foreach (var item in order.OrderDetails)
+            {
+                var product = _context.Products.Find(item.ProductID);
+                // if (product == null){
+                //     return BadRequest(item.ProductID);
+                // }
+                product.Amount = product.Amount - item.Amount;
+                _context.Products.Update(product);
+            }
+
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return Ok(_mapper.Map<Order,OrderDTO>(order));
+
+            // }
+            if (orderInput == null)
+            {
+                return BadRequest(new { message = "Error" });
+            }
+            else
+            {
+                return Ok(_mapper.Map<Order, OrderDTO>(order));
+            }
+
+
         }
+
+
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(OrderDTO orderDTO)
+        [Authorize(Policy = "Customer")]
+        public async Task<ActionResult<OrderDTO>> UpdateOrderStatus(int Id)
         {
-            var order = await _context.Orders.FindAsync(orderDTO.Id);
+            var order = await _context.Orders.FindAsync(Id);
+            if (order == null)
+            {
+                return NotFound(new { message = "Không tìm thấy đơn đật hàng này" });
+            }
 
-            if (order == null) return NotFound();
-
-            _mapper.Map<OrderDTO,Order>(orderDTO,order);
+            order.Status = "Đã Duyệt";
             _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+            var orderDTO = _mapper.Map<OrderDTO>(order);
+            return Ok(orderDTO);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException) when (!OrderExists(order.Id))
-            {
-                return NotFound();
-            }
-
-            return NoContent();
         }
+
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)

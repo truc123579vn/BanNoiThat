@@ -33,6 +33,7 @@
             "styles": [
               "src/custom-theme.scss",
               "src/style.css",
+           
               "node_modules/AdminLTE-master/plugins/fontawesome-free/css/all.min.css",
               "node_modules/AdminLTE-master/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
               "node_modules/AdminLTE-master/docs/assets/css/adminlte.css",
@@ -53,6 +54,7 @@
               "node_modules/AdminLTE-master/plugins/jquery-mapael/maps/usa_states.js",
               "node_modules/AdminLTE-master/plugins/chart.js/Chart.js",
               "node_modules/AdminLTE-master/dist/js/pages/dashboard2.js"
+
             ]
           },
           "configurations": {

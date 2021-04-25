@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'

@@ -26,6 +26,7 @@
                       style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
                       <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm quản lý</i>
                     </button>
+                    <button (click)="exportExcel(managers)" class="btn btn-info mb-4 mt-2">Xuất file Excel</button> 
                     <p *ngIf="dataSaved" ngClass="success"> 
                         {{message}}
                     </p>
@@ -70,6 +71,7 @@
           </div>
         </div>     
       </ng-template>
+      
     </mat-tab>
 
     <!--- CUSTOMER ACCOUNTS-->
@@ -93,6 +95,9 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
+                  <div class="mailbox-controls">
+                    <button (click)="exportExcel(customers)" class="btn btn-info mb-4 mt-2">Xuất file Excel</button>                   
+                  </div>
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
                       <tbody>
@@ -121,7 +126,7 @@
                 </div>    
           </div>
         </div>     
-      </ng-template>
+      </ng-template>      
     </mat-tab>
 
   </mat-tab-group>
@@ -129,7 +134,7 @@
 
  <!-- Modal for add manager -->
         
- <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="AddModal" #AddModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
@@ -137,7 +142,7 @@
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
       </div>
-      <form [formGroup]="addManagerForm"  (ngSubmit)="onAddManagerFormSubmit()">
+      <form [formGroup]="addManagerForm" (ngSubmit)= "onAddManagerFormSubmit()">
         <label>UserName</label>
         <input formControlName="UserNameAdd" type="text" placeholder="UserName">       
         <br/>
@@ -205,6 +210,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 <!-- Modal for delete products -->

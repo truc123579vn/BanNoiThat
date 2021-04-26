@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/models/user.model';
 import { AccountService } from 'src/app/services/user.service';
+import { ExcelService } from 'src/app/services/excel.service';  
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { registerModel } from 'src/app/models/register.model';
@@ -23,6 +24,9 @@ export class AccountComponent implements OnInit {
   usernameToDelete : string = "";
   managerToSearch : string = "";
   customerToSearch : string = "";
+  userNameUpDate=null;
+  message = null;
+  
   addManagerForm = new FormGroup(
     {
       UserNameAdd : new FormControl('',[Validators.required]),
@@ -38,12 +42,8 @@ export class AccountComponent implements OnInit {
       LastNameUpdate : new FormControl('',[Validators.required])
     });  
 
- 
-  
-  userNameUpDate=null;
-  message = null;
 
-  constructor(private accountService: AccountService){}
+  constructor(private accountService: AccountService, private excelService: ExcelService){}
 
   ngOnInit(): void {
     this.GetManagers();
@@ -157,6 +157,11 @@ export class AccountComponent implements OnInit {
   {
     this.keyCustomer = key;
     this.reverseCustomer = !this.reverseCustomer;
+  }
+
+  exportExcel(data : any):void
+  {
+    this.excelService.exportAsExcelFile(data, 'sample');
   }
 
 }

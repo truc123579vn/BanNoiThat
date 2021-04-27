@@ -26,10 +26,10 @@
                       style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
                       <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm quản lý</i>
                     </button>
-                    <button (click)="exportExcel(managers)" class="btn btn-info mb-4 mt-2">Xuất file Excel</button> 
-                    <p *ngIf="dataSaved" ngClass="success"> 
-                        {{message}}
-                    </p>
+                    <button (click)="exportExcel(managers)" class="btn btn-default btn-sm"
+                    style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px; margin-left: 5px;">
+                    <i class="fa fa-file-excel" style="padding: 5px;">  Xuất file Excel</i>
+                    </button> 
                   </div>
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
@@ -46,11 +46,11 @@
                           <td>{{manager.firstName}}</td>                                                   
                           <td>
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px;">
+                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px;" title="Xóa">
                               <i class="fas fa-trash"></i>
                             </button>
                             <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="loadManagerToUpdate(manager.userName)"
-                              class="btn btn-default btn-sm" style="font-size: 18px;">
+                              class="btn btn-default btn-sm" style="font-size: 18px;" title="Cập nhật">
                               <i class="fas fa-edit"></i>
                             </button>
                           </td>
@@ -96,7 +96,10 @@
                 <!-- /.card-header -->
                 <div class="card-body p-0">
                   <div class="mailbox-controls">
-                    <button (click)="exportExcel(customers)" class="btn btn-info mb-4 mt-2">Xuất file Excel</button>                   
+                    <button (click)="exportExcel(customers)" class="btn btn-default btn-sm"
+                    style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px; margin-left: 5px;">
+                    <i class="fa fa-file-excel" style="padding: 5px;">  Xuất file Excel</i>
+                    </button>                   
                   </div>
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
@@ -137,35 +140,43 @@
  <div class="modal fade" id="AddModal" #AddModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+      <div class="modal-header" style="padding-bottom: 5px;">
         <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm tài khoản Quản lý</h3>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
       </div>
-      <form [formGroup]="addManagerForm" (ngSubmit)= "onAddManagerFormSubmit()">
-        <label>UserName</label>
-        <input formControlName="UserNameAdd" type="text" placeholder="UserName">       
-        <br/>
+      <div class="modal-body">
+        <form [formGroup]="addManagerForm" (ngSubmit)= "onAddManagerFormSubmit()">
+          <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input formControlName="UserNameAdd" type="text" class="form-control" placeholder="Nhập tên tài khoản">
+          </div>
+  
+          <div class="form-group">
+            <label for="exampleInputEmail1">Họ</label>
+            <input formControlName="LastNameAdd" type="text" class="form-control" placeholder="Nhập họ">
+          </div>
 
-        <label>First Name</label>
-        <input formControlName="FirstNameAdd" type="text" placeholder="First Name">
-        <br/>
+          <div class="form-group">
+            <label>Tên</label>
+            <input formControlName="FirstNameAdd" type="text" class="form-control" placeholder="Nhập tên">
+          </div>
+     
+          <div class="form-group">
+            <label for="exampleInputEmail1">Mật khẩu</label>
+            <input formControlName="PasswordAdd" type="text" class="form-control" placeholder="Nhập mật khẩu">
+          </div>
+  
+          <div class="modal-footer" style="padding-right: 35%;">
+            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success">
+              Thêm
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+          </div>
 
-        <label>Last Name</label>
-        <input formControlName="LastNameAdd" type="text" placeholder="Last Name">
-        <br/>
-
-        <label>Password</label>
-        <input formControlName="PasswordAdd" type="text" placeholder="Password">
-        <br/>
-        <div class="modal-footer" style="padding-right: 35%;">
-          <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success">
-            Thêm
-          </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        </div>
-          
-      </form>
+        </form>
+      </div>
+      
       
     </div>
   </div>
@@ -177,7 +188,7 @@
 <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+      <div class="modal-header" style="padding-bottom: 5px;">
         <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Cập nhật tài khoản Quản lý</h2>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
           style="border: none;">x</button>
@@ -185,17 +196,20 @@
       
       <div class="modal-body">
         <form [formGroup]="updateManagerForm"  (ngSubmit)="onUpdateManagerFormSubmit()">
-          <label>UserName</label>
-          <input formControlName="UserNameUpdate" type="text" placeholder="UserName" readonly>
-          <br/>
+          <div class="form-group">
+            <label>Username</label>
+            <input formControlName="UserNameUpdate" type="text" class="form-control" placeholder="Nhập tên tài khoản" readonly>
+          </div>
   
-          <label>First Name</label>
-          <input formControlName="FirstNameUpdate" type="text" placeholder="First Name">
-          <br/>
+          <div class="form-group">
+            <label>Tên</label>
+            <input formControlName="FirstNameUpdate" type="text" class="form-control" placeholder="Nhập tên">
+          </div>
   
-          <label>Last Name</label>
-          <input formControlName="LastNameUpdate" type="text" placeholder="Last Name">
-          <br/>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Họ</label>
+            <input formControlName="LastNameUpdate" type="text" class="form-control" placeholder="Nhập họ">
+          </div>
           
           <div class="modal-footer" style="padding-right: 35%;">
             <button type="submit" [disabled]="!updateManagerForm.valid" class="btn btn-success">

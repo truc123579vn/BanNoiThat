@@ -201,7 +201,7 @@ namespace API.Controllers
             return usersDTO;
         }
 
-        //Get users by UserName
+        //Get user by UserName
         [HttpGet("{username}")]
         [AllowAnonymous]
         public async Task<ActionResult<AppUserDTO>> GetUserByName(string username)

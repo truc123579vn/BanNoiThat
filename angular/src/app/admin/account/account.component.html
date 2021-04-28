@@ -1,4 +1,5 @@
 <div style="padding:2%">
+  <div class="card card-primary card-outline">
   <mat-tab-group>
      <!--- MANAGER ACCOUNTS-->
     <mat-tab label="Quản lý"> 
@@ -45,12 +46,12 @@
                           <td>{{manager.lastName}}</td>
                           <td>{{manager.firstName}}</td>                                                   
                           <td>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px;" title="Xóa">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteModal"
+                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px; margin-right: 10px;" title="Xóa">
                               <i class="fas fa-trash"></i>
                             </button>
                             <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="loadManagerToUpdate(manager.userName)"
-                              class="btn btn-default btn-sm" style="font-size: 18px;" title="Cập nhật">
+                              class="btn btn-warning btn-sm" style="font-size: 18px;" title="Cập nhật">
                               <i class="fas fa-edit"></i>
                             </button>
                           </td>
@@ -168,7 +169,7 @@
           </div>
   
           <div class="modal-footer" style="padding-right: 35%;">
-            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success">
+            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success" >
               Thêm
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>

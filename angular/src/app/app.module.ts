@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 //import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

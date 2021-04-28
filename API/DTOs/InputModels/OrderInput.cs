@@ -12,16 +12,10 @@ namespace API.DTOs.InputModels
 
         
         public IEnumerable<OrderDetailInput> OrderDetails { get; set; }
-
         public OrderInput(int user_id, string Address)
-            
         {
-
-            this.user_id = user_id;
-           // this.FirstName = FirstName;
-            //this.LastName = LastName;
-            this.Address = Address;
-         
+            this.user_id=user_id;
+            this.Address=Address;
         }
     }
 }

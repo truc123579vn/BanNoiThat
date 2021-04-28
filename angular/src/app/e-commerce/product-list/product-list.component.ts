@@ -12,10 +12,11 @@ import { CartService } from './../../services/cart.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
+
   list: productModel[] = [];
   listCategory: ICategory[] = [];
   page: number = 1;
-  productName: string = '';
+  productName: string = "";
   clickAllProduct: boolean = false;
 
   constructor(

@@ -23,6 +23,7 @@ import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartService } from '../services/cart.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     RouterModule,
     NgxPaginationModule,
+    NgbModule
 
   ],
 

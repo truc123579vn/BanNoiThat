@@ -1,6 +1,7 @@
 import { productModel } from 'src/app/models/product.model';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-products',
@@ -24,5 +25,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  // images = ['../../assets/img/slider-1.jpg','../../assets/img/slider-2.jpg','../../assets/img/slider-3.jpg'];
 
 }

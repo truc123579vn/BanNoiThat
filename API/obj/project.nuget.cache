@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/+ByQ5n3uuy6N61621aosEevFZr506vK93Jci9gYxT03azelhTSGIav+PI4Vm2Py+0OFJjUoMeQDSjQyEygktg==",
+  "dgSpecHash": "4nhIXPe21h5FshVSdigCXKxWr43jUrQr9PCzlPNwsBsUT/W/4VGXhb3DTkNDT/aj7fvg2AHXvhKgl9IrFR6nZw==",
   "success": true,
-  "projectFilePath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
+  "projectFilePath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

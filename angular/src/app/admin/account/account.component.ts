@@ -97,6 +97,7 @@ export class AccountComponent implements OnInit {
       let username : string = this.updateManagerForm.value.UserNameUpdate;
       let manager : IUser =
       {
+        id:this.updateManagerForm.value.UserNameUpdate,
         userName : this.updateManagerForm.value.UserNameUpdate,      
         firstName : this.updateManagerForm.value.FirstNameUpdate,
         lastName : this.updateManagerForm.value.LastNameUpdate,

@@ -41,13 +41,11 @@
   .bg-#{$name},
   .bg-gradient-#{$name},
   .card-#{$name}:not(.card-outline) {
-    > .card-header {
-      .btn-tool {
-        color: rgba(color-yiq($color), .8);
+    .btn-tool {
+      color: rgba(color-yiq($color), 0.8);
 
-        &:hover {
-          color: color-yiq($color);
-        }
+      &:hover {
+        color: color-yiq($color);
       }
     }
   }
@@ -65,7 +63,7 @@
       table td.hour:hover,
       table td.minute:hover,
       table td.second:hover {
-        background-color: darken($color, 8%);
+        background: darken($color, 8%);
         color: color-yiq($color);
       }
 
@@ -75,7 +73,7 @@
 
       table td.active,
       table td.active:hover {
-        background-color: lighten($color, 10%);
+        background: lighten($color, 10%);
         color: color-yiq($color);
       }
     }

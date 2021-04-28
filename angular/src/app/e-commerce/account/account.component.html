@@ -1,76 +1,115 @@
- <!-- My Account Start -->
- <div class="my-account">
+{{list.length}}
+
+<!-- My Account Start -->
+<div class="my-account">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
-                    <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
-                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i class="fa fa-user"></i>Account Details</a>
-                    <a class="nav-link" (click)="logOut()"><i class="fa fa-sign-out-alt" ></i>Logout</a>
+                    <a class="nav-link" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i
+                            class="fa fa-shopping-bag"></i>Orders</a>
+                    <a class="nav-link" id="account-nav" data-toggle="pill" href="#account-tab" role="tab"><i
+                            class="fa fa-user"></i>Account Details</a>
+                    <a class="nav-link" (click)="logOut()"><i class="fa fa-sign-out-alt"></i>Logout</a>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="dashboard-tab" role="tabpanel" aria-labelledby="dashboard-nav">
-                        <h4>Dashboard</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque.
-                        </p> 
-                    </div>
                     <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Product</th>
+                                        <th>Id</th>
                                         <th>Date</th>
-                                        <th>Price</th>
+                                        <th>Address</th>
+                                        <th>Total Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Product Name</td>
-                                        <td>01 Jan 2020</td>
-                                        <td>$99</td>
-                                        <td>Approved</td>
-                                        <td><button class="btn">View</button></td>
+                                <tbody *ngIf="list.length!=0">
+                                    <tr *ngFor="let item of list  | paginate
+                  : {
+                      id: 'listing_pagination',
+                      itemsPerPage: 4,
+                      currentPage: page
+                    }">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.dateCreated}}</td>
+                                        <td>{{item.address}}</td>
+                                        <td>{{item.totalPrice}}</td>
+                                        <td [style.color]="getColor(item.status)">{{item.status}}</td>
+
+                                        <td>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                [attr.data-target]="'#detailModal'+item.id">
+                                                Launch
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" [attr.id]="'detailModal'+item.id" tabindex="-1"
+                                                role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title" style="text-align: center;">Order
+                                                                Details</h1>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="table table-bordered">
+                                                                <thead class="thead-dark">
+                                                                    <tr>
+                                                                        <th>Product Name</th>
+                                                                        <th>Quantity</th>
+                                                                        <th>Price</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr *ngFor="let details of item.orderDetails">
+                                                                        <td scope="row">{{details.productName}}</td>
+
+                                                                        <td>{{details.amount}}</td>
+                                                                        <td>{{details.price}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
+                          
                         </div>
+                        <pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event">
+                        </pagination-controls>
                     </div>
                     <div class="tab-pane fade" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                         <h4>Account Details</h4>
                         <div class="row">
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="First Name" value="{{user.firstName}}">
+                                <input class="form-control" type="text" placeholder="First Name"
+                                    value="{{user.firstName}}">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Last Name" value="{{user.lastName}}">
+                                <input class="form-control" type="text" placeholder="Last Name"
+                                    value="{{user.lastName}}">
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" placeholder="Mobile" >
+                                <input class="form-control" type="text" placeholder="Mobile">
                             </div>
                             <div class="col-md-6">
                                 <input class="form-control" type="text" placeholder="Email">
@@ -84,7 +123,7 @@
                             </div>
                         </div>
                         <h4>Password change</h4>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <input class="form-control" type="password" placeholder="Current Password">
                             </div>
@@ -96,12 +135,12 @@
                             </div>
                             <div class="col-md-12">
                                 <button class="btn-ecommerce">Save Changes</button>
-                            </div>
-                        </div>
+                            </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- </div> -->
 <!-- My Account End -->

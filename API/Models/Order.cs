@@ -12,7 +12,7 @@ namespace Models
         public Order() { }
         public Order( AppUser appUser, string address)
         {
-            AppUser = appUser;
+            this.AppUser = appUser;
             Address = address;
             DateCreated = DateTime.Now.ToString("dd/MM/yyyy");
             Status = "Chưa Duyệt";

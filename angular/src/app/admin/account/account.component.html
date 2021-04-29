@@ -1,4 +1,5 @@
 <div style="padding:2%">
+  <div class="card card-primary card-outline">
   <mat-tab-group>
      <!--- MANAGER ACCOUNTS-->
     <mat-tab label="Quản lý"> 
@@ -6,7 +7,7 @@
         <div style="padding: 1%;">
           <div class="card"> 
                 <div class="card-header">         
-                  <h2 class="card-title" style="font-weight: 700;">Tài khoản Quản lý</h2>
+                  <h2 class="card-title" style="font-weight: 700;">Quản lý Tài Khoản</h2>
                   <div class="card-tools">
                     <div class="input-group input-group-sm">
                       <input class="form-control" type="text" name="managerSearch" #myInput [(ngModel)]="managerToSearch" 
@@ -45,12 +46,12 @@
                           <td>{{manager.lastName}}</td>
                           <td>{{manager.firstName}}</td>                                                   
                           <td>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px;" title="Xóa">
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteModal"
+                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px; margin-right: 10px;" title="Xóa">
                               <i class="fas fa-trash"></i>
                             </button>
                             <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="loadManagerToUpdate(manager.userName)"
-                              class="btn btn-default btn-sm" style="font-size: 18px;" title="Cập nhật">
+                              class="btn btn-warning btn-sm" style="font-size: 18px;" title="Cập nhật">
                               <i class="fas fa-edit"></i>
                             </button>
                           </td>
@@ -150,25 +151,37 @@
           <div class="form-group">
             <label>Tên tài khoản</label>
             <input formControlName="UserNameAdd" type="text" class="form-control" placeholder="Nhập tên tài khoản">
+            <small class="text-error" *ngIf="(addManagerForm.controls['UserNameAdd'].invalid) && (addManagerForm.controls['UserNameAdd'].touched)">
+              Tên tài khoản không được bỏ trống !
+            </small>
           </div>
   
           <div class="form-group">
-            <label for="exampleInputEmail1">Họ</label>
+            <label>Họ</label>
             <input formControlName="LastNameAdd" type="text" class="form-control" placeholder="Nhập họ">
+            <small class="text-error" *ngIf="(addManagerForm.controls['LastNameAdd'].invalid) && (addManagerForm.controls['LastNameAdd'].touched)">
+              Họ không được bỏ trống !
+            </small>
           </div>
 
           <div class="form-group">
             <label>Tên</label>
             <input formControlName="FirstNameAdd" type="text" class="form-control" placeholder="Nhập tên">
+            <small class="text-error" *ngIf="(addManagerForm.controls['FirstNameAdd'].invalid) && (addManagerForm.controls['FirstNameAdd'].touched)">
+              Tên không được bỏ trống !
+            </small>
           </div>
      
           <div class="form-group">
-            <label for="exampleInputEmail1">Mật khẩu</label>
+            <label>Mật khẩu</label>
             <input formControlName="PasswordAdd" type="text" class="form-control" placeholder="Nhập mật khẩu">
+            <small class="text-error" *ngIf="(addManagerForm.controls['PasswordAdd'].invalid) && (addManagerForm.controls['PasswordAdd'].touched)">
+              Mật khẩu không hợp lệ (tối thiểu 5 kí tự, tối đa 20 kí tự)
+            </small>
           </div>
   
           <div class="modal-footer" style="padding-right: 35%;">
-            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success">
+            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success" >
               Thêm
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
@@ -183,7 +196,7 @@
 </div>
 
 
-<!-- Modal for update products -->
+<!-- Modal for update account manager -->
 
 <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -197,20 +210,32 @@
       <div class="modal-body">
         <form [formGroup]="updateManagerForm"  (ngSubmit)="onUpdateManagerFormSubmit()">
           <div class="form-group">
-            <label>Username</label>
-            <input formControlName="UserNameUpdate" type="text" class="form-control" placeholder="Nhập tên tài khoản" readonly>
+            <label>Id</label>
+            <input formControlName="IdUpdate" type="text" class="form-control" readonly>
+          </div>
+
+          <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input formControlName="UserNameUpdate" type="text" class="form-control" readonly>
           </div>
   
+          <div class="form-group">
+            <label>Họ</label>
+            <input formControlName="LastNameUpdate" type="text" class="form-control" placeholder="Nhập họ">
+            <small class="text-error" *ngIf="(updateManagerForm.controls['LastNameUpdate'].invalid) && (updateManagerForm.controls['LastNameUpdate'].touched)">
+              Họ không được bỏ trống !
+            </small>
+            
+          </div>
+
           <div class="form-group">
             <label>Tên</label>
             <input formControlName="FirstNameUpdate" type="text" class="form-control" placeholder="Nhập tên">
+            <small class="text-error" *ngIf="(updateManagerForm.controls['FirstNameUpdate'].invalid) && (updateManagerForm.controls['FirstNameUpdate'].touched)">
+              Tên không được bỏ trống !
+            </small>
           </div>
-  
-          <div class="form-group">
-            <label for="exampleInputEmail1">Họ</label>
-            <input formControlName="LastNameUpdate" type="text" class="form-control" placeholder="Nhập họ">
-          </div>
-          
+         
           <div class="modal-footer" style="padding-right: 35%;">
             <button type="submit" [disabled]="!updateManagerForm.valid" class="btn btn-success">
               Cập nhật
@@ -228,7 +253,7 @@
 
 
 
-<!-- Modal for delete products -->
+<!-- Modal for delete account manager -->
 
 <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -32,11 +32,12 @@ export class AccountComponent implements OnInit {
       UserNameAdd : new FormControl('',[Validators.required]),
       FirstNameAdd : new FormControl('',[Validators.required]),
       LastNameAdd : new FormControl('',[Validators.required]),
-      PasswordAdd : new FormControl('',[Validators.required]),
+      PasswordAdd : new FormControl('',[Validators.required, Validators.minLength(5), Validators.maxLength(20)])
     });
 
   updateManagerForm = new FormGroup(
     {
+      IdUpdate : new FormControl('',[Validators.required]),
       UserNameUpdate : new FormControl('',[Validators.required]),
       FirstNameUpdate : new FormControl('',[Validators.required]),
       LastNameUpdate : new FormControl('',[Validators.required])
@@ -86,6 +87,7 @@ export class AccountComponent implements OnInit {
   {
       this.accountService.getAccountByUserName(username).subscribe(manager =>
         {
+          this.updateManagerForm.controls['IdUpdate'].setValue(manager.id);
           this.updateManagerForm.controls['UserNameUpdate'].setValue(manager.userName);
           this.updateManagerForm.controls['FirstNameUpdate'].setValue(manager.firstName);
           this.updateManagerForm.controls['LastNameUpdate'].setValue(manager.lastName);
@@ -97,6 +99,7 @@ export class AccountComponent implements OnInit {
       let username : string = this.updateManagerForm.value.UserNameUpdate;
       let manager : IUser =
       {
+        id:this.updateManagerForm.value.IdUpdate,
         userName : this.updateManagerForm.value.UserNameUpdate,      
         firstName : this.updateManagerForm.value.FirstNameUpdate,
         lastName : this.updateManagerForm.value.LastNameUpdate,
@@ -111,11 +114,16 @@ export class AccountComponent implements OnInit {
   {
       this.usernameToDelete = username;
   }
+  
   deleteManager()
   {
       this.accountService.deleteAccount(this.usernameToDelete).subscribe( () => this.GetManagers());
   }
 
+  reset(form:FormGroup)
+  {
+    form.reset();
+  }
   SearchManagers(){
     if(this.managerToSearch == ""){
       this.ngOnInit();

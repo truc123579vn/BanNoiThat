@@ -1,7 +1,7 @@
-  <!-- Nav Bar Start -->
-  <div class="nav-commerce" >
+<!-- Nav Bar Start -->
+<div class="nav-commerce">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-inverse navbar-fixed-topp">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-inversetop-bar fixed">
             <a href="#" class="navbar-brand">MENU</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
@@ -10,16 +10,20 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
                     <a routerLink="/e-commerce/home" class="nav-item nav-link">Home</a>
-                    <a routerLink="/e-commerce/product-list" class="nav-item nav-link">Products</a>   
+                    <a routerLink="/e-commerce/product-list" class="nav-item nav-link">Products</a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="(currentUser$|async)">{{(currentUser$|async)?.userName}}</a>
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="!(currentUser$|async)">User Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                            *ngIf="(currentUser$|async)">{{(currentUser$|async)?.userName}}</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                            *ngIf="!(currentUser$|async)">User Account</a>
                         <div class="dropdown-menu">
                             <a href="/e-commerce/login" class="dropdown-item" *ngIf="!(currentUser$|async)">Login</a>
-                            <a href="/e-commerce/register" class="dropdown-item">Register</a>
-                            <a href="/e-commerce/account" class="dropdown-item" *ngIf="(currentUser$|async)">My Account</a>
+                            <a href="/e-commerce/register" class="dropdown-item"
+                                *ngIf="!(currentUser$|async)">Register</a>
+                            <a href="/e-commerce/account" class="dropdown-item" *ngIf="(currentUser$|async)">My
+                                Account</a>
                         </div>
                     </div>
                 </div>
@@ -27,14 +31,14 @@
         </nav>
     </div>
 </div>
-<!-- Nav Bar End -->     
+<!-- Nav Bar End -->
 <div class="bottom-bar">
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
                     <a href="/e-commerce">
-                        <img src="../../../assets/logo.png" alt="Logo" width="150px"  >
+                        <img src="../../../assets/logo.png" alt="Logo" width="250px" style="padding-left: 50px;margin-left: 100px;">
                     </a>
                 </div>
             </div>
@@ -46,12 +50,33 @@
             </div>
             <div class="col-md-3">
                 <div class="user">
-                    <a routerLink="/e-commerce/cart" class="btn cart" id="cart">
+                    <a routerLink="/e-commerce/cart" class="btn cart btn-ecommerce2" id="cart">
+                        Giỏ hàng
                         <i class="fa fa-shopping-cart"></i>
-                        <span>{{cartItem}}</span>  
+                        <span *ngIf="(items)">{{countItemInCart().toString()}}</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .btn-ecommerce2 {
+        color: #FF6F61;
+        background: #ffffff;
+        border: 1px solid #FF6F61;
+        border-radius: 5px;
+        margin: 5px;
+        width: 200px;
+        margin-right: 50px;
+    }
+
+    .btn-ecommerce2:hover,
+    .btn-ecommerce2:active,
+    .btn-ecommerce2:focus i:focus{
+        color: #ffffff;
+        background: #FF6F61;
+        box-shadow: none;
+    }
+</style>

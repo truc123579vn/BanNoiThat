@@ -23,6 +23,8 @@ import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartService } from '../services/cart.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     RouterModule,
     NgxPaginationModule,
-
+    Ng2SearchPipeModule
   ],
 
   providers: [UserService,ProductsService,CategoryService,CartService ,{

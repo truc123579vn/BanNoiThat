@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IUser } from 'src/app/models/user.model';
 import { take } from 'rxjs/operators';
 import { CartService } from 'src/app/services/cart.service';
+import { Cart } from 'src/app/models/cart.model';
 
 @Component({
   selector: 'app-header',
@@ -13,35 +14,52 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() profile:any;
-  currentUser$!:Observable<IUser>
-  user! : IUser;
-  items:any=[];
-  constructor(public router:Router,public service:UserService, private cartService: CartService) {this.cartService.cartSubject.subscribe((data)=>{
-    this.cartItem=data
-  }) }
+  @Input() profile: any;
+  currentUser$!: Observable<IUser>
+  cartSubject$!: Observable<Cart>;
+  user!: IUser;
+  items!: Cart;
+  constructor(public router: Router, public service: UserService, private cartService: CartService) {
+    this.cartService.cartSubject$.pipe(take(1)).subscribe(
+      res => {
+        this.items = res;
+
+
+
+      }
+    )
+  }
 
   ngOnInit(): void {
     this.currentUser$ = this.service.currentUser$;
-    this.cartItemFunc();
+    this.countItemInCart();
+    // this.cartItemFunc();
   }
 
-  getUserProfile(){
+  getUserProfile() {
     this.currentUser$.pipe(take(1)).subscribe(
-      user =>{
+      user => {
         this.user = user;
       }
     )
   }
-  cartItem:number=0
-  cartItemFunc(){
 
-    this.items= JSON.parse(localStorage.getItem('cart') || '{}')
-      for(let i=0; i<this.items.length;i++)
-      {     
-        this.cartItem=this.cartItem + this.items[i].qty;
-
-      }
-
+  countItemInCart() {
+    var count = 0;
+    for (var item of this.items.cartItems) {
+      count = item.qty + count;
+    }
+    return count;
   }
+  cartItem: number = 0
+  // cartItemFunc(){
+
+  //   this.items= JSON.parse(localStorage.getItem('cart') || '{}')
+  //     for(let i=0; i<this.items.length;i++)
+  //     {     
+  //       this.cartItem=this.cartItem + this.items[i].qty;
+
+  //     }
+
+  // }
 }

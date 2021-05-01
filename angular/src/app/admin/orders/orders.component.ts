@@ -7,6 +7,8 @@ import { take } from 'rxjs/operators';
 import { orderModel } from 'src/app/models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 import { productModel } from 'src/app/models/product.model';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -58,4 +60,7 @@ export class OrdersComponent implements OnInit {
     return this.listProduct.find(item => item.id === id)?.image
 
   }
+
+  
+
 }

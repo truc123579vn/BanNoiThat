@@ -1,3 +1,4 @@
+using API.Data.Repositories;
 using API.Interfaces;
 using API.Models;
 using API.Services;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using System;
 using System.Reflection;
 using System.Text;
@@ -33,6 +35,14 @@ namespace ProductApi
             // Gọi Auto mapper
             services.AddAutoMapper(typeof(Startup));
 
+            // Sử dụng Redis
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(
+                    Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+
             services.AddControllersWithViews(config =>
              {
                  var policy = new AuthorizationPolicyBuilder()
@@ -40,18 +50,6 @@ namespace ProductApi
                                   .Build();
                  config.Filters.Add(new AuthorizeFilter(policy));
              }).AddFluentValidation(fv => { fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()); });
-
-
-            services.AddAuthorization(options =>
-                      {
-                          options.AddPolicy("Admin",
-                              policy => policy.RequireClaim("Role", "Admin"));
-                          options.AddPolicy("Manager",
-                              policy => policy.RequireClaim("Role", "Manager"));
-                          options.AddPolicy("Customer",
-                              policy => policy.RequireClaim("Role", "Customer"));
-                      });
-
 
             //Ket noi vao SQLite theo connecstring
             services.AddDbContext<SellingFurnitureContext>(options =>
@@ -95,6 +93,7 @@ namespace ProductApi
 
 
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<ICartManager, CartManager>();
 
             services.AddAuthorization(options =>
             {

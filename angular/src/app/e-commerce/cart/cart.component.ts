@@ -13,6 +13,9 @@ import { Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery";
 import * as b from 'bootstrap';
+import { CartItem } from 'src/app/models/cartItem.model';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 
 @Component({
@@ -21,115 +24,136 @@ import * as b from 'bootstrap';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  items: any = [];
+
+  items: CartItem[] = [];
+  listProducts: productModel[] = [];
   cartTotal = 0;
   currentUser$!: Observable<IUser>;
   user!: IUser;
   formModel!: FormGroup;
   @ViewChild('#modelId') completeModal!: ElementRef;
 
-
-  constructor(private router: Router, private userService: UserService, private toastr: ToastrService, private fb: FormBuilder, private order: OrderService) {
-    this.cartDetail();
+  constructor(private router: Router,private order:OrderService, private toastr: ToastrService, private productService: ProductsService, private fb: FormBuilder, private userService: UserService, private cartService: CartService) {
     this.currentUser$ = this.userService.currentUser$;
+    this.userService.currentUser$.pipe(take(1)).subscribe(
+      user => {
+        this.user = user;
+        if (this.user) {
+          this.cartService.getCart(this.user.id.toString()).subscribe(
+            res => {
+              this.items = res.cartItems;
+              this.createForm(user);
+              this.addOrderDetail();
+            }
+          )
+        } else {
+          this.cartService.getCart("cart_id").subscribe(
+            res => {
+              this.items = res.cartItems;
+            }
+          )
+        }
 
-    this.userService.currentUser$.pipe(take(1)).subscribe((user) => {
-      this.user = user;
-      this.createForm(user);
-      this.addOrderDetail();
-    });
-  }
-
-  ngOnInit(): void {
-  
-  }
-  cartDetail() {
-    if (localStorage.getItem('cart')) {
-      this.items = JSON.parse(localStorage.getItem('cart') || '{}');
-      console.log(this.items);
-
-      this.cartTotal = 0;
-      this.items.forEach((item: any) => {
-        this.cartTotal += item.qty * item.price;
-      });
-    }
-  }
-  increaseQty(product: productModel) {
-    
-    this.items = JSON.parse(localStorage.getItem('cart') || '{}');
-    for (let i = 0; i < this.items.length; i++) {
-      if (
-        product.productId === parseInt(this.items[i].productId) &&
-        this.items[i].qty < this.items[i].amount
-      ) {
-        this.items[i].qty = product.qty + 1;
-        break;
       }
-    }
-    this.cartTotal = 0;
-    this.items.forEach((item: any) => {
-      this.cartTotal += item.qty * item.price;
-    });
-    localStorage.setItem('cart', JSON.stringify(this.items));
-    location.reload();
+    )
+
+    this.productService.getProduct().subscribe(
+      res => {
+        this.listProducts = res;
+      }
+    )
+
+    this.productService.getProduct().subscribe(
+      res => {
+        this.listProducts = res;
+      
+      }
+    )
   }
 
-  decreaseQty(product: any) {
-    this.items = JSON.parse(localStorage.getItem('cart') || '{}');
-    for (let i = 0; i < this.items.length; i++) {
-      if (
-        product.productId === parseInt(this.items[i].productId) &&
-        this.items[i].qty > 1
-      ) {
-        this.items[i].qty = product.qty - 1;
-        break;
-      }
-      if (
-        product.productId === parseInt(this.items[i].productId) &&
-        this.items[i].qty == 1
-      ) {
-        this.deleteItem(this.items[i]);
-      }
-    }
+  ngOnInit() {
 
-    this.cartTotal = 0;
-    this.items.forEach((item: any) => {
-      this.cartTotal += item.qty * item.price;
-    });
-    localStorage.setItem('cart', JSON.stringify(this.items));
-    location.reload(); //reload page to update cart total's quality on header
   }
-  deleteItem(product: any) {
-    console.log(product);
-    if (localStorage.getItem('cart')) {
-      this.items = JSON.parse(localStorage.getItem('cart') || '{}');
-      for (let i = 0; i < this.items.length; i++) {
-        if (product.productId === parseInt(this.items[i].productId)) {
-          this.items.splice(i, 1);
-          localStorage.setItem('cart', JSON.stringify(this.items));
-          this.cartDetail();
-          location.reload();
+
+  getImageProduct(id: number) {
+
+    return this.listProducts.find(item => item.id === id)?.image
+
+  }
+
+  decrease(item: CartItem) {
+
+    var index = this.items.findIndex(i => i.productId === item.productId);
+    if (index === -1) {
+
+    } else {
+      if (this.items[index].qty >= 1) {
+        this.items[index].qty--;
+        if (this.items[index].qty == 0) {
+          this.items.splice(index, 1);
         }
       }
     }
+
+    this.cartService.decreaseQty(item);
   }
 
-  removeallCart() {
-    localStorage.removeItem('cart');
-    this.items = [];
-    location.reload();
-  }
+  increase(item: CartItem) {
+    var index = this.items.findIndex(i => i.productId === item.productId);
+    if (index === -1) {
 
-  checkLogin() {
-    if (localStorage.getItem('token') === null) {
-      this.toastr.error("Hãy đăng nhập", "Thực hiện đăng nhập để mua hàng");
+    } else {
+      var product = this.listProducts.find(product => product.id.toString() == item.productId.toString());
+      if (product) {
+        console.log(product?.amount);
+        console.log(this.items[index].qty);
+        if (this.items[index].qty < product?.amount) {
+          this.items[index].qty++;
+          this.cartService.increaseQty(item);
+        }
+      }
+
     }
   }
 
+  deleteItem(item: CartItem) {
+    console.log(item);
+    var index = this.items.findIndex((i: CartItem) => i.productId == item.productId);
+    console.log(index);
+    if (index == -1) {
+
+    } else {
+      console.log("Click được")
+      console.log(this.items[index]);
+      this.items.splice(index, 1);
+      this.cartService.deleteCartItem(item);
+    }
+  }
+
+  sumTotal() {
+    var total = 0;
+    for (var item of this.items) {
+      total += item.qty * item.price;
+    }
+    return total;
+  }
+
+  deleteCart() {
+
+  }
+  checkLogin():boolean{
+    var token = localStorage.getItem("token");
+    if(token){
+      this.toastr.error("Phải thực hiện đăng nhập trước khi thanh toán");
+      return false;
+    }
+    return true;
+  }
+
   createForm(user: IUser) {
-    if(user==null){
+    if (user == null) {
       this.formModel === null;
-    }else{
+    } else {
       this.formModel = this.fb.group({
         user_id: user.id,
         address: ["", Validators.required],
@@ -138,23 +162,7 @@ export class CartComponent implements OnInit {
         ])
       })
     }
-  
-  }
 
-  consoleData(formGroup: FormGroup) {
-    this.order.createOrder(formGroup.value).subscribe(
-      res => {
-        this.toastr.success("Đặt hàng thành công");
-        localStorage.removeItem('cart');
-        $("#modelId").hide();
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-        this.router.navigateByUrl("/e-commerce/home");
-      },
-      err => {
-        this.toastr.success("Đặt hàng không thành công");
-      }
-    );
   }
 
   orderDetails(): FormArray {
@@ -174,5 +182,22 @@ export class CartComponent implements OnInit {
     for (let item of this.items) {
       this.orderDetails().push(this.newOrderDetail(item));
     }
+  }
+
+  consoleData(formGroup: FormGroup) {
+    this.order.createOrder(formGroup.value).subscribe(
+      res => {
+        this.cartService.clearCart();
+        this.toastr.success("Đặt hàng thành công");
+        //localStorage.removeItem('cart');
+        $("#modelId").hide();
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        this.router.navigateByUrl("/e-commerce/home");
+      },
+      err => {
+        this.toastr.success("Đặt hàng không thành công");
+      }
+    );
   }
 }

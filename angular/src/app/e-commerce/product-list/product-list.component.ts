@@ -1,11 +1,16 @@
+import { productModel } from 'src/app/models/product.model';
 import { CategoryService } from './../../services/category.service';
 import { ICategory } from './../../models/category.model';
-
-import { productModel } from './../../models/product.model';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
 
 import { CartService } from './../../services/cart.service';
+import { Cart } from 'src/app/models/cart.model';
+import { UserService } from 'src/app/shared/user.service';
+import { IUser } from 'src/app/models/user.model';
+import { take } from 'rxjs/operators';
+import { CartItem } from 'src/app/models/cartItem.model';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -17,99 +22,51 @@ export class ProductListComponent implements OnInit {
   page: number = 1;
   productName: string = '';
   clickAllProduct: boolean = false;
+  filterList:productModel[] = [];
 
-  constructor(
-    private productService: ProductsService,
-    private categoryService: CategoryService,
-    private cartService: CartService
-  ) {
-    this.productService.getProduct().subscribe((data: productModel[]) => {
-      this.list = data;
-    });
-    this.categoryService.getCategoryList().subscribe((data: ICategory[]) => {
-      this.listCategory = data;
-    });
-  }
 
-  ngOnInit(): void {
-    this.productService.getProduct().subscribe((data: productModel[]) => {
-      this.list = data;
-    });
-    this.categoryService.getCategoryList().subscribe((data: ICategory[]) => {
-      this.listCategory = data;
-    });
-  }
+  //====================================================//
+  _cart!: Promise<CartItem[]>;
+  user!: IUser;
 
-  Search() {
-    if (this.productName == '') {
-      this.ngOnInit();
-    } else {
-      this.list = this.list.filter((res) => {
-        return res.name.toLowerCase().match(this.productName.toLowerCase());
-      });
-    }
-  }
-
-  itemsCart: any = [];
-  addToCart(category: productModel) {
-    let productExists = 1;
-    window.alert('Product has been added to the cart');
-
-    let cartDataNull = localStorage.getItem('cart');
-    if (cartDataNull == null) {
-      let storeDataGet: any = [];
-      storeDataGet.push({
-        productId: category.id,
-        productName: category.name,
-        qty: 1,
-        price: category.price,
-        image: category.image,
-        amount: category.amount,
-      });
-      localStorage.setItem('cart', JSON.stringify(storeDataGet));
-    } else {
-      var id = category.id;
-      let index: number = -1;
-      this.itemsCart = JSON.parse(localStorage.getItem('cart') || '{}');
-      for (let i = 0; i < this.itemsCart.length; i++) {
-        if (id === parseInt(this.itemsCart[i].id)) {
-          this.itemsCart[i].qty = category.qty + 1;
-          index = i;
-          break;
-        }
+  constructor(private categoryService:CategoryService,private productService: ProductsService, private userService: UserService, private cartService: CartService) {
+    this.productService.getProduct().subscribe(
+      res => {
+        this.list = res;
+        this.filterList = this.list;
+      },
+      err => {
+        console.error(err);
       }
-      localStorage.setItem('cart', JSON.stringify(this.itemsCart));
-      if (index == -1) {
-        for (let i in this.itemsCart) {
-          if (this.itemsCart[i].productId === category.id) {
-            this.itemsCart[i].qty++;
-            productExists = 0;
-            break;
-          }
-        }
-
-        if (productExists === 1) {
-          this.itemsCart.push({
-            productId: category.id,
-            productName: category.name,
-            qty: 1,
-            price: category.price,
-            image: category.image,
-            amount: category.amount,
-          });
-        }
-        localStorage.setItem('cart', JSON.stringify(this.itemsCart));
-      } else {
-        localStorage.setItem('cart', JSON.stringify(this.itemsCart));
+    )
+    this.userService.currentUser$.pipe(take(1)).subscribe(
+      (user: IUser) => {
+        this.user = user;
       }
-    }
-    this.cartNumberFunc();
+    )
+    this.categoryService.getCategoryList().subscribe(
+      res =>{
+        this.listCategory = res;
+      }
+    )
   }
 
-  cartNumber: number = 0;
-  cartNumberFunc() {
-    var cartValue = JSON.parse(localStorage.getItem('cart') || '{}');
-    this.cartNumber = cartValue.length;
-    this.cartService.cartSubject.next(this.cartNumber);
+  ngOnInit(): void { }
+
+  addToCart(product: productModel) {
+    
+    this.cartService.addToCart(product);
+
   }
+
+  filter(string:any){
+   if(string == null){
+     this.filterList = this.list;
+   }else{
+     console.log(string);
+     this.filterList = this.list.filter(item => item.id===string);
+   }
+  }
+
+  
 }

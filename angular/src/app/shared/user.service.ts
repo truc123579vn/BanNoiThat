@@ -4,6 +4,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
+import { CartService } from '../services/cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +14,19 @@ export class UserService {
   private currentUser = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUser.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cartService: CartService) { }
 
   login(formData: FormData) {
     return this.http
       .post<IUser>(this.urlAPI + '/AppUsers/Login', formData)
       .pipe(
         map((response: IUser) => {
-          var  user = response;
+          var user = response;
           if (user) {
             localStorage.setItem('token', user.token);
             console.log(user);
             this.currentUser.next(user);
+            this.cartService.createCartAfterLogin(user.id)
           }
         })
       );
@@ -32,7 +34,9 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.setItem("cartId", "cart_id");
     this.currentUser.next(null!);
+    location.replace("/e-commerce");
   }
 
   loadCurrentUser(token: any) {

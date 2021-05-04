@@ -160,15 +160,10 @@ namespace API.Controllers
 
             if (user == null) 
                 return NotFound();
-            
 
-           // _mapper.Map<AppUser>(user);
             _mapper.Map<AppUserDTO,AppUser>(appuserDTO,user);
             IdentityResult result = await _userManager.UpdateAsync(user);
-
-            //await _signInManager.RefreshSignInAsync(user);
-
-            
+ 
             if(!result.Succeeded)
             {
                 return BadRequest(new { message = "Không cập nhật được tài khoản" });

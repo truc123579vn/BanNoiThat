@@ -60,10 +60,10 @@
                         <div class="picsum-img-wrapper">
                             <img src="../../../assets/img/slider-3.jpg" alt="Random third slide">
                         </div>
-                        <a>
+                        <a class="img-text" href="">
                             <div class="carousel-caption">
                                 <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </a>
                     </ng-template>
@@ -98,7 +98,6 @@
 <div class="feature">
     <div class="container-fluid">
         <div class="row align-items-center">
-
             <div class="col-lg-4 col-md-6 feature-col">
                 <div class="feature-content">
                     <i class="fa fa-truck"></i>
@@ -206,39 +205,83 @@
         <div class="section-header " style="width:1750px;margin: auto;margin-bottom: 0;">
             <h1><b>Featured Product</b></h1>
         </div>
-        <div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
-            <div class="col-lg-3" *ngFor="let item of listProduct">
-                <div class="product-item ">
-                    <div class="product-title">
-                        <a href="#">{{item.name}}</a>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let slide of slides; let s  = index">
+                <div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
+                   <div class="col-lg-3" *ngFor="let item of listProduct">
+                        <div class="product-item ">
+                            <div class="product-title">
+                                <a href="#">{{item.name}}</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.html">
+                                    <img src="../../../assets/picture/{{item.image}}" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3>{{item.price|currency:"VND"}}</h3>
+                                <button class="btn btn-cart justify-content-center bg-pink">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Buy Now
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-image">
-                        <a href="product-detail.html">
-                            <img src="../../../assets/picture/{{item.image}}" alt="Product Image">
-                        </a>
-                        <div class="product-action">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                            <a href="#"><i class="fa fa-heart"></i></a>
-                            <a href="#"><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-price">
-                        <h3>{{item.price|currency:"VND"}}</h3>
-                        <button class="btn btn-cart justify-content-center bg-pink" >
-                            <i class="fa fa-shopping-cart"></i>
-                            Buy Now
-                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </ng-template>
+        </ngb-carousel>
     </div>
 </div>
+
+
+
 <!-- Featured Product End -->
+
+
+<div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
+    <ngb-carousel>
+                   <ng-template ngbSlide class="col-lg-3" *ngFor="let item of listProduct">
+                        <div class="product-item ">
+                            <div class="product-title">
+                                <a href="#">{{item.name}}</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.html">
+                                    <img src="../../../assets/picture/{{item.image}}" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="#"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3>{{item.price|currency:"VND"}}</h3>
+                                <button class="btn btn-cart justify-content-center bg-pink">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+                    </div>

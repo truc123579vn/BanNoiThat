@@ -17,12 +17,22 @@ export class ProductsComponent implements OnInit {
     this.service.getProduct().subscribe(
       data =>{
         this.listProduct = data;
+
       }
     )
   
    }
 
+  slides: any = [[]];
+  chunk(arr : any, chunkSize: any ) {
+    let R = [];
+    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
+      R.push(arr.slice(i, i + chunkSize));
+    }
+    return R;
+  }
   ngOnInit(): void {
+    this.slides = this.chunk(this.listProduct, 3);
 
   }
   // images = ['../../assets/img/slider-1.jpg','../../assets/img/slider-2.jpg','../../assets/img/slider-3.jpg'];

@@ -92,9 +92,18 @@
               </div>
               <div class="product-price">
                 <h3>{{ product?.price | currency: "VND" }}</h3>
-                <a class="btn-cart center" href=""
-                  ><i class="fa fa-shopping-cart"></i>Buy Now</a
-                >
+                <div class="row input-group">
+                  <button class="btn btn-cart justify-content-center" >
+                    <div class="row">
+                      <span></span>
+                    </div>
+                    <span>
+                      <i class="fa fa-shopping-cart"></i>
+                    </span>
+                    Buy Now
+                  </button>
+                </div>
+                
               </div>
             </div>
           </div>

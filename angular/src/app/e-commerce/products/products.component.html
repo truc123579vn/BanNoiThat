@@ -205,11 +205,22 @@
         <div class="section-header " style="width:1750px;margin: auto;margin-bottom: 0;">
             <h1><b>Featured Product</b></h1>
         </div>
-        <ngb-carousel>
-            <ng-template ngbSlide *ngFor="let slide of slides; let s  = index">
+        <!-- <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let slide of slides" > -->
                 <div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
-                   <div class="col-lg-3" *ngFor="let item of listProduct">
-                        <div class="product-item ">
+                    <div
+                    class="col-md-3"
+                    *ngFor="
+                      let item of listProduct
+                       
+                        | paginate
+                          : {
+                              id: 'listing_pagination',
+                              itemsPerPage: 4,
+                              currentPage: page
+                            }
+                    "
+                  >                        <div class="product-item ">
                             <div class="product-title">
                                 <a href="#">{{item.name}}</a>
                                 <div class="ratting">
@@ -232,7 +243,7 @@
                             </div>
                             <div class="product-price">
                                 <h3>{{item.price|currency:"VND"}}</h3>
-                                <button class="btn btn-cart justify-content-center bg-pink">
+                                <button class="btn btn-cart justify-content-center bg-red">
                                     <i class="fa fa-shopping-cart"></i>
                                     Buy Now
                                 </button>
@@ -240,16 +251,28 @@
                         </div>
                     </div>
                 </div>
-            </ng-template>
-        </ngb-carousel>
+            <!-- </ng-template>
+        </ngb-carousel> -->
     </div>
 </div>
+
+    <!-- Pagination Start -->
+    <div class="col-md-12">
+        <nav aria-label="Page navigation example">
+          <pagination-controls
+            class="pagination justify-content-center"
+            id="listing_pagination"
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </nav>
+      </div>
+      <!-- Pagination Start -->
 
 
 
 <!-- Featured Product End -->
 
-
+<!-- 
 <div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
     <ngb-carousel>
                    <ng-template ngbSlide class="col-lg-3" *ngFor="let item of listProduct">
@@ -284,4 +307,49 @@
                         </div>
                     </ng-template>
                 </ngb-carousel>
-                    </div>
+                    </div> -->
+
+                    
+
+
+
+                     <!-- <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let slide of slides" > -->
+                <!-- <div class="row align-items-center product-slider product-slider-4" style="margin-top: 30px;">
+                    <div class="col-lg-3" *ngFor="let item of listProduct">
+                         <div class="product-item ">
+                             <div class="product-title">
+                                 <a href="#">{{item.name}}</a>
+                                 <div class="ratting">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                 </div>
+                             </div>
+                             <div class="product-image">
+                                 <a href="product-detail.html">
+                                     <img src="../../../assets/picture/{{item.image}}" alt="Product Image">
+                                 </a>
+                                 <div class="product-action">
+                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                     <a href="#"><i class="fa fa-heart"></i></a>
+                                     <a href="#"><i class="fa fa-search"></i></a>
+                                 </div>
+                             </div>
+                             <div class="product-price">
+                                 <h3>{{item.price|currency:"VND"}}</h3>
+                                 <button class="btn btn-cart justify-content-center bg-red">
+                                     <i class="fa fa-shopping-cart"></i>
+                                     Buy Now
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+                 </div> -->
+             <!-- </ng-template>
+         </ngb-carousel> -->
+     <!-- </div>
+ </div> -->
+ 

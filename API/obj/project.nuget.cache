@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "858UN+xvcv54Eq2lSV4QuBY63iBxaY7E4f7PAV7pUygI6gADzxmQ3jwarhPX4RK5izxyyTobo7p1MIJS1olQmA==",
+  "dgSpecHash": "jJm2tF7RmXoVEcO/IJdQEQyaDwxKj9DndhFRjy8PuUTzaVlmz2SuDDJNrlZ2lRmms0lVkuOjyZHhiHsiZcBnGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\TMDT final 1742021\\BanNoiThat\\API\\API.csproj",
+  "projectFilePath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\ardalis.guardclauses\\3.1.0\\ardalis.guardclauses.3.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\ardalis.specification\\5.1.0\\ardalis.specification.5.1.0.nupkg.sha512",

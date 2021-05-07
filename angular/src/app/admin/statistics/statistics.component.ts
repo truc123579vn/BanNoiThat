@@ -11,5 +11,27 @@ export class StatisticsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  search(input: any) {
+    //this.proSer.getFromDb(input);
+  }
+  onSelect(event: any) {
+
+  }
+  add(){
+
+  }
+  selectForUpdate(){
+
+  }
+  update(){
+
+  }
+  deleteConForm(){
+
+  }
+  selectForDelete(){
+
+  }
+  
 
 }

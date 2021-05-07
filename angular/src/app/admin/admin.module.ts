@@ -22,11 +22,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {  MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent,LoginComponent, AccountComponent, OrdersComponent, StatisticsComponent, ProductsComponent],
+  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent,
+    LoginComponent, AccountComponent, OrdersComponent, StatisticsComponent, ProductsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -36,9 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Ng2SearchPipeModule,
     Ng2OrderModule,
     MatTabsModule,
-   
-  
-    
+    ReactiveFormsModule
   ],  
   providers: []
 })

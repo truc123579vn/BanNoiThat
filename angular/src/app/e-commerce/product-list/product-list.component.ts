@@ -17,10 +17,11 @@ import { ifStmt } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
+
   list: productModel[] = [];
   listCategory: ICategory[] = [];
   page: number = 1;
-  productName: string = '';
+  productName: string = "";
   clickAllProduct: boolean = false;
   filterList:productModel[] = [];
 

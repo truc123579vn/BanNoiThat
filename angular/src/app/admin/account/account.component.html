@@ -1,280 +1,278 @@
-<div style="padding: 2%;">
-    <div class="card card-primary card-outline">
-      <div class="card-header">
-        <h2 class="card-title" style="font-weight: 700;">Tài Khoản</h2>
+<div style="padding:2%">
+  <div class="card card-primary card-outline">
+  <mat-tab-group>
+     <!--- MANAGER ACCOUNTS-->
+    <mat-tab label="Quản lý"> 
+      <ng-template matTabContent>
+        <div style="padding: 1%;">
+          <div class="card"> 
+                <div class="card-header">         
+                  <h2 class="card-title" style="font-weight: 700;">Quản lý Tài Khoản</h2>
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control" type="text" name="managerSearch" #myInput [(ngModel)]="managerToSearch" 
+                      (input)="SearchManagers()" placeholder="Tìm tài khoản"/>
+                      <div class="input-group-append">
+                        <div class="btn btn-primary">
+                          <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="mailbox-controls">
+                    <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm"
+                      style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
+                      <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm quản lý</i>
+                    </button>
+                    <button (click)="exportExcel(managers)" class="btn btn-default btn-sm"
+                    style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px; margin-left: 5px;">
+                    <i class="fa fa-file-excel" style="padding: 5px;">  Xuất file Excel</i>
+                    </button> 
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr style="font-size: 16px; background-color:#DDDDDD;">
+                          <th (click)="SortManagers('userName')">Tên tài khoản&nbsp;<i class="fa fa-sort"></i></th>
+                          <th>Họ</th>
+                          <th>Tên</th>
+                          <th>Thao tác</th>
+                        </tr>
+                        <tr *ngFor="let manager of managers | orderBy: key: reverse | paginate: {itemsPerPage:2, currentPage:pageStart};">                          
+                          <td>{{manager.userName}}</td>
+                          <td>{{manager.lastName}}</td>
+                          <td>{{manager.firstName}}</td>                                                   
+                          <td>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteModal"
+                              (click)="loadManagerToDelete(manager.userName)" style="font-size: 18px; margin-right: 10px;" title="Xóa">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                            <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="loadManagerToUpdate(manager.userName)"
+                              class="btn btn-warning btn-sm" style="font-size: 18px;" title="Cập nhật">
+                              <i class="fas fa-edit"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- /.table -->
+                  </div>
+                  <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer p-0" style="background-color:#DDDDDD;">
+                  <div class="mailbox-controls">
+                    <!-- /.btn-group -->
+                    <pagination-controls (pageChange)="pageStart = $event" style="text-align: center;" ></pagination-controls>
+                  </div>
+                </div>    
+          </div>
+        </div>     
+      </ng-template>
+      
+    </mat-tab>
+
+    <!--- CUSTOMER ACCOUNTS-->
+    <mat-tab label="Khách hàng"> 
+      <ng-template matTabContent>
+        <div style="padding: 1%;">
+          <div class="card"> 
+                <div class="card-header">         
+                  <h2 class="card-title" style="font-weight: 700;">Tài khoản Khách hàng</h2>
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control" type="text" name="customerSearch" #myInput [(ngModel)]="customerToSearch" 
+                      (input)="SearchCustomers()" placeholder="Tìm tài khoản"/>
+                      <div class="input-group-append">
+                        <div class="btn btn-primary">
+                          <i class="fas fa-search"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="mailbox-controls">
+                    <button (click)="exportExcel(customers)" class="btn btn-default btn-sm"
+                    style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px; margin-left: 5px;">
+                    <i class="fa fa-file-excel" style="padding: 5px;">  Xuất file Excel</i>
+                    </button>                   
+                  </div>
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr style="font-size: 16px; background-color:#DDDDDD;">
+                          <th (click)="SortCustomers('userName')">Tên tài khoản&nbsp;<i class="fa fa-sort"></i></th>
+                          <th>Họ</th>
+                          <th>Tên</th>
+                        </tr>
+                        <tr *ngFor="let customer of customers | orderBy: keyCustomer : reverseCustomer | paginate: {itemsPerPage:2, currentPage:pageStartCustomer}; ">                          
+                          <td>{{customer.userName}}</td>
+                          <td>{{customer.lastName}}</td>
+                          <td>{{customer.firstName}}</td>                                                                          
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!-- /.table -->
+                  </div>
+                  <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer p-0" style="background-color:#DDDDDD;">
+                  <div class="mailbox-controls">
+                    <!-- /.btn-group -->
+                    <pagination-controls (pageChange)="pageStartCustomer = $event" style="text-align: center;" ></pagination-controls>
+                  </div>
+                </div>    
+          </div>
+        </div>     
+      </ng-template>      
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+ <!-- Modal for add manager -->
+        
+ <div class="modal fade" id="AddModal" #AddModal tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-bottom: 5px;">
+        <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm tài khoản Quản lý</h3>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+          style="border: none;">x</button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addManagerForm" (ngSubmit)= "onAddManagerFormSubmit()">
+          <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input formControlName="UserNameAdd" type="text" class="form-control" placeholder="Nhập tên tài khoản">
+            <small class="text-error" *ngIf="(addManagerForm.controls['UserNameAdd'].invalid) && (addManagerForm.controls['UserNameAdd'].touched)">
+              Tên tài khoản không được bỏ trống !
+            </small>
+          </div>
   
-        <div class="card-tools">
-          <div class="input-group input-group-sm">
-            <input #inputForSearch (keyup)="search(inputForSearch.value)" type="text" class="form-control"
-              placeholder="Tìm sản phẩm">
-            <div class="input-group-append">
-              <div class="btn btn-primary">
-                <i class="fas fa-search"></i>
-              </div>
-            </div>
+          <div class="form-group">
+            <label>Họ</label>
+            <input formControlName="LastNameAdd" type="text" class="form-control" placeholder="Nhập họ">
+            <small class="text-error" *ngIf="(addManagerForm.controls['LastNameAdd'].invalid) && (addManagerForm.controls['LastNameAdd'].touched)">
+              Họ không được bỏ trống !
+            </small>
           </div>
-        </div>
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body p-0">
-        <div class="mailbox-controls">
-          <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm"
-            style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
-            <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm sản phẩm</i>
-          </button>
-          <div class="float-right">
-            1-50/200
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-            </div>
-            <!-- /.btn-group -->
+
+          <div class="form-group">
+            <label>Tên</label>
+            <input formControlName="FirstNameAdd" type="text" class="form-control" placeholder="Nhập tên">
+            <small class="text-error" *ngIf="(addManagerForm.controls['FirstNameAdd'].invalid) && (addManagerForm.controls['FirstNameAdd'].touched)">
+              Tên không được bỏ trống !
+            </small>
           </div>
-          <!-- /.float-right -->
-        </div>
-        <div class="table-responsive mailbox-messages">
-          <table class="table table-hover table-striped">
-            <tbody>
-              <tr style="font-size: 16px; background-color:#DDDDDD;">
-                <th>Hình ảnh</th>
-                <th>Mã sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Giá</th>
-                <th>Chi tiết</th>
-                <th>Trạng thái</th>
-                <th></th>
-              </tr>
-              <tr style="font-size: 16px;">
-                <td><img src="" style="width: 100px; height: 100px;"></td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>
-                  <select class="status-select" style="width:110px; height: 25px;; cursor: pointer;" data-sortorder="">
-                    <option value="index"></option>
-                  </select>
-                </td>
-                <td>
-                  <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                    (click)="selectForDelete()" style="font-size: 18px;">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                  <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="selectForUpdate()"
-                    class="btn btn-default btn-sm" style="font-size: 18px;">
-                    <i class="fas fa-edit"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- /.table -->
-        </div>
-        <!-- /.mail-box-messages -->
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer p-0" style="background-color:#DDDDDD;">
-        <div class="mailbox-controls">
-          <!-- /.btn-group -->
-          <div class="float-right">
-            1-50/200
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm">
-                <i class="fas fa-chevron-left"></i>
-              </button>
-              <button type="button" class="btn btn-default btn-sm">
-                <i class="fas fa-chevron-right"></i>
-              </button>
-            </div>
+     
+          <div class="form-group">
+            <label>Mật khẩu</label>
+            <input formControlName="PasswordAdd" type="text" class="form-control" placeholder="Nhập mật khẩu">
+            <small class="text-error" *ngIf="(addManagerForm.controls['PasswordAdd'].invalid) && (addManagerForm.controls['PasswordAdd'].touched)">
+              Mật khẩu không hợp lệ (tối thiểu 5 kí tự, tối đa 20 kí tự)
+            </small>
           </div>
-        </div>
+  
+          <div class="modal-footer" style="padding-right: 35%;">
+            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success" >
+              Thêm
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+          </div>
+
+        </form>
       </div>
+      
+      
     </div>
   </div>
-  
-  
-  
-  <!-- Modal for add products -->
-  
-  <div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
-          <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm sản phẩm</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            style="border: none;">x</button>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                <img class="img-thumbnail" id="AddEmpImage" style="width: 100px; height: 100px" src="" alt="">
-              </div>
-              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
-                <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
-              </div>
-            </div><br>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
-                <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 20px;">
-                  <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
-                  </textarea>
-                </td>
-              </tr>
-            </div>
-            <div class="row" style="padding-left: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
-                <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
-                    style="width:200px; cursor: pointer;" data-sortorder="">
-                    <option value="index">Kinh doanh </option>
-                    <option value="sortData"> Ngừng kinh doanh </option>
-                  </select>
-                </td>
-              </tr>
-            </div>
+</div>
+
+
+<!-- Modal for update account manager -->
+
+<div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-bottom: 5px;">
+        <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Cập nhật tài khoản Quản lý</h2>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+          style="border: none;">x</button>
+      </div>
+      
+      <div class="modal-body">
+        <form [formGroup]="updateManagerForm"  (ngSubmit)="onUpdateManagerFormSubmit()">
+          <div class="form-group">
+            <label>Id</label>
+            <input formControlName="IdUpdate" type="text" class="form-control" readonly>
           </div>
-        </div>
-        <div class="modal-footer" style="padding-right: 35%;">
-          <button type="button" class="btn btn-primary" (click)="add()">Thêm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  
-  <!-- Modal for update products -->
-  
-  <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
-          <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Sửa sản phẩm</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            style="border: none;">x</button>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                <img class="img-thumbnail" id="UpdateEmpImage" style="width: 100px; height: 100px" src="" alt="">
-              </div>
-              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
-                <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
-              </div>
-            </div><br>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
-                <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
-                    style="width: 200px;"></td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 20px;">
-                  <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
-                  </textarea>
-                </td>
-              </tr>
-            </div>
-            <div class="row" style="padding: 5%;">
-              <tr>
-                <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
-                <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
-                    style="width:200px; cursor: pointer;" data-sortorder="">
-                    <option value="index">Kinh doanh </option>
-                    <option value="sortData"> Ngừng kinh doanh </option>
-                  </select>
-                </td>
-              </tr>
-            </div>
+
+          <div class="form-group">
+            <label>Tên tài khoản</label>
+            <input formControlName="UserNameUpdate" type="text" class="form-control" readonly>
           </div>
-        </div>
-        <div class="modal-footer" style="padding-right: 35%;">
-          <button type="button" class="btn btn-primary" (click)="update()">Sửa</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-        </div>
+  
+          <div class="form-group">
+            <label>Họ</label>
+            <input formControlName="LastNameUpdate" type="text" class="form-control" placeholder="Nhập họ">
+            <small class="text-error" *ngIf="(updateManagerForm.controls['LastNameUpdate'].invalid) && (updateManagerForm.controls['LastNameUpdate'].touched)">
+              Họ không được bỏ trống !
+            </small>
+            
+          </div>
+
+          <div class="form-group">
+            <label>Tên</label>
+            <input formControlName="FirstNameUpdate" type="text" class="form-control" placeholder="Nhập tên">
+            <small class="text-error" *ngIf="(updateManagerForm.controls['FirstNameUpdate'].invalid) && (updateManagerForm.controls['FirstNameUpdate'].touched)">
+              Tên không được bỏ trống !
+            </small>
+          </div>
+         
+          <div class="modal-footer" style="padding-right: 35%;">
+            <button type="submit" [disabled]="!updateManagerForm.valid" class="btn btn-success">
+              Cập nhật
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+          </div>
+            
+        </form>
       </div>
+      
     </div>
   </div>
-  
-  
-  <!-- Modal for delete products -->
-  
-  <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="padding-left: 40%; ">
-          <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa sản phẩm</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            style="border: none;">x</button>
-        </div>
-        <div class="modal-body">
-          <h3> Bạn muốn xóa sản phẩm này ?</h3>
-        </div>
-        <div class="modal-footer" style="padding-right: 35%;">
-          <button type="button" class="btn btn-primary" (click)="deleteConForm()">Xoá</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-        </div>
+</div>
+
+
+
+
+<!-- Modal for delete account manager -->
+
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding-left: 40%; ">
+        <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa tài khoản</h2>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+          style="border: none;">x</button>
       </div>
+      <div class="modal-body">
+        <form (ngSubmit)="deleteManager()">
+          <h3> Bạn muốn xóa tài khoản {{usernameToDelete}} này ?</h3>
+          <div class="modal-footer" style="padding-right: 35%;">
+            <button type="submit" class="btn btn-danger">Xoá</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+          </div>
+        </form>       
+      </div>
+      
     </div>
   </div>
+</div>

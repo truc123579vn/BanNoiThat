@@ -5,3 +5,19 @@
       /* New width for default modal */
     }
   }
+
+    .btn-ecommerce2 {
+        color: #FF6F61;
+        background: #ffffff;
+        border: 1px solid #FF6F61;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    .btn-ecommerce2:hover,
+    .btn-ecommerce2:active,
+    .btn-ecommerce2:focus {
+        color: #ffffff;
+        background: #FF6F61;
+        box-shadow: none;
+    }

@@ -1,3 +1,4 @@
+import { Ng2FilterPipe } from 'ng2-filter-pipe';
 import { UserService } from './shared/user.service';
 
 import { NgModule } from '@angular/core';
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-top-right'
+      positionClass: 'toast-bottom-right',
+      progressBar:true
     }),
     BrowserAnimationsModule,
     NgbModule

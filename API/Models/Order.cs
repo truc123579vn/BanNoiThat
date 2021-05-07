@@ -10,7 +10,7 @@ namespace Models
     {
 
         public Order() { }
-        public Order( AppUser appUser, string address)
+        public Order( AppUser appUser, string address) 
         {
             this.AppUser = appUser;
             Address = address;

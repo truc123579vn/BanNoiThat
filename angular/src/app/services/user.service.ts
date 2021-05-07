@@ -28,6 +28,12 @@ import { registerModel } from '../models/register.model';
         return this.http.get<IUser>(this.urlAPI + "/appusers/" + username);
       }
 
+    createAccountUser(user: registerModel)
+    {
+      let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+      let options = { headers: httpHeaders };
+      return this.http.post<IUser>(this.urlAPI + "/appusers/User/Customer", user, options);
+    }
     createAccountManager(manager : registerModel) 
     {
       let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');

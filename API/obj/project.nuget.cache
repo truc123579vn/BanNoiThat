@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2ZbwL1i4IxUfUPo0g2dxbq/s8xxGv8qao9JEs4iIWZB955CHJfy2Yy9FFI4vevl89UCByd8bqCb0iT1Og560Aw==",
+  "dgSpecHash": "5fw782/JUnijfFcJyaQubP9qft5+PeP6xGmJ3yw6+yf59AnDK7r+uk0NgQQ8tfcMYta1q3j9cD8W5mqx21ZYcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\TMDT final 1742021\\BanNoiThat\\API\\API.csproj",
+  "projectFilePath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\ardalis.guardclauses\\3.1.0\\ardalis.guardclauses.3.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\ardalis.specification\\5.1.0\\ardalis.specification.5.1.0.nupkg.sha512",
@@ -83,5 +83,12 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

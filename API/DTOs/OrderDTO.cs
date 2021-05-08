@@ -15,7 +15,6 @@ namespace DTOs{
         public AppUser AppUser {get;set;}
 
         public int User_Id { get; set; }
-        //public string FullName { get; set; }
         public decimal TotalPrice { get; set; }
         
         public string DateCreated { get; set; }

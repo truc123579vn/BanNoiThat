@@ -24,10 +24,9 @@ import { CartService } from '../services/cart.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { PaymentComponent } from './payment/payment.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-
-
-
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [ECommerceComponent, ProductsComponent, HeaderComponent, FooterComponent, CartComponent, ProductListComponent, ProductDetailComponent, RegisterComponent, LoginComponent, AccountComponent, PaymentComponent],
   imports: [
@@ -39,7 +38,10 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     RouterModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule,  
+    NgbModule,
+    IvyCarouselModule,
+    CarouselModule 
   ],
 
   providers: [UserService, ProductsService, CategoryService, CartService, AuthGuard, {

@@ -1,1 +1,151 @@
-<p>statistics works!</p>
+<div style="padding: 2%;">
+  <div class="card card-primary card-outline">
+    <div class="card-header" style="margin-left: 0% ;">
+      <h2 class="card-title" style="font-weight: 700;">Thống Kê Doanh Thu Theo Ngày</h2>
+      <br>
+      <div class="input-group input-group-sm" style="text-align: center;">
+        <div id="textInput1">
+          Ngày bắt đầu
+        </div>
+        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date" class="form-control"
+          placeholder="Nhập ngày bắt đầu">
+        <div id="textInput2">
+          Ngày kết thúc
+        </div>
+        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date" class="form-control"
+          placeholder="Nhập ngày kết thúc">
+      </div>
+      <div class="input-group input-group-sm" style="text-align: center; margin-top: 2%;">
+        <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm"
+          style="font-size: 17px; background-color: rgb(162, 65, 252); border: #777 solid 0.5px;">
+          <i class="fas fa-plus-circle" style="padding: 5px; color: rgb(255, 255, 255);"> Xem Thống Kê</i>
+        </button>
+      </div>
+    </div>
+
+
+
+
+    <section class="content" style="margin: 2% 1% 0px 1%;">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>Đơn Đặt Hàng</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Doanh Thu</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>Khách Hàng</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Ngày Hôm nay</p>
+              </div>
+              <div class="icon">
+                <i class="far fa-calendar-alt"></i>
+              </div>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+
+
+
+
+
+
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="mailbox-controls">
+
+            <div class="float-right">
+              1-50/200
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <!-- /.btn-group -->
+            </div>
+            <!-- /.float-right -->
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <table class="table table-hover table-striped">
+              <tbody>
+                <tr style="font-size: 16px; background-color:#DDDDDD;">
+                  <th>Mã hóa đơn</th>
+                  <th>Mã khách hàng</th>
+                  <th>Tổng tiền</th>
+                </tr>
+                <tr style="font-size: 16px;">
+                  <td>a</td>
+                  <td>a</td>
+                  <td>a</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- /.table -->
+          </div>
+          <!-- /.mail-box-messages -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer p-0" style="background-color:#DDDDDD;">
+          <div class="mailbox-controls">
+            <!-- /.btn-group -->
+            <div class="float-right">
+              1-50/200
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

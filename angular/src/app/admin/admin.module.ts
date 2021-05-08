@@ -35,7 +35,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent, LoginComponent, AccountComponent, OrdersComponent, StatisticsComponent, ProductsComponent],
+  declarations: [AdminComponent, SidebarComponent, TopbarComponent, FooterComponent, AsidebarComponent,
+    LoginComponent, AccountComponent, OrdersComponent, StatisticsComponent, ProductsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

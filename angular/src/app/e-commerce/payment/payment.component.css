@@ -8,6 +8,25 @@
     width: 310px !important;
 }
 
+th{
+    font-weight: bold;
+    font-size: medium;
+}
+td{
+    font-weight: bold;    font-size: medium;
+
+
+}
+tr{
+    border: 1px solid #FF6F61;
+    font-weight: bold;
+    font-size: medium;
+
+}
+.card-header
+{
+    border: 1px solid #FF6F61;
+}
 .cardTextBox {
   display: inline-block;
   border: 1px solid #BDBDBD;
@@ -35,3 +54,9 @@
         background: #FF6F61;
         box-shadow: none;
     }
+
+.form-group
+{
+    font-weight: bold;
+    font-size: medium;
+}

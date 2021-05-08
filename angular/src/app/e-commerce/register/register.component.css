@@ -1,3 +1,29 @@
+.login
+{
+    background-color: rgb(255,0,0);
+    height: 465pt;
+}
+
+.container
+{
+    width: 100%;
+}
+h1{
+    margin-top: 8px;
+    font-weight: 900;
+}
+.html
+{
+    background-color: chartreuse;
+}
+.col-lg-12
+{
+    vertical-align: auto;
+    background-color: blue;
+    margin: 10% 0px 0px 0px  ;
+
+    width: 100%;
+}
 input.ng-invalid
 {
     border-left: 5px solid red;
@@ -27,7 +53,6 @@ input.ng-valid
 }
 button
 {
-    width: 20%;
     height: 40px;
     color: #FF6F61;
     background: #ffffff;
@@ -50,4 +75,6 @@ button[disabled] {
 
 
 }
+
+
 

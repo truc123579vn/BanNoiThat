@@ -1,0 +1,32 @@
+
+
+div.inner
+{
+    height: 120px;
+}  
+
+input{
+    width: fit-content;
+}
+  #textInput1 {
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 5px;
+    margin-right: 10px;
+    font-weight: 500;
+  }
+
+  #textInput2 {
+    font-size: 17px;
+    color: black;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 5px;
+    margin-right: 10px;
+    font-weight: 500;
+    margin-left: 10px;
+  }

@@ -65,9 +65,20 @@ export class ProductListComponent implements OnInit {
      this.filterList = this.list;
    }else{
      console.log(string);
-     this.filterList = this.list.filter(item => item.id===string);
+     this.filterList = this.list.filter(item => item.category_Id===string);
+     console.log(this.filterList);
    }
   }
 
-  
+  showDropDown = false;
+  toggleProductDropdown()
+  {
+    this.showDropDown = !this.showDropDown;
+  }
+
+  setValue(name: string)
+  {
+    this.productName = name;
+    this.showDropDown = false;
+  }
 }

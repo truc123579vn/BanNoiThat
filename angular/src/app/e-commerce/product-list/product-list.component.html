@@ -9,8 +9,13 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="product-search">
-                    <input type="email" value="Search" name="productName" [(ngModel)]="productName" />
+                    <input type="text" value="Search" name="productName" [(ngModel)]="productName" (click)="toggleProductDropdown()"/>
                     <button><i class="fa fa-search"></i></button>
+                  </div>
+                  <div *ngIf="showDropDown" class="product-container-dropdown">
+                    <div (click)="setValue(product?.name)" class="product-auto-complete" *ngFor="let product of filterList | filter:productName"> 
+                      {{product?.name}}    
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -46,14 +51,14 @@
 
           <div class="col-md-3" *ngFor="
               let product of filterList 
-                
+                |filter:productName
                 | paginate
                   : {
                       id: 'listing_pagination',
                       itemsPerPage: 4,
                       currentPage: page
                     }
-                |filter:productName
+                
             ">
             <div class="product-item">
               <div class="product-title">
@@ -73,7 +78,7 @@
                 <div class="product-action">
                   <a (click)=addToCart(product)><i class="fa fa-cart-plus"></i></a>
                   <a href="#"><i class="fa fa-heart"></i></a>
-                  <a href="#"><i class="fa fa-search"></i></a>
+                  <a routerLink="/e-commerce/product/{{ product.id }}" *ngIf="product?.name"><i class="fa fa-search"></i></a>
                 </div>
               </div>
               <div class="product-price">
@@ -109,10 +114,10 @@
           <nav class="navbar bg-light">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" (click)="filter(null)">Tất cả</a>
+                <a class="nav-link" (click)="filter(null)" style="cursor: pointer;" >Tất cả</a>
               </li>
               <li class="nav-item" *ngFor="let item of listCategory">
-                <a class="nav-link" (click)="filter(item.id)">{{
+                <a class="nav-link" style="cursor: pointer;" (click)="filter(item.id)">{{
                   item.name }}</a>
               </li>
             </ul>

@@ -554,3 +554,10 @@ D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Pipelines.Socket
 D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\StackExchange.Redis.dll
 D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
 D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\Ardalis.GuardClauses.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\Ardalis.Specification.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\JetBrains.Annotations.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\Pipelines.Sockets.Unofficial.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\StackExchange.Redis.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
+E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll

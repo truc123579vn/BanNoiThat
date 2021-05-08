@@ -1,14 +1,15 @@
+import { orderModel } from './../../models/order.model';
 import { OrderService } from 'src/app/services/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { UserService } from './../../shared/user.service';
 import { DOCUMENT } from '@angular/common';
-import { ElementRef, Inject } from '@angular/core';
+import { AfterViewInit, ElementRef, Inject, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { productModel } from 'src/app/models/product.model';
 import { IUser } from 'src/app/models/user.model';
 import { take } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ViewChild } from '@angular/core';
 import * as $ from "jquery";
@@ -16,6 +17,8 @@ import * as b from 'bootstrap';
 import { CartItem } from 'src/app/models/cartItem.model';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { environment } from 'src/environments/environment';
+
 
 
 @Component({
@@ -32,8 +35,12 @@ export class CartComponent implements OnInit {
   user!: IUser;
   formModel!: FormGroup;
   @ViewChild('#modelId') completeModal!: ElementRef;
+  //====================================================================///
 
-  constructor(private router: Router,private order:OrderService, private toastr: ToastrService, private productService: ProductsService, private fb: FormBuilder, private userService: UserService, private cartService: CartService) {
+
+
+
+  constructor(private router: Router, private order: OrderService, private toastr: ToastrService, private productService: ProductsService, private fb: FormBuilder, private userService: UserService, private cartService: CartService) {
     this.currentUser$ = this.userService.currentUser$;
     this.userService.currentUser$.pipe(take(1)).subscribe(
       user => {
@@ -41,15 +48,20 @@ export class CartComponent implements OnInit {
         if (this.user) {
           this.cartService.getCart(this.user.id.toString()).subscribe(
             res => {
-              this.items = res.cartItems;
-              this.createForm(user);
-              this.addOrderDetail();
+              if (res.cartItems) {
+                this.items = res.cartItems;
+                this.createForm(user);
+                this.addOrderDetail();
+              }
+
             }
           )
         } else {
           this.cartService.getCart("cart_id").subscribe(
             res => {
-              this.items = res.cartItems;
+              if (res.cartItems) {
+                this.items = res.cartItems;
+              }
             }
           )
         }
@@ -66,14 +78,18 @@ export class CartComponent implements OnInit {
     this.productService.getProduct().subscribe(
       res => {
         this.listProducts = res;
-      
+
       }
     )
   }
 
   ngOnInit() {
 
+
   }
+
+
+
 
   getImageProduct(id: number) {
 
@@ -140,10 +156,13 @@ export class CartComponent implements OnInit {
 
   deleteCart() {
 
+    var id = localStorage.getItem('cartId');
+   this.cartService.clearCart();
+  
   }
-  checkLogin():boolean{
+  checkLogin(): boolean {
     var token = localStorage.getItem("token");
-    if(token){
+    if (token) {
       this.toastr.error("Phải thực hiện đăng nhập trước khi thanh toán");
       return false;
     }
@@ -159,7 +178,8 @@ export class CartComponent implements OnInit {
         address: ["", Validators.required],
         OrderDetails: this.fb.array([
 
-        ])
+        ]),
+
       })
     }
 

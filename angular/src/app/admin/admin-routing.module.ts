@@ -1,5 +1,9 @@
+import { AuthGuard } from './auth/auth.guard';
+
+
+
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate, CanActivateChild } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
 
@@ -9,26 +13,24 @@ import { AccountComponent } from '../admin/account/account.component';
 import { OrdersComponent } from '../admin/orders/orders.component';
 import { StatisticsComponent } from '../admin/statistics/statistics.component';
 
+
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    // children: [
-    //   {path: 'products',component:ProductsComponent},
-    // ]
   },
   {
     path: 'index',
     component: AdminComponent,
+    canActivateChild:[AuthGuard],
     children: [
-      { path: 'products', component: ProductsComponent },
+      { path: 'products', component: ProductsComponent},
       { path: 'accounts', component: AccountComponent }, // khai baso path"vinh"
       { path: 'orders', component: OrdersComponent},
       { path: 'statistics', component: StatisticsComponent},
-      
-      // {path:'login',component:LoginComponent}
     ],
-  },
+   
+ },
   { path: '', redirectTo: '/admin', pathMatch: 'prefix' },
 ];
 

@@ -118,7 +118,7 @@ export class RegisterComponent implements OnInit {
   //   let data=this.accountService.getAccountByUserName(UserName).subscribe;
   // }
   successmsg(){  
-    this.toastr.success("You have signed up successfully",' Success')  }
+    this.toastr.success("Đăng kí thành công",' Success')  }
 
   //Khong co dong nay thi ben HTML se khong thay duoc FormControl 'firstName'
   get firstName()

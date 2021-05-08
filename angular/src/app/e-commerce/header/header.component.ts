@@ -23,9 +23,6 @@ export class HeaderComponent implements OnInit {
     this.cartService.cartSubject$.pipe(take(1)).subscribe(
       res => {
         this.items = res;
-
-
-
       }
     )
   }
@@ -33,33 +30,28 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser$ = this.service.currentUser$;
     this.countItemInCart();
-    // this.cartItemFunc();
   }
 
+  // hàm này là lấy thông tin currentUser
   getUserProfile() {
     this.currentUser$.pipe(take(1)).subscribe(
       user => {
-        this.user = user;
+        if (user) {
+          this.user = user;
+        }
       }
     )
   }
 
+  // hàm này là tính số lượng sản phẩm có trong cart của khách hàng và đưa lên header
   countItemInCart() {
     var count = 0;
-    for (var item of this.items.cartItems) {
-      count = item.qty + count;
+    if (this.items) {
+      for (var item of this.items.cartItems) {
+        count = item.qty + count;
+      }
     }
     return count;
   }
-  cartItem: number = 0
-  // cartItemFunc(){
-
-  //   this.items= JSON.parse(localStorage.getItem('cart') || '{}')
-  //     for(let i=0; i<this.items.length;i++)
-  //     {     
-  //       this.cartItem=this.cartItem + this.items[i].qty;
-
-  //     }
-
-  // }
 }
+//=>pass

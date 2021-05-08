@@ -4,7 +4,8 @@
 
 export const environment = {  
   production: true,
-  urlAPI:"https://localhost:5001/api"
+  urlAPI:"https://localhost:5001/api",
+  publishableKey: 'pk_test_51IkUZPL6hoDhqvC5nyilbTTl9khjRzOllXuqjG8GXP7gMP8nfXAQfi88mxaZxwpXMHmagOewwLbx4nqtCPIxIJuo00cggEH5Cv'
 };
 
 /*

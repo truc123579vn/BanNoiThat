@@ -1,4 +1,4 @@
-
+import { AuthGuard } from './auth/auth.guard';
 import { CategoryService } from './../services/category.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { RouterModule } from '@angular/router';
@@ -17,18 +17,18 @@ import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{MatInputModule} from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { UserService } from '../shared/user.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartService } from '../services/cart.service';
-import { AuthInterceptor } from './auth/auth.interceptor';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { PaymentComponent } from './payment/payment.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
-  declarations: [ECommerceComponent, ProductsComponent, HeaderComponent, FooterComponent, CartComponent, ProductListComponent, ProductDetailComponent, RegisterComponent, LoginComponent, AccountComponent],
+  declarations: [ECommerceComponent, ProductsComponent, HeaderComponent, FooterComponent, CartComponent, ProductListComponent, ProductDetailComponent, RegisterComponent, LoginComponent, AccountComponent, PaymentComponent],
   imports: [
     CommonModule,
     ECommerceRoutingModule,
@@ -44,11 +44,12 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CarouselModule 
   ],
 
-  providers: [UserService,ProductsService,CategoryService,CartService ,{
+  providers: [UserService, ProductsService, CategoryService, CartService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,
-    useClass:AuthInterceptor,
-    multi:true
-  }],
+    useClass: AuthInterceptor,
+    multi: true
+  } ],
+
 
 })
 export class ECommerceModule { }

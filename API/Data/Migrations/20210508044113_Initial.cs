@@ -179,7 +179,9 @@ namespace API.Data.Migrations
                     DateCreated = table.Column<string>(type: "TEXT", nullable: true),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
-                    User_Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    User_Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    PaymentIntent_PaymentIndentId = table.Column<string>(type: "TEXT", nullable: true),
+                    PaymentIntent_ClientSecret = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

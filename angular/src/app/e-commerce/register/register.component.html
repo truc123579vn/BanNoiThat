@@ -12,120 +12,117 @@
 <div class="col-md-6" style="margin-top: 30px;">
 <div class="card"style="border-color: brown;">
 <header class="card-header" >
-	<a href="/e-commerce/login" class="float-right btn btn-outline-primary mt-1">Log in</a>
-	<h1>Register-Form</h1>
+	<a href="/e-commerce/login" class="float-right btn btn-outline-primary mt-1">Đăng Nhập</a>
+	<h1>Form Đăng Kí</h1>
 </header >
 <article class="card-body" >
 <form [formGroup]="profileForm">
         <div class="form-row">
 		<div class="col form-group">
-            <label>First Name</label>
+            <label>Họ</label>
             <input class="form-control" type="text" formControlName="firstName" 
                 placeholder="First Name">
 
             <mat-error
                 *ngIf="firstName && firstName.hasError('pattern') && (firstName.dirty || firstName.touched)"
                 class="has-text-danger">
-                First Name is invalid
+               Họ không hợp lệ
             </mat-error>
             <mat-error
                 *ngIf="firstName && firstName.hasError('required') && (firstName.dirty || firstName.touched)"
                 class="has-text-danger">
-                First Name is required
+                Họ không được để trống
             </mat-error>
             <mat-error
                 *ngIf="firstName && firstName.hasError('maxlength') && (firstName.dirty || firstName.touched)"
                 class="has-text-danger">
-                First Name is too Long
+                Họ không hợp lệ
             </mat-error>
 		</div> <!-- form-group end.// -->
 		<div class="col form-group">
-            <label>Last Name</label>
+            <label>Tên</label>
             <input class="form-control" type="text" formControlName="lastName" placeholder="Last Name">
 
             <mat-error
                 *ngIf="lastName && lastName.hasError('pattern') && (lastName.dirty || lastName.touched)"
                 class="has-text-danger">
-                Last Name is invalid
-            </mat-error>
+                Tên không hợp lệ            </mat-error>
 
             <mat-error
                 *ngIf="lastName && lastName.hasError('required') && (lastName.dirty || lastName.touched)"
                 class="has-text-danger">
-                Last Name is required
-            </mat-error>
+                Tên không được để trống            </mat-error>
             <mat-error
                 *ngIf="lastName && lastName.hasError('maxlength') && (lastName.dirty || lastName.touched)"
                 class="has-text-danger">
-                Last Name is too Long
+                Tên quá dài 
             </mat-error>
 		</div> <!-- form-group end.// -->
 
 	</div> <!-- form-group end.// -->
 	<div class="form-row">
 		<div class="form-group col-md-6">
-            <label>UserName</label>
+            <label>Tài Khoản</label>
             <input class="form-control" type="text" formControlName="UserName" placeholder="UserName">
 
             <mat-error
                 *ngIf="UserName && UserName.hasError('required') && (UserName.dirty || UserName.touched)"
                 class="has-text-danger">
-                UserName is required
+                Tài khoản không được để trống
             </mat-error>
             <!-- <mat-error *ngIf="&&UserName.errors && UserName.hasError('emailTaken')">
                 User is registered
             </mat-error> -->
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
-            <label>Mobile No</label>
+            <label>Số điện thoại</label>
             <input class="form-control" type="text" formControlName="mobileNo" placeholder="Mobile No">
 
             <mat-error
                 *ngIf="mobileNo && mobileNo.hasError('required') && (mobileNo.dirty || mobileNo.touched)"
                 class="has-text-danger">
-                Phone number is required
+                Số điện thoại không được để trống
             </mat-error>
             <mat-error
             *ngIf="mobileNo && mobileNo.hasError('pattern') && (mobileNo.dirty || mobileNo.touched)"
             class="has-text-danger">
-            Phone number should be like 0932961035.
-        </mat-error>
+            Số điện thoại phải giống như 0932961035
+                </mat-error>
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
     <div class="form-row">
 		<div class="form-group col-md-6">
-            <label>Password</label>
+            <label>Mật khẩu</label>
             <input class="form-control" type="password" formControlName="password"
                 placeholder="Password">
 
             <mat-error
                 *ngIf="password && password.hasError('required') && (password.dirty || password.touched)"
                 class="has-text-danger">
-                Password is required
+                Mật khẩu không được để trống
             </mat-error>
             <mat-error
                 *ngIf="password && password.hasError('minlength') && (password.dirty || password.touched)"
                 class="has-text-danger">
-                Password is too short, must have greater than 3 leters
+                Mật khẩu quá ngắn phải có nhiều hơn 3 kí tự
             </mat-error>
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
-            <label>Retype Password</label>
+            <label>Nhập lại mật khẩu</label>
             <input class="form-control" type="password" formControlName="retypePassword"
                 placeholder="Password">
             <mat-error *ngIf="retypePassword&& retypePassword.hasError('confirmedValidator') ">
-                Passwords don't match
+                Mật khẩu không khớp
             </mat-error>
 
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
     <div class="form-group">
         <button class="btn-block" mat-riesd-button [disabled]="profileForm.invalid" color="primary"
-        (click)="onSubmit()">Register</button>    </div> <!-- form-group// -->      
-    <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+        (click)="onSubmit()">Đăng kí</button>    </div> <!-- form-group// -->      
 </form>
 </article> <!-- card-body end .// -->
-<div class="border-top card-body text-center">Have an account? <a href="/e-commerce/login">Log In</a></div>
+<div class="border-top card-body text-center">Đã có tài khoản <a href="/e-commerce/login">Đăng Nhập</a></div>
 </div> <!-- card.// -->
 </div> <!-- col.//-->
 
@@ -150,135 +147,3 @@
 
 
 
-
-
-<!-- <div class="login">
-    <div class="container">
-        <div class="col-lg-12">
-            <div class="register-form center">
-                <form [formGroup]="profileForm">
-                <div class="row">
-                        <div class="col-md-6">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" formControlName="firstName"
-                                placeholder="First Name">
-
-                            <mat-error
-                                *ngIf="firstName && firstName.hasError('pattern') && (firstName.dirty || firstName.touched)"
-                                class="has-text-danger">
-                                First Name is invalid
-                            </mat-error>
-                            <mat-error
-                                *ngIf="firstName && firstName.hasError('required') && (firstName.dirty || firstName.touched)"
-                                class="has-text-danger">
-                                First Name is required
-                            </mat-error>
-                            <mat-error
-                                *ngIf="firstName && firstName.hasError('maxlength') && (firstName.dirty || firstName.touched)"
-                                class="has-text-danger">
-                                First Name is too Long
-                            </mat-error>
-
-                        </div>
-                        <div class="col-md-6">
-                            <label>Last Name"</label>
-                            <input class="form-control" type="text" formControlName="lastName" placeholder="Last Name">
-
-                            <mat-error
-                                *ngIf="lastName && lastName.hasError('pattern') && (lastName.dirty || lastName.touched)"
-                                class="has-text-danger">
-                                Last Name is invalid
-                            </mat-error>
-
-                            <mat-error
-                                *ngIf="lastName && lastName.hasError('required') && (lastName.dirty || lastName.touched)"
-                                class="has-text-danger">
-                                Last Name is required
-                            </mat-error>
-                            <mat-error
-                                *ngIf="lastName && lastName.hasError('maxlength') && (lastName.dirty || lastName.touched)"
-                                class="has-text-danger">
-                                Last Name is too Long
-                            </mat-error>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label>UserName</label>
-                            <input class="form-control" type="text" formControlName="UserName" placeholder="UserName">
-
-                            <mat-error
-                                *ngIf="UserName && UserName.hasError('required') && (UserName.dirty || UserName.touched)"
-                                class="has-text-danger">
-                                UserName is required
-                            </mat-error>
-                            <mat-error
-                                *ngIf="UserName && UserName.hasError('UserName') && (UserName.dirty || UserName.touched)"
-                                class="has-text-danger">
-                                This is not the userName address, userName address must be like test@gmail.com
-                            </mat-error>
-
-
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" formControlName="mobileNo" placeholder="Mobile No">
-
-                            <mat-error
-                                *ngIf="mobileNo && mobileNo.hasError('required') && (mobileNo.dirty || mobileNo.touched)"
-                                class="has-text-danger">
-                                Phone number is required
-                            </mat-error>
-                            <mat-error
-                                *ngIf="mobileNo && mobileNo.hasError('pattern') && (mobileNo.dirty || mobileNo.touched)"
-                                class="has-text-danger">
-                                Phone number should be like 0932961035.
-                            </mat-error>
-
-
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <label>Password</label>
-                            <input class="form-control" type="password" formControlName="password"
-                                placeholder="Password">
-
-                            <mat-error
-                                *ngIf="password && password.hasError('required') && (password.dirty || password.touched)"
-                                class="has-text-danger">
-                                Password is required
-                            </mat-error>
-                            <mat-error
-                                *ngIf="password && password.hasError('minlength') && (password.dirty || password.touched)"
-                                class="has-text-danger">
-                                Password is too short, must have greater than 3 leters
-                            </mat-error>
-
-
-                        </div>
-                        <div class="col-md-6">
-                            <label>Retype Password</label>
-                            <input class="form-control" type="password" formControlName="retypePassword"
-                                placeholder="Password">
-
-
-                            <mat-error *ngIf="retypePassword&& retypePassword.hasError('confirmedValidator') ">
-                                Passwords don't match
-                            </mat-error>
-
-
-                     
-                        </div>
-                        <div class="col-md-12">
-                            <button mat-riesd-button [disabled]="profileForm.invalid" color="primary"
-                                (click)="onSubmit()">Register</button>
-class="btn-block"
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->

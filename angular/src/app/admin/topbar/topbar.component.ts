@@ -1,4 +1,6 @@
+import { UserService } from './../../shared/user.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:UserService,private router:Router) { }
 
   ngOnInit(): void {
   }
 
+  logOut() {
+    this.service.logout();
+    this.router.navigateByUrl("/admin");
+  }
 }

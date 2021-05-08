@@ -4,3 +4,22 @@
     /* New width for default modal */
   }
 }
+.orderSpan {
+    display: inline-block; 
+    width: 100px;
+}
+
+.orderSpanPrice {
+    display: inline-block; 
+    width: 310px;
+}
+
+.cardTextBox {
+  display: inline-block;
+  border: 1px solid #BDBDBD;
+  border-radius: 2px;
+  margin-top: 6px;
+  margin-right: 6px;
+  padding: 8px;
+  color: #616161;
+}

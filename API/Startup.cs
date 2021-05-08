@@ -55,6 +55,7 @@ namespace ProductApi
             services.AddDbContext<SellingFurnitureContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("SellingFurnitureContext")));
 
+
             //Cấu hình Identity
             services.AddIdentity<AppUser, IdentityRole<int>>().AddEntityFrameworkStores<SellingFurnitureContext>().AddDefaultTokenProviders();
 

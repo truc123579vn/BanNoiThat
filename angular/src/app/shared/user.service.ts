@@ -2,7 +2,7 @@ import { Observable, of, ReplaySubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
 import { CartService } from '../services/cart.service';
 
@@ -14,6 +14,10 @@ export class UserService {
   private currentUser = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUser.asObservable();
 
+  /**
+   *
+   */
+
   constructor(private http: HttpClient, private cartService: CartService) { }
 
   login(formData: FormData) {
@@ -24,9 +28,12 @@ export class UserService {
           var user = response;
           if (user) {
             localStorage.setItem('token', user.token);
-            console.log(user);
+
             this.currentUser.next(user);
-            this.cartService.createCartAfterLogin(user.id)
+
+            if (user.role == 'Customer') {
+              this.cartService.createCartAfterLogin(user.id);
+            }
           }
         })
       );
@@ -34,24 +41,51 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.setItem("cartId", "cart_id");
+    localStorage.setItem('cartId', 'cart_id');
     this.currentUser.next(null!);
-    location.replace("/e-commerce");
+    location.replace('/e-commerce');
   }
 
-  loadCurrentUser(token: any) {
-    if (token === null) {
+  loadCurrentUser(token?: any) {
+    if (token == null) {
       this.currentUser.next(null!);
+      return of(null!);
     }
-    return this.http
-      .get<IUser>(this.urlAPI + '/UserProfile')
-      .pipe(
-        map((user: IUser) => {
-          if (user) {
-            // localStorage.setItem('token', user.token);
-            this.currentUser.next(user);
-          }
-        })
-      );
+    return this.http.get<IUser>(this.urlAPI + '/UserProfile').pipe(
+      map((user: IUser) => {
+        if (user) {
+          this.currentUser.next(user);
+        }
+        return user;
+      })
+    );
+  }
+
+  setNullCurrentUser() {
+    this.currentUser.next(null!);
+  }
+
+  isLogin() {
+    if (localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
+
+  getCurrentUser() {
+    return this.currentUser$;
+  }
+
+  boolean!: false;
+  isCustomer(): Observable<boolean> {
+    return this.getCurrentUser().pipe(
+      map((res) => {
+        if (res.role === 'Customer') {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
   }
 }

@@ -51,4 +51,8 @@ export class OrderService {
   updateOrderStatus(id: number): Observable<orderModel> {
     return this.http.put<orderModel>(this.urlAPI + "/Orders/" + id.toString(), id);
   }
+
+  payment(info:any) {
+    return this.http.post(this.urlAPI + '/Orders/payment', info);
+  }
 }

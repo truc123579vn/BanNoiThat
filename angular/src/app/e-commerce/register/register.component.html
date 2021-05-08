@@ -72,11 +72,9 @@
                 class="has-text-danger">
                 UserName is required
             </mat-error>
-            <mat-error
-                *ngIf="UserName && UserName.hasError('UserName') && (UserName.dirty || UserName.touched)"
-                class="has-text-danger">
-                This is not the userName address, userName address must be like test@gmail.com
-            </mat-error>
+            <!-- <mat-error *ngIf="&&UserName.errors && UserName.hasError('emailTaken')">
+                User is registered
+            </mat-error> -->
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
             <label>Mobile No</label>

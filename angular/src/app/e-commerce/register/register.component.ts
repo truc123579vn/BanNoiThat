@@ -1,12 +1,17 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { ConfirmedValidator } from './confirmed.validator';
 import {ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/user.service';
 import { registerModel } from 'src/app/models/register.model';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
+import { IUser } from 'src/app/models/user.model';
+import { map } from 'rxjs/operators';
+
+// import { ValidateEmailNotTaken } from './asyn-UserName.validator';
+
 
 @Component({
   selector: 'app-register',
@@ -15,13 +20,23 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   profileForm! : FormGroup  ;
-
+  list_userCustomer : IUser [] = [];
+  check : boolean | undefined;
   constructor(private fb: FormBuilder,
      private toastr: ToastrService,
      private userService: UserService,
      private accountService: AccountService,
-     private router: Router,
-     ) { }
+     private router: Router,) 
+     {  
+       this.accountService.getAccountsCustomer().subscribe(
+      res => {
+        this.list_userCustomer = res;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.profileForm = this.fb.group(
@@ -39,6 +54,7 @@ export class RegisterComponent implements OnInit {
         ]],
         UserName: ['', [
           Validators.required,
+
         ]],
         mobileNo:['', [
           Validators.required,
@@ -76,6 +92,31 @@ export class RegisterComponent implements OnInit {
           
   }
 
+
+  // customValidator() : ValidatorFn 
+  // {
+  //   return (control : AbstractControl) : ValidationErrors | null =>
+  //   {
+  //       let isvalid= control.value.toString.endsWith('truc123')
+  //       return isvalid ? {'customValidator' : 'check failed'} : null;
+  //   }
+  // }
+
+  // validateEmailNotTaken(control: AbstractControl) {
+  //   return this.accountService.getAccountByUserName(control.value).pipe(map((res: any) => {
+  //     return res ? null : { emailTaken: true };
+  //   }));
+  // }
+
+  
+  // checkIfUsernameExists(UserName: string): Observable<boolean> {
+  //   return of(this.list_userCustomer.includes(UserName)).pipe(delay(1000));
+  // }
+
+  // checkUserNameNotTaken(UserName: string)
+  // {
+  //   let data=this.accountService.getAccountByUserName(UserName).subscribe;
+  // }
   successmsg(){  
     this.toastr.success("You have signed up successfully",' Success')  }
 

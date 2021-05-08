@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(SellingFurnitureContext))]
-    [Migration("20210501120604_Initial")]
+    [Migration("20210508044113_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -377,7 +377,28 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.OwnsOne("API.Models.OrderPaymentIntent", "PaymentIntent", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("INTEGER");
+
+                            b1.Property<string>("ClientSecret")
+                                .HasColumnType("TEXT");
+
+                            b1.Property<string>("PaymentIndentId")
+                                .HasColumnType("TEXT");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("PaymentIntent");
                 });
 
             modelBuilder.Entity("Models.OrderDetail", b =>

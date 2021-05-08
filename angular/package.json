@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^11.2.6",
     "@angular/platform-browser-dynamic": "^11.2.6",
     "@angular/router": "^11.2.6",
+    "@types/stripe-v3": "^3.1.23",
     "jquery": "^3.6.0",
     "ng2-filter-pipe": "^0.1.10",
     "ng2-order-pipe": "^0.1.5",
@@ -28,6 +29,7 @@
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
+    "stripe-angular": "^1.7.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

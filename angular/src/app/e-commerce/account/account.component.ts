@@ -17,31 +17,37 @@ import { map, take } from 'rxjs/operators';
 export class AccountComponent implements OnInit {
 
   user!: IUser;
-  list: orderModel[]=[];
-  listProduct:productModel[]=[];
+  list: orderModel[] = [];
+  listProduct: productModel[] = [];
   page: number = 1;
 
-  constructor(private router: Router, private service: UserService, private order: OrderService,private product:ProductsService) { }
-
-  ngOnInit(): void {
-    this.product.getProduct().subscribe(
-      res =>{
-        this.listProduct = res;
-      }
-    )
+  constructor(private router: Router, private service: UserService, private order: OrderService, private product: ProductsService) {
     this.service.currentUser$.pipe(take(1)).subscribe(
       user => {
         this.user = user;
+        console.log(user);
         this.order.getOrders().subscribe(
-          res =>{
-            res = res.filter(item => item.user_Id.toString()=== user.id.toString())
-            console.log(res);
-            this.list = res;
-       
+          res => {
+            res = res.filter(item => item.user_Id.toString() === user.id.toString())
+            if(res){
+             
+              this.list = res;
+            }
+           
+
           }
         )
       }
     )
+   }
+
+  ngOnInit(): void {
+    this.product.getProduct().subscribe(
+      res => {
+        this.listProduct = res;
+      }
+    )
+   
 
   }
 
@@ -51,7 +57,7 @@ export class AccountComponent implements OnInit {
   }
 
 
-  getColor(status:any) { 
+  getColor(status: any) {
     switch (status) {
       case 'Chưa Duyệt':
         return 'red';
@@ -61,7 +67,7 @@ export class AccountComponent implements OnInit {
     return null;
   }
 
- getProductImage(id:any){
-  console.log(this.listProduct.find(item => item.id == id)?.image.toString());
- }
+  getProductImage(id: any) {
+    return this.listProduct.find(item => item.id == id)?.image.toString();
+  }
 }

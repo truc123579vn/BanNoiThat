@@ -27,17 +27,21 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public async Task<ActionResult> GetUserProfile()
+        [AllowAnonymous]
+        public async Task<ActionResult<AppUserDTO>> GetUserProfile()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
+           
             
             var user = await _userManager.FindByIdAsync(userId);
-            var userDTO = _mapper.Map<AppUserDTO>(user);
+             var role = await _userManager.GetRolesAsync(user);
+            
             if (user == null)
             {
                 return BadRequest(new { message = "khong tim thay user" });
             }
+            var userDTO = _mapper.Map<AppUserDTO>(user);
+            userDTO.Role = role[0];
             return Ok(userDTO);
         }
     }

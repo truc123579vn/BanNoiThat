@@ -36,6 +36,7 @@ namespace Models
 
         public AppUser AppUser { get; set; }
         public int User_Id {get;set;}
+        public OrderPaymentIntent PaymentIntent { get; set; }
 
         // 1 Order co nhieu OrderDetails
 

@@ -1,0 +1,37 @@
+.orderSpan {
+    display: inline-block; 
+    width: 100px im !important;
+}
+
+.orderSpanPrice {
+    display: inline-block; 
+    width: 310px !important;
+}
+
+.cardTextBox {
+  display: inline-block;
+  border: 1px solid #BDBDBD;
+  border-radius: 2px;
+  margin-top: 6px;
+  margin-right: 6px;
+  padding: 8px;
+  color: #616161;
+}
+
+    .btn-ecommerce2 {
+        color: #FF6F61;
+        background: #ffffff;
+        border: 1px solid #FF6F61;
+        border-radius: 5px;
+        margin: 5px;
+        width: 200px;
+        margin-right: 50px;
+    }
+
+    .btn-ecommerce2:hover,
+    .btn-ecommerce2:active,
+    .btn-ecommerce2:focus i:focus{
+        color: #ffffff;
+        background: #FF6F61;
+        box-shadow: none;
+    }

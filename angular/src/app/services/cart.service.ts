@@ -42,7 +42,13 @@ export class CartService {
   }
 
   async addToCart(product: productModel) {
-    let cart = (await this.fetchCart()) ?? this.createCart();
+    
+    let cart = (await this.fetchCart()) 
+    if(!cart){
+      var id = localStorage.getItem('cartId');
+      cart = {id:id,cartItems:[]};
+    }
+    
     var index = cart.cartItems.findIndex(
       (i: CartItem) => i.productId === product.id
     );
@@ -127,6 +133,8 @@ export class CartService {
       );
       this._cart = null;
       this.cartSubject.next(null!);
+      localStorage.setItem("cartId",id);
+     
     }else{
       console.log("Id null");
     }

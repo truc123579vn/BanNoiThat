@@ -45,6 +45,8 @@ namespace Data
 
             modelBuilder.Entity<Order>().HasKey(o => o.Id);
 
+          
+
 
             modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
 
@@ -95,6 +97,7 @@ namespace Data
 
             modelBuilder.Entity<Order>()
                 .Property(o => o.TotalPrice).HasColumnType("decimal(18,2)"); //mặc định để 18,2
+            modelBuilder.Entity<Order>().OwnsOne(o => o.PaymentIntent);
 
         }
 

@@ -17,6 +17,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="5.0.4" />
 		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.5" />
 		<PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+		<PackageReference Include="Stripe.net" Version="39.45.0" />
 
 	</ItemGroup>
 </Project>

@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { UserService } from 'src/app/shared/user.service';
 import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -25,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   items!:CartItem[];
   item!:CartItem;
   count = 1;
+  stripe:any
 
   constructor(private categoryService:CategoryService,private activateRoute:ActivatedRoute,private productService:ProductsService,private cartService:CartService) { 
     this.categoryService.getCategoryList().subscribe(
@@ -32,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
           this.listCategory = res;
       }
     )
-
+    
   }
 
   ngOnInit(): void {

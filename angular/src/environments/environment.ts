@@ -5,7 +5,7 @@
 export const environment = {  
   production: true,
   urlAPI:"https://localhost:5001/api",
-  publishableKey: 'pk_test_51IkUZPL6hoDhqvC5nyilbTTl9khjRzOllXuqjG8GXP7gMP8nfXAQfi88mxaZxwpXMHmagOewwLbx4nqtCPIxIJuo00cggEH5Cv'
+  publishableKey: 'pk_test_51IiF70BVhz1Q2lXlGVGro4Y4xNizEmDKayBeDiJBMMl8kWvkG7NTA6ym6rjaAf2lXx7cr6A95G5Ub0l7a8sWcrJR00TUztzTu1'
 };
 
 /*

@@ -24,6 +24,10 @@ export class ProductsService {
     return this.http.get<productModel>(this.urlAPI+"/Products/"+id.toString());
   }
 
+  getProductByName(name:string):Observable<productModel>{
+    return this.http.get<productModel>(this.urlAPI+"/Products/search/"+name);
+  }
+
 
   /* AllProducts = new BehaviorSubject<productModel[]>(null);
   constructor(private http:HttpClient)

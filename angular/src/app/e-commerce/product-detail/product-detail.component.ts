@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductDetailComponent implements OnInit {
 
-  productId:number = 0;
+  productName:string = "";
   productData!:productModel ;
   listCategory:ICategory[]=[];
   listProduct:productModel[]=[];
@@ -41,10 +41,10 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(data =>
       {
-        this.productId = data.id;
+        this.productName = data.id;
       }
       )
-      this.productService.getProductById(this.productId).subscribe(
+      this.productService.getProductByName(this.productName).subscribe(
       
         details =>{
           this.productData = details;

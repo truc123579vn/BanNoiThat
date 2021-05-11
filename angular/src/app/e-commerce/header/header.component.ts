@@ -6,6 +6,8 @@ import { IUser } from 'src/app/models/user.model';
 import { take } from 'rxjs/operators';
 import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/models/cart.model';
+import { ProductsService } from 'src/app/services/products.service';
+import { productModel } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +16,31 @@ import { Cart } from 'src/app/models/cart.model';
 })
 export class HeaderComponent implements OnInit {
 
+  productName: string = "";
   @Input() profile: any;
   currentUser$!: Observable<IUser>
   cartSubject$!: Observable<Cart>;
   user!: IUser;
   items!: Cart;
-  constructor(public router: Router, public service: UserService, private cartService: CartService) {
+  list: productModel[] = [];
+  filterList:productModel[] = [];
+
+  constructor(public router: Router, 
+    public service: UserService, 
+    private cartService: CartService,
+    private productService: ProductsService) {
     this.cartService.cartSubject$.pipe(take(1)).subscribe(
       res => {
         this.items = res;
+      }
+    )
+    this.productService.getProduct().subscribe(
+      res => {
+        this.list = res;
+        this.filterList = this.list;
+      },
+      err => {
+        console.error(err);
       }
     )
   }
@@ -53,5 +71,26 @@ export class HeaderComponent implements OnInit {
     }
     return count;
   }
+
+  showDropDown = false;
+  toggleProductDropdown()
+  {
+    this.showDropDown = !this.showDropDown;
+  }
+  setValue(name: string)
+  {
+    this.productName = name;
+    this.showDropDown = false;
+  }
+
+  navigatePage(productName: string)
+  {
+    if (productName != "")
+    this.router.navigateByUrl('/e-commerce/product/'+productName);
+    else 
+    this.router.navigateByUrl('e-commerce/home');
+
+  }
+
 }
 //=>pass

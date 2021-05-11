@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs.InputModels;
 using API.Models;
 using AutoMapper;
+
 using Data;
 using DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Models;
+using Stripe;
+using Order = Models.Order;
 
 namespace Controllers
 {
@@ -22,12 +27,14 @@ namespace Controllers
         private readonly SellingFurnitureContext _context;
         private readonly IMapper _mapper;
         private UserManager<AppUser> _userManager;
+        private readonly IConfiguration _config;
 
-        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager)
+        public OrdersController(SellingFurnitureContext context, IMapper mapper, UserManager<AppUser> userManager, IConfiguration config)
         {
             _context = context;
             _mapper = mapper;
             _userManager = userManager;
+            _config = config;
         }
 
         [HttpGet]
@@ -47,13 +54,13 @@ namespace Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderDTO>> GetOrder(int id)
+        public async Task<OrderDTO> GetOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);
 
             if (order == null)
             {
-                return NotFound(order);
+                return null;
             }
             // Chuyen doi 1 product tu model sang DTO
             var orderDTO = _mapper.Map<Order, OrderDTO>(order);
@@ -91,19 +98,17 @@ namespace Controllers
             foreach (var item in order.OrderDetails)
             {
                 var product = _context.Products.Find(item.ProductID);
-                // if (product == null){
-                //     return BadRequest(item.ProductID);
-                // }
                 product.Amount = product.Amount - item.Amount;
+                if (product.Amount <=0)
+                {
+                    product.Status = "Hết hàng";
+                }
                 _context.Products.Update(product);
             }
 
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
-
-
-            // }
             if (orderInput == null)
             {
                 return BadRequest(new { message = "Error" });
@@ -134,6 +139,8 @@ namespace Controllers
             var orderDTO = _mapper.Map<OrderDTO>(order);
             return Ok(orderDTO);
 
+
+
         }
 
 
@@ -154,6 +161,64 @@ namespace Controllers
         private bool OrderExists(int id)
         {
             return _context.Products.Any(p => p.Id == id);
+        }
+
+        private async Task<OrderPaymentIntent> CreatePaymentIntent(Order order)
+        {
+            StripeConfiguration.ApiKey = _config["StripeSettings:SecretKey"];
+
+            var service = new PaymentIntentService();
+
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = (long?)order.TotalPrice,
+                Currency = "vnd",
+                PaymentMethodTypes = new List<string> { "card" }
+            };
+
+            var intent = await service.CreateAsync(options);
+
+            order.PaymentIntent = new OrderPaymentIntent();
+            // order.PaymentIntent.PaymentIndentId = intent.Id;
+            order.PaymentIntent.ClientSecret = intent.ClientSecret;
+
+
+            _context.Orders.Remove(order);
+            await _context.SaveChangesAsync();
+
+            return order.PaymentIntent;
+        }
+
+
+        [HttpPost("payment")]
+        public async Task<ActionResult<OrderPaymentIntent>> Payment(PaymentInput paymentInput)
+        {
+
+
+
+            var order = _context.Orders.Find(paymentInput.OrderId);
+            StripeConfiguration.ApiKey = _config["StripeSettings:SecretKey"];
+
+            var service = new PaymentIntentService();
+
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = (long?)order.TotalPrice,
+                Currency = "vnd",
+                PaymentMethodTypes = new List<string> { "card" }
+            };
+
+            var intent = await service.CreateAsync(options);
+
+            order.PaymentIntent = new OrderPaymentIntent();
+            order.PaymentIntent.PaymentIndentId = intent.Id;
+            order.PaymentIntent.ClientSecret = intent.ClientSecret;
+
+
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+
+            return order.PaymentIntent;
         }
     }
 }

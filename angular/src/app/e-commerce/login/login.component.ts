@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.service.login(formModel.value).subscribe(
       (res: any) => {
         if (this.user.role === 'Customer') {
-          this.toastr.success('Tài khoản hợp lệ', 'Đăng nhập thành công');
+          this.toastr.success('Tài khoản hợpz lệ', 'Đăng nhập thành công');
           this.router.navigateByUrl('/e-commerce/home');
         } else {
           this.service.currentUser$.pipe(take(1)).subscribe((user) => {

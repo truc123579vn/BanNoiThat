@@ -10,7 +10,7 @@ namespace Models
     {
 
         public Order() { }
-        public Order( AppUser appUser, string address)
+        public Order( AppUser appUser, string address) 
         {
             this.AppUser = appUser;
             Address = address;
@@ -32,6 +32,7 @@ namespace Models
 
         public AppUser AppUser { get; set; }
         public int User_Id {get;set;}
+        public OrderPaymentIntent PaymentIntent { get; set; }
 
         // 1 Order co nhieu OrderDetails
 

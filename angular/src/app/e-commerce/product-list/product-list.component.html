@@ -9,13 +9,18 @@
               <div class="row">
                 <div class="col-md-4">
                   <div class="product-search">
-                    <input
-                      type="email"
-                      value="Search"
-                      name="productName"
-                      [(ngModel)]="productName"
-                    />
+                    <input type="text" value="Search" name="productName" [(ngModel)]="productName" (click)="toggleProductDropdown()"/>
                     <button><i class="fa fa-search"></i></button>
+                  </div>
+                  <div *ngIf="showDropDown" class="product-container-dropdown">
+                    <div (click)="setValue(product?.name)" class="product-auto-complete" *ngFor="let product of filterList | filter:productName"> 
+                      <table>
+                        <td>
+                          
+                        </td>
+                      </table>
+                      {{product?.name}}    
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -39,7 +44,7 @@
                         Product price range
                       </div>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item">$0 to $50</a>
+                        <a class="dropdown-item">đ100,000 đến đ1,000,000</a>
                         <a class="dropdown-item">$51 to $100</a>
                       </div>
                     </div>
@@ -49,26 +54,20 @@
             </div>
           </div>
 
-          <div
-            class="col-md-3"
-            *ngFor="
-              let product of list
-               
+          <div class="col-md-3" *ngFor="
+              let product of filterList 
+                |filter:productName
                 | paginate
                   : {
                       id: 'listing_pagination',
                       itemsPerPage: 4,
                       currentPage: page
                     }
-            "
-          >
+                
+            ">
             <div class="product-item">
               <div class="product-title">
-                <a
-                  routerLink="/e-commerce/product/{{ product.id }}"
-                  *ngIf="product?.name"
-                  >{{ product?.name }}</a
-                >
+                <a routerLink="/e-commerce/product/{{ product.id }}" *ngIf="product?.name">{{ product?.name }}</a>
                 <div class="ratting">
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
@@ -79,15 +78,12 @@
               </div>
               <div class="product-image">
                 <a routerLink="/e-commerce/product/{{ product.id }}">
-                  <img
-                    src="../../../assets/picture/{{ product?.image }}"
-                    alt="Product Image"
-                  />
+                  <img src="../../../assets/picture/{{ product?.image }}" alt="Product Image" />
                 </a>
-                <div class="product-action" >
-                  <a (click)=addToCart(product) ><i class="fa fa-cart-plus" ></i></a>
+                <div class="product-action">
+                  <a (click)=addToCart(product)><i class="fa fa-cart-plus"></i></a>
                   <a href="#"><i class="fa fa-heart"></i></a>
-                  <a href="#"><i class="fa fa-search"></i></a>
+                  <a routerLink="/e-commerce/product/{{product.name}}" *ngIf="product?.name"><i class="fa fa-search"></i></a>
                 </div>
               </div>
               <div class="product-price">
@@ -109,11 +105,8 @@
         <!-- Pagination Start -->
         <div class="col-md-12">
           <nav aria-label="Page navigation example">
-            <pagination-controls
-              class="pagination justify-content-center"
-              id="listing_pagination"
-              (pageChange)="page = $event"
-            ></pagination-controls>
+            <pagination-controls class="pagination justify-content-center" id="listing_pagination"
+              (pageChange)="page = $event"></pagination-controls>
           </nav>
         </div>
         <!-- Pagination Start -->
@@ -126,20 +119,11 @@
           <nav class="navbar bg-light">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <!-- <a
-                  class="nav-link"
-                  name="clickAllProduct"
-                  [(ngModel)]="clickAllProduct"
-                  >Tất cả</a
-                > -->
+                <a class="nav-link" (click)="filter(null)" style="cursor: pointer;" >Tất cả</a>
               </li>
               <li class="nav-item" *ngFor="let item of listCategory">
-                <a
-                  class="nav-link"
-                  routerLink="/e-commerce/product-list/"
-                  [queryParams]="{ category: item.name }"
-                  >{{ item.name }}</a
-                >
+                <a class="nav-link" style="cursor: pointer;" (click)="filter(item.id)">{{
+                  item.name }}</a>
               </li>
             </ul>
           </nav>

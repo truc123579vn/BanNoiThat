@@ -1,3 +1,4 @@
+import { PaymentComponent } from './payment/payment.component';
 import { AuthGuard } from './auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,7 +28,9 @@ const routes: Routes = [
         component: ProductDetailComponent,
       },
       { path: 'cart', component: CartComponent },
-      { path: 'account', component: AccountComponent ,canActivate:[AuthGuard]},
+      { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+      { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+      //AuthGuard là cái bên auth/auth
     ],
   },
   { path: 'login', component: LoginComponent },
@@ -38,5 +41,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ECommerceRoutingModule {}
+export class ECommerceRoutingModule { }
 export const routingECommerceComponents = [ProductsComponent];

@@ -1,0 +1,20 @@
+.product-container-dropdown
+{
+    position: absolute;
+    z-index: 1;
+    width: 95%;
+    height: 110px;
+    max-height: 150px;
+    background: #f6f6f6;
+    overflow-y: auto;
+}
+
+.product-auto-complete
+{
+    padding: 10px;
+}
+
+.product-auto-complete:hover
+{
+    background: #c2c2c2
+}

@@ -14,6 +14,11 @@
                   </div>
                   <div *ngIf="showDropDown" class="product-container-dropdown">
                     <div (click)="setValue(product?.name)" class="product-auto-complete" *ngFor="let product of filterList | filter:productName"> 
+                      <table>
+                        <td>
+                          
+                        </td>
+                      </table>
                       {{product?.name}}    
                     </div>
                   </div>
@@ -78,7 +83,7 @@
                 <div class="product-action">
                   <a (click)=addToCart(product)><i class="fa fa-cart-plus"></i></a>
                   <a href="#"><i class="fa fa-heart"></i></a>
-                  <a routerLink="/e-commerce/product/{{ product.id }}" *ngIf="product?.name"><i class="fa fa-search"></i></a>
+                  <a routerLink="/e-commerce/product/{{product.name}}" *ngIf="product?.name"><i class="fa fa-search"></i></a>
                 </div>
               </div>
               <div class="product-price">

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5fw782/JUnijfFcJyaQubP9qft5+PeP6xGmJ3yw6+yf59AnDK7r+uk0NgQQ8tfcMYta1q3j9cD8W5mqx21ZYcw==",
+  "dgSpecHash": "akBtAxNkZkmWJnR9QByqU+RX0c8dOGHZdYMLcEMzHzwLsFXp+R8Rcn2QvHaxzyxSPeJPmVIcNVLKRsux2Dyuaw==",
   "success": true,
   "projectFilePath": "D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -83,12 +83,5 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\Hoc\\TMDT\\Nhom9_TMDT\\ASP Core\\BanNoiThat\\API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

@@ -1,24 +1,24 @@
 export class productModel{
     [x: string]: any;
-    id: number;
-    name: string;
-    amount: number=1;
-    price: number;
-    details: string;
-    image: string;
-    status: string;
-    categoryId: number;
-    qty:number=1
+    Id: number;
+    Name: string;
+    Amount: number=1;
+    Price: number;
+    Details: string;
+    Image: string;
+    Status: string;
+    Category_Id: number;
+    //qty:number=1
 
     constructor(id: number, name: string, amount: number, price: number, details: string, image: string, status: string, categoryId: number)
     {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
-        this.price = price;
-        this.details = details;
-        this.image = image;
-        this.status = status;
-        this.categoryId = categoryId;
+        this.Id = id;
+        this.Name = name;
+        this.Amount = amount;
+        this.Price = price;
+        this.Details = details;
+        this.Image = image;
+        this.Status = status;
+        this.Category_Id = categoryId;
     }
 }

@@ -24,8 +24,8 @@ export class AccountComponent implements OnInit {
   usernameToDelete : string = "";
   managerToSearch : string = "";
   customerToSearch : string = "";
-  userNameUpDate=null;
-  message = null;
+  userNameUpDate : any =null;
+  message: any = null;
   
   addManagerForm = new FormGroup(
     {
@@ -71,7 +71,7 @@ export class AccountComponent implements OnInit {
 
   onAddManagerFormSubmit()
   {
-    let manager = new registerModel(
+    let  manager= new registerModel(
       this.addManagerForm.value.UserNameAdd,
       this.addManagerForm.value.FirstNameAdd,
       this.addManagerForm.value.LastNameAdd,

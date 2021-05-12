@@ -1,10 +1,9 @@
 
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders , HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { productModel } from '../models/product.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,12 @@ export class ProductsService {
 
 
   urlAPI = environment.urlAPI;
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,
+              private productsService : ProductsService){}
 
   getProduct():Observable<productModel[]>{
     return this.http.get<productModel[]>(this.urlAPI+"/Products");
@@ -24,33 +27,25 @@ export class ProductsService {
     return this.http.get<productModel>(this.urlAPI+"/Products/"+id.toString());
   }
 
+  
+  addProduct(product : productModel){
+      let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+      let options = { headers: httpHeaders };
+      return this.http.post<productModel>(this.urlAPI + "/Products", product, options);
+  }
 
-  /* AllProducts = new BehaviorSubject<productModel[]>(null);
-  constructor(private http:HttpClient)
-  {
-    //this.getFromDb("");
-  }
+  deleteProduct(id : number)
+    {
+      let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+      let options = { headers: httpHeaders };
+      return this.http.delete<number>(this.urlAPI +"/Products/" + id);
+    }
+
+    updateProduct(product : productModel)
+    {
+      let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+      let options = { headers: httpHeaders };
+      return this.http.put<productModel>(this.urlAPI + "/Products/"+product.Id, product, options);
+    }
   
-  private baseUrl="http://localhost:4200/API";
-  
-  public add(form)
-  {
-    return this.http.post(this.baseUrl + "add", form);
-  }
-  public delete(id)
-  {
-    return this.http.post(this.baseUrl + "delete?id=" + id, null);
-  }
-  public update(form)
-  {
-    return this.http.post(this.baseUrl + "update", form);
-  }
-  public getFromDb(key)
-  {
-    return this.http.post(this.baseUrl + "show?keys=" + keys, null).subscribe(res=>{
-      var r : any = res;  
-      this.AllProducts.next(r.products)
-        )
-    });
-  } */
 }

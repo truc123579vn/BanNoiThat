@@ -22,15 +22,15 @@ const routes: Routes = [
   {
     path: 'index',
     component: AdminComponent,
-    canActivateChild:[AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
-      { path: 'products', component: ProductsComponent},
+      { path: 'products', component: ProductsComponent },
       { path: 'accounts', component: AccountComponent }, // khai baso path"vinh"
-      { path: 'orders', component: OrdersComponent},
-      { path: 'statistics', component: StatisticsComponent},
+      { path: 'orders', component: OrdersComponent },
+      { path: 'statistics', component: StatisticsComponent },
     ],
-   
- },
+
+  },
   { path: '', redirectTo: '/admin', pathMatch: 'prefix' },
 ];
 
@@ -38,5 +38,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }
 export const routingAdminComponents = [ProductsComponent];

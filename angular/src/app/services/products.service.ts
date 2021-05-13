@@ -1,6 +1,6 @@
 
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { productModel } from '../models/product.model';
@@ -14,47 +14,42 @@ export class ProductsService {
 
   urlAPI = environment.urlAPI;
 
-  constructor(private http:HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  getProduct():Observable<productModel[]>{
-    return this.http.get<productModel[]>(this.urlAPI+"/Products");
-  }
-  
-  getProductById(id:number):Observable<productModel>{
-    return this.http.get<productModel>(this.urlAPI+"/Products/"+id.toString());
+  getProduct(): Observable<productModel[]> {
+    return this.http.get<productModel[]>(this.urlAPI + "/Products");
   }
 
-  getProductByName(name:string):Observable<productModel>{
-    return this.http.get<productModel>(this.urlAPI+"/Products/search/"+name);
+  getProductById(id: number): Observable<productModel> {
+    return this.http.get<productModel>(this.urlAPI + "/Products/" + id.toString());
+  }
+
+  getProductByName(name: string): Observable<productModel> {
+    return this.http.get<productModel>(this.urlAPI + "/Products/search/" + name);
   }
 
 
-  /* AllProducts = new BehaviorSubject<productModel[]>(null);
-  constructor(private http:HttpClient)
-  {
-    //this.getFromDb("");
+  addProduct(formDate: FormData) {
+    let httpHeaders = new HttpHeaders().append('Accept', 'multipart/form-data');
+    let options = { headers: httpHeaders };
+    return this.http.post<productModel>(this.urlAPI + "/Products", formDate, options);
   }
-  
-  private baseUrl="http://localhost:4200/API";
-  
-  public add(form)
-  {
-    return this.http.post(this.baseUrl + "add", form);
+
+  deleteProduct(id: number) {
+    let httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+    let options = { headers: httpHeaders };
+    return this.http.delete<number>(this.urlAPI + "/Products/" + id);
   }
-  public delete(id)
-  {
-    return this.http.post(this.baseUrl + "delete?id=" + id, null);
+
+  updateProduct(formData: FormData) {
+    let httpHeaders = new HttpHeaders().append('Accept', 'multipart/form-data');
+    let options = { headers: httpHeaders };
+    return this.http.put<productModel>(this.urlAPI + "/Products/" + formData.get("Id"), formData, options);
   }
-  public update(form)
-  {
-    return this.http.post(this.baseUrl + "update", form);
+
+  test(formData: FormData) {
+    let httpHeaders = new HttpHeaders().append('Accept', 'application/json');
+    let options = { headers: httpHeaders };
+    return this.http.post<productModel>(this.urlAPI + "/Products/Hello", formData, options);
   }
-  public getFromDb(key)
-  {
-    return this.http.post(this.baseUrl + "show?keys=" + keys, null).subscribe(res=>{
-      var r : any = res;  
-      this.AllProducts.next(r.products)
-        )
-    });
-  } */
 }

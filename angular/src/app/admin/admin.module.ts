@@ -30,7 +30,7 @@ import { CategoryService } from '../services/category.service';
 import { ProductsService } from '../services/products.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
-
+import { DatePipe } from '@angular/common';
 
 
 
@@ -50,7 +50,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatInputModule,
     RouterModule
 
-  ], providers: [UserService, ProductsService, CategoryService, CartService, AuthGuard, {
+  ], providers: [UserService,DatePipe, ProductsService, CategoryService, CartService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

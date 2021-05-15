@@ -29,10 +29,9 @@ export class ProductsService {
   }
 
 
-  addProduct(formDate: FormData) {
-    let httpHeaders = new HttpHeaders().append('Accept', 'multipart/form-data');
-    let options = { headers: httpHeaders };
-    return this.http.post<productModel>(this.urlAPI + "/Products", formDate, options);
+  addProduct(formData: FormData) {
+   
+    return this.http.post<productModel>(this.urlAPI + "/Products", formData);
   }
 
   deleteProduct(id: number) {

@@ -104,7 +104,8 @@ export class ProductsComponent implements OnInit {
 
       this.productService.addProduct(formData).subscribe((res) => {
         console.log(res);
-        if (res) {
+        if (res ) {
+          // this.products.push(product)
           this.toastr.success("Thêm sản phẩm thành công", "Thông báo thành công");
         }
       },

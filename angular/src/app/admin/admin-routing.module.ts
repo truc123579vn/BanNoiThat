@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'index',
     component: AdminComponent,
-    canActivateChild: [AuthGuard],
+      canActivateChild: [AuthGuard],
     children: [
       { path: 'products', component: ProductsComponent },
       { path: 'accounts', component: AccountComponent }, // khai baso path"vinh"

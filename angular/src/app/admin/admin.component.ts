@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCurrentUser();
-    this.checkUserRole();
+      this.checkUserRole();
   }
 
   // hàm này là sau khi load lại component e-commerce lên thì lấy cái thằng đăng nhập vừa rồi (currentUser)

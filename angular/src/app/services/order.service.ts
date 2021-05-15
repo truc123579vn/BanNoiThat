@@ -55,4 +55,9 @@ export class OrderService {
   payment(info:any) {
     return this.http.post(this.urlAPI + '/Orders/payment', info);
   }
+
+
+  thongkehoadontheongay(start:any, end:any): Observable<orderModel[]> {
+    return this.http.get<orderModel[]>(this.urlAPI + "/Orders/thongke/theongaycotruyenthamso/"+ start.toString() +"/" +end.toString());
+  }
 }

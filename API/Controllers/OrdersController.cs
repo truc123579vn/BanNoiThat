@@ -17,6 +17,8 @@ using Models;
 using Stripe;
 using Order = Models.Order;
 
+using System.Globalization;
+
 namespace Controllers
 {
     [AllowAnonymous]
@@ -219,6 +221,44 @@ namespace Controllers
             await _context.SaveChangesAsync();
 
             return order.PaymentIntent;
+        }
+
+        //thong ke
+         [HttpGet]
+        [Route("thongke")]
+        public async Task<IEnumerable<OrderDTO>> thongke()
+        {
+            var orders = await GetOrders();
+            var result = from order in orders
+                        select order;
+            return result;
+        
+        }
+
+
+
+        [HttpGet]
+        [Route("thongke/theongaycotruyenthamso/{start}/{end}")]
+         public async Task<IEnumerable<OrderDTO>> GetOrdersByDayGetPara(string start, string end)
+        {
+            // start="01-05-2021";
+            // end="02-05-2021";
+            var orders = await _context.Orders.Include(u => u.AppUser).
+            Include(oDetail => oDetail.OrderDetails).ThenInclude(p => p.Product).
+            ToListAsync();
+            var ordersDTO = _mapper.Map<List<Order>, List<OrderDTO>>(orders);
+            
+           CultureInfo provider = CultureInfo.InvariantCulture;
+             DateTime StartDateTime = DateTime.ParseExact(start, "dd-mm-yyyy", provider);
+             DateTime EndDateTime = DateTime.ParseExact(end, "dd-mm-yyyy", provider);
+
+              var results = from order in ordersDTO 
+              let DateCreated = DateTime.ParseExact(order.DateCreated, "dd-mm-yyyy", provider)
+              
+                where (DateCreated >= StartDateTime && 
+                    DateCreated <= EndDateTime) 
+                select order;      
+            return results;
         }
     }
 }

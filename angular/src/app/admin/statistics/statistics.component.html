@@ -7,18 +7,18 @@
         <div id="textInput1">
           Ngày bắt đầu
         </div>
-        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date" class="form-control"
-          placeholder="Nhập ngày bắt đầu">
+        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date"  data-date="" data-date-format="dd-MM-yyyy" class="form-control"
+          placeholder="Nhập ngày bắt đầu" #myInput [(ngModel)]="startToSearch" >
         <div id="textInput2">
           Ngày kết thúc
         </div>
-        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date" class="form-control"
-          placeholder="Nhập ngày kết thúc">
+        <input #inputForSearch (keyup)="search(inputForSearch.value)" type="date" data-date="" data-date-format="dd-MM-yyyy" class="form-control"
+          placeholder="Nhập ngày kết thúc" #myInput [(ngModel)]="endToSearch">
       </div>
       <div class="input-group input-group-sm" style="text-align: center; margin-top: 2%;">
         <button type="button" data-toggle="modal" data-target="#AddModal" class="btn btn-default btn-sm"
           style="font-size: 17px; background-color: rgb(162, 65, 252); border: #777 solid 0.5px;">
-          <i class="fas fa-plus-circle" style="padding: 5px; color: rgb(255, 255, 255);"> Xem Thống Kê</i>
+          <i style="padding: 5px; color: rgb(255, 255, 255);" (click)="thongkehdtheongay(startToSearch,endToSearch)" > Xem Thống Kê</i>
         </button>
       </div>
     </div>
@@ -29,41 +29,30 @@
     <section class="content" style="margin: 2% 1% 0px 1%;">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
+        <div class="row" >
+          <div class="col-lg-3 col-6" >
             <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+            
 
+            <div class="small-box bg-info" >
+              <div class="inner">
+                <h3>{{listOrder.length}}</h3>
                 <p>Đơn Đặt Hàng</p>
               </div>
               <div class="icon">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
               </div>
             </div>
           </div>
+          
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Doanh Thu</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-dollar-sign"></i>
-              </div>
-            </div>
-          </div>
+         
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{customers.length}}</h3>
 
                 <p>Khách Hàng</p>
               </div>
@@ -75,9 +64,25 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner" >
+                <h3>{{Doanhthu | currency: "VND" }}<sup style="font-size: 20px"> </sup></h3>
+                <p>Doanh Thu</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{currentDate | date:'dd/MM/yyyy'}}</h3>
 
                 <p>Ngày Hôm nay</p>
               </div>
@@ -89,63 +94,89 @@
           <!-- ./col -->
         </div>
 
+          
+        <mat-tab-group>
+          <mat-tab label="don dat hang">
+            <div class="card-body p-0">
+              <div class="mailbox-controls">
+    
+               
+                <!-- /.float-right -->
+              </div>
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+                    <tr style="font-size: 16px; background-color:#DDDDDD;">
+                    <th>Id</th>
+                    <th>Date Created</th>
+                    <th>Address</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    </tr>
+                    <tr style="font-size: 16px;" *ngFor="let order of listOrder|paginate
+                    : {
+                        id: 'listing_pagination_2',
+                        itemsPerPage:8 ,
+                        currentPage: page1
+                      } ">
+                      <td>{{order.id}}</td>
+                      <td>{{order.dateCreated}}</td>
+                      <td>{{order.address}}</td>
+                      <td>{{order.totalPrice | currency: "VND"}}</td>
+                      <td>{{order.status}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls class="pagination justify-content-center" id="listing_pagination_2"
+                (pageChange)="page1 = $event">
+              </pagination-controls>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.card-body -->
+           
+          </mat-tab>
+         
+          <mat-tab label="khach hang">
+            <div class="card-body p-0">
+              <div class="mailbox-controls">
+                <!-- /.float-right -->
+              </div>
+              <div class="table-responsive mailbox-messages">
+                <table class="table table-hover table-striped">
+                  <tbody>
+                    <tr style="font-size: 16px; background-color:#DDDDDD;">
+                      <th>Id</th>
+                      <th>Tên tài khoản</th>
+                      <th>Họ</th>
+                      <th>Tên</th>
+                    </tr>
+
+                    <tr style="font-size: 16px;" *ngFor="let customer of customers | orderBy: keyCustomer : reverseCustomer | paginate: {itemsPerPage:5, currentPage:pageStartCustomer}; ">                          
+                      <td>{{customer.id}}</td>
+                      <td>{{customer.userName}}</td>
+                      <td>{{customer.lastName}}</td>
+                      <td>{{customer.firstName}}</td>                                                                          
+                    </tr>
+
+                  </tbody>
+                </table>
+                <pagination-controls (pageChange)="pageStartCustomer = $event" style="text-align: center;" ></pagination-controls>
+                <!-- /.table -->
+              </div>
+              <!-- /.mail-box-messages -->
+            </div>
+            <!-- /.card-body -->
+            
+          </mat-tab>
+        </mat-tab-group>
+
 
 
 
 
 
         <!-- /.card-header -->
-        <div class="card-body p-0">
-          <div class="mailbox-controls">
-
-            <div class="float-right">
-              1-50/200
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-chevron-right"></i>
-                </button>
-              </div>
-              <!-- /.btn-group -->
-            </div>
-            <!-- /.float-right -->
-          </div>
-          <div class="table-responsive mailbox-messages">
-            <table class="table table-hover table-striped">
-              <tbody>
-                <tr style="font-size: 16px; background-color:#DDDDDD;">
-                  <th>Mã hóa đơn</th>
-                  <th>Mã khách hàng</th>
-                  <th>Tổng tiền</th>
-                </tr>
-                <tr style="font-size: 16px;">
-                  <td>a</td>
-                  <td>a</td>
-                  <td>a</td>
-                </tr>
-              </tbody>
-            </table>
-            <!-- /.table -->
-          </div>
-          <!-- /.mail-box-messages -->
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer p-0" style="background-color:#DDDDDD;">
-          <div class="mailbox-controls">
-            <!-- /.btn-group -->
-            <div class="float-right">
-              1-50/200
-              <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>

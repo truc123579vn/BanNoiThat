@@ -565,99 +565,99 @@ E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics
 E:\Git-Workspace\BanNoiThat-4\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Hoc\TMDT\Nhom9_TMDT\ASP Core\BanNoiThat\API\bin\Debug\net5.0\Stripe.net.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\appsettings.Development.json
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\appsettings.json
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.StaticWebAssets.xml
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.exe
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.deps.json
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.runtimeconfig.json
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.runtimeconfig.dev.json
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\ref\API.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\API.pdb
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Ardalis.GuardClauses.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Ardalis.Specification.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\AutoMapper.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.SqlServer.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Humanizer.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\JetBrains.Annotations.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Newtonsoft.Json.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Pipelines.Sockets.Unofficial.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.core.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\StackExchange.Redis.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\Stripe.net.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.CodeDom.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.Data.SqlClient.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
-D:\Project_TMDT\a\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.csprojAssemblyReference.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.AssemblyInfoInputs.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.AssemblyInfo.cs
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\scopedcss\bundle\API.styles.css
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.csproj.CopyComplete
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.dll
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\ref\API.dll
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.pdb
-D:\Project_TMDT\a\BanNoiThat\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.AssemblyInfo.cs
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\ref\API.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.pdb
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\appsettings.json
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.StaticWebAssets.xml
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.exe
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.deps.json
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.runtimeconfig.json
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.runtimeconfig.dev.json
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\ref\API.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\API.pdb
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Ardalis.GuardClauses.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Ardalis.Specification.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\EntityFramework.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Humanizer.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\JetBrains.Annotations.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Data.Sqlite.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.core.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\StackExchange.Redis.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\Stripe.net.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.CodeDom.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\alpine-x64\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\scopedcss\bundle\API.styles.css
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.RazorTargetAssemblyInfo.cache
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.csproj.CopyComplete
+C:\Users\Admin\Desktop\FInal Final\BanNoiThat\API\obj\Debug\net5.0\API.genruntimeconfig.cache

@@ -19,6 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
         if (localStorage.getItem('token') != null) {
             const clonedReq = req.clone({
                 headers: req.headers.set(
+                    'Accept',
+                    'multipart / form - data'
+                ).set(
                     'Authorization',
                     'Bearer ' + localStorage.getItem('token')
                 ),

@@ -59,6 +59,20 @@ namespace Controllers
             return productDTO;
         }
 
+        [HttpGet("search/{name}")]
+        public async Task<ActionResult<ProductDTO>> GetProductByName(string name)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+            // Chuyen doi 1 product tu model sang DTO
+            var productDTO = _mapper.Map<Product, ProductDTO>(product);
+            return productDTO;
+        }
+
         [HttpPost]
         [DisableRequestSizeLimit]
         public async Task<ActionResult<ProductDTO>> CreateProduct([FromForm] ProductDTO productDTO)

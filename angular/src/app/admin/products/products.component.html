@@ -5,14 +5,8 @@
 
       <div class="card-tools">
         <div class="input-group input-group-sm">
-          <!-- <input #inputForSearch (keyup)="search(inputForSearch.value)" type="text" class="form-control"
-            placeholder="Tìm sản phẩm"> -->
-          <!-- <input class="form-control" type="text" name="productName" 
-          #myInput [(ngModel)]="productName" (ngModelChange)="Search()"
-          placeholder="Tìm sản phẩm"/> -->
-          <input class="form-control" type="text" name="productName" 
-          #myInput [(ngModel)]="productName" (input)="Search()"
-          placeholder="Tìm sản phẩm"/>
+          <input class="form-control" type="text" name="productName" #myInput [(ngModel)]="productName"
+            (input)="Search()" placeholder="Tìm sản phẩm" />
           <div class="input-group-append">
             <div class="btn btn-primary">
               <i class="fas fa-search"></i>
@@ -28,7 +22,7 @@
           style="font-size: 17px; background-color: #EEEEEE; border: #777 solid 0.5px;">
           <i class="fas fa-plus-circle" style="padding: 5px;"> Thêm sản phẩm</i>
         </button>
-        
+
         <!-- /.float-right -->
       </div>
       <div class="table-responsive mailbox-messages">
@@ -46,32 +40,62 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of products | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p};">
-              <td><img src= "../assets/picture/{{product.image}}" alt= {{product.name}} style="width: 100px; height: 100px;"></td>
+            <tr *ngFor="let product of products
+            | orderBy: key: reverse
+            
+           | paginate: {itemsPerPage:5, currentPage:p};">
+              <td><img src="../assets/picture/{{product.image}}" alt={{product.name}}
+                  style="width: 100px; height: 100px;"></td>
               <td>{{product.id}}</td>
               <td>{{product.name}}</td>
               <td>{{product.amount}}</td>
               <td>{{product.price}}</td>
-              <td>{{product.details}}</td>             
+              <td>{{product.details}}</td>
               <td>{{product.status}}</td>
               <td>
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#DeleteModal"
-                  (click)="selectForDelete()" style="font-size: 18px;" title="Xóa">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                  [attr.data-target]="'#DeleteModal'+product.id" style="font-size: 18px;" title="Xóa">
                   <i class="fas fa-trash"></i>
                 </button>
-                <button type="button" data-toggle="modal" data-target="#UpdateModal" (click)="selectForUpdate()"
-                  class="btn btn-warning btn-sm" style="font-size: 18px;" title="Cập nhật">
+                <div class="modal fade" [attr.id]="'DeleteModal'+product.id" tabindex="-1"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="padding-left: 40%; ">
+                        <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa sản phẩm</h2>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                          style="border: none;">x</button>
+                      </div>
+                      <div class="modal-body">
+                        <form (ngSubmit)="onDeleteProductFormSubmit()">
+                          {{product.id}}
+                          <h3> Bạn muốn xóa sản phẩm này ?</h3>
+                          <div class="modal-footer" style="padding-right: 35%;">
+                            <button type="submit" class="btn btn-danger" (click)="loadDelete(product.id)">Xoá</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                          </div>
+                        </form>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" data-toggle="modal" [attr.data-target]="'#UpdateModal'+product.id"
+                  (click)="loadUpdate(product.id)" class="btn btn-warning btn-sm" style="font-size: 18px;"
+                  title="Cập nhật">
                   <i class="fas fa-edit"></i>
                 </button>
+
               </td>
             </tr>
-                 
+
           </tbody>
-        
-         
+
+
         </table>
         <!-- /.table -->
-        
+
       </div>
       <!-- /.mail-box-messages -->
     </div>
@@ -79,7 +103,7 @@
     <div class="card-footer p-0" style="background-color:#DDDDDD;">
       <div class="mailbox-controls">
         <!-- /.btn-group -->
-        <pagination-controls (pageChange)="p = $event" style="text-align: center;" ></pagination-controls>
+        <pagination-controls (pageChange)="p = $event" style="text-align: center;"></pagination-controls>
       </div>
     </div>
   </div>
@@ -94,72 +118,96 @@
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
         <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Thêm sản phẩm</h3>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-          style="border: none;">x</button>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" style="border: none;">x</button>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3">
-              <img class="img-thumbnail" id="AddEmpImage" style="width: 100px; height: 100px" src="" alt="">
+          <form #imageForm=ngForm [formGroup]="addProductForm">
+            <div class="row">
+              <div class="col-md-3">
+                <img class="img-thumbnail" style="width: 100px; height: 100px" [src]="imageUrl" alt="">
+              </div>
+              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
+                <input [(ngModel)]="fileToUpload" id="image" formControlName="imageAdd" type="file"
+                  (change)="onSelect($event)" style="margin-left: 10px">
+              </div>
+            </div><br>
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 45px ;">
+                  <input formControlName="nameAdd" type="text" placeholder="Tên sản phẩm" style="width: 200px;">
+                  <mat-error
+                    *ngIf="addProductForm.get('nameAdd')?.touched  && addProductForm.get('nameAdd')?.errors?.required">
+                    Tên sản phẩm không được bỏ trống</mat-error>
+                </td>
+              </tr>
             </div>
-            <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
-              <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Loại sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;">
+                  <select [(ngModel)]="categorySelected" formControlName="categoryIdAdd"
+                    style="width:200px; cursor: pointer;" data-sortorder="">
+                    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                  </select>
+                </td>
+              </tr>
             </div>
-          </div><br>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
-              <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 20px;">
-                <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
+                <td class="col md-6" style="padding-left: 85px ;"><input formControlName="amountAdd" type="text"
+                    placeholder="Số lượng" style="width: 200px;">
+                  <mat-error
+                    *ngIf="addProductForm.get('amountAdd')?.touched  && addProductForm.get('amountAdd')?.errors?.required">
+                    Số lượng không được bỏ trống</mat-error>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input formControlName="priceAdd" type="text"
+                    placeholder="Giá sản phẩm" style="width: 200px;">
+                  <mat-error
+                    *ngIf="addProductForm.get('priceAdd')?.touched  && addProductForm.get('priceAdd')?.errors?.required">
+                    Số lượng không được bỏ trống</mat-error>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 20px;">
+                  <textarea formControlName="detailsAdd" type="text" placeholder="Chi tiết sản phẩm"
+                    style="width: 200px;">
                 </textarea>
-              </td>
-            </tr>
-          </div>
-          <div class="row" style="padding-left: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
-              <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
-                  style="width:200px; cursor: pointer;" data-sortorder="">
-                  <option value="index">Kinh doanh </option>
-                  <option value="sortData"> Ngừng kinh doanh </option>
-                </select>
-              </td>
-            </tr>
-          </div>
+                  <mat-error
+                    *ngIf="addProductForm.get('detailsAdd')?.touched  && addProductForm.get('detailsAdd')?.errors?.required">
+                    Chi tiết sản phẩm không được bỏ tr</mat-error>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr class="form-group">
+                <td class="col md-6" style="font-size: 17px; font-weight:500; width: 180px;">Trạng thái :</td>
+
+                <td>
+                  <select formControlName="statusAdd" style="width:200px; cursor: pointer;" data-sortorder="">
+                    <option *ngFor="let status of listStatus" value="{{status}}">{{status}}</option>
+                  </select>
+                </td>
+
+              </tr>
+            </div>
+            <div class="modal-footer" style="padding-right: 35%;">
+              <button type="submit" class="btn btn-primary"
+                (click)="onAddProductFormSubmit(addProductForm)">Thêm</button>
+              <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            </div>
+          </form>
         </div>
-      </div>
-      <div class="modal-footer" style="padding-right: 35%;">
-        <button type="button" class="btn btn-primary" (click)="add()">Thêm</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
       </div>
     </div>
   </div>
@@ -167,100 +215,99 @@
 
 <!-- Modal for update products -->
 
-<div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
-        <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Sửa sản phẩm</h2>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-          style="border: none;">x</button>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-3">
-              <img class="img-thumbnail" id="UpdateEmpImage" style="width: 100px; height: 100px" src="" alt="">
-            </div>
-            <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
-              <input id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)" accept="image/*">
-            </div>
-          </div><br>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Mã sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder="Tên sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
-              <td class="col md-6" style="padding-left: 85px ;"><input type="text" placeholder="Số lượng"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 50px ;"><input type="text" placeholder="Giá sản phẩm"
-                  style="width: 200px;"></td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
-              <td class="col md-6" style="padding-left: 20px;">
-                <textarea type="text" placeholder="Chi tiết sản phẩm" style="width: 200px;">
-                </textarea>
-              </td>
-            </tr>
-          </div>
-          <div class="row" style="padding: 5%;">
-            <tr>
-              <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
-              <td class="col md-6" style="padding-left: 75px ;"><select class="status-select"
-                  style="width:200px; cursor: pointer;" data-sortorder="">
-                  <option value="index">Kinh doanh </option>
-                  <option value="sortData"> Ngừng kinh doanh </option>
-                </select>
-              </td>
-            </tr>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer" style="padding-right: 35%;">
-        <button type="button" class="btn btn-primary" (click)="update()">Sửa</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <!-- Modal for delete products -->
 
-<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngFor="let product of products" class="modal fade" [attr.id]="'UpdateModal'+product.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="padding-left: 40%; ">
-        <h2 class="modal-title" id="exampleModalLabel" style="font-weight: 700;"> Xóa sản phẩm</h2>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
-          style="border: none;">x</button>
+      <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
+        <h3 class="modal-title" id="exampleModalLabel" style="font-weight: 700;">Sửa sản phẩm</h3>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" style="border: none;">x</button>
       </div>
       <div class="modal-body">
-        <h3> Bạn muốn xóa sản phẩm này ?</h3>
+        <div class="container-fluid">
+          <form #imageForm=ngForm [formGroup]="addProductForm">
+            <div class="row">
+              <div class="col-md-3">
+                <img class="img-thumbnail" style="width: 100px; height: 100px"
+                  src="../../../assets/picture{{product.image}}" alt="">
+              </div>
+              <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
+                <input #Image id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)"
+                  accept="image/*" value="{{product}}" formControlName="imageAdd">
+                {{addProductForm.get('imageAdd')}}
+              </div>
+            </div><br>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Mã sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 45px ;"><input type="text" placeholder=" Mã sản phẩm"
+                    style="width: 200px;" value={{product.id}} disabled></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 45px ;"><input formControlName="nameAdd" type="text"
+                    placeholder="Tên sản phẩm" style="width: 200px;" value={{product.Name}}></td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Loại sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;">
+                  <select formControlName="categoryIdAdd" style="width:200px; cursor: pointer;" data-sortorder="">
+                    <option *ngFor="let category of categories" [selected]="category.id=== product.categoryId"
+                      value={{category.id}}>{{category.name}}{{product.Category_Id}}</option>
+                  </select>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Số lượng :</td>
+                <td class="col md-6" style="padding-left: 85px ;">
+                  <input formControlName="amountAdd" type="text" placeholder="Số lượng" style="width: 200px;"
+                    value={{product.amount}}>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Giá sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input formControlName="priceAdd" type="text"
+                    placeholder="Giá sản phẩm" style="width: 200px;" value={{product.price}}>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;top: -15px">Chi tiết sản phẩm :</td>
+                <td class="col md-6" style="padding-left: 20px;">
+                  <textarea formControlName="detailsAdd" type="text" placeholder="Chi tiết sản phẩm"
+                    value={{product.details}} style="width: 200px;">
+              </textarea>
+                </td>
+              </tr>
+            </div>
+            <div class="row" style="padding: 5%;">
+              <tr>
+                <td class="col md-6" style="font-size: 17px; font-weight:500;">Trạng thái :</td>
+                <td class="col md-6" style="padding-left: 50px ;"><input formControlName="statusAdd" type="text"
+                    style="width: 200px;"></td>
+              </tr>
+            </div>
+            <div class="modal-footer" style="padding-right: 35%;">
+              <button type="submit" class="btn btn-primary" (click)="onUpdateProductFormSubmit(product.id)">Sửa</button>
+              <button type="cancel" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="modal-footer" style="padding-right: 35%;">
-        <button type="button" class="btn btn-primary" (click)="deleteConForm()">Xoá</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-      </div>
+
     </div>
   </div>
 </div>

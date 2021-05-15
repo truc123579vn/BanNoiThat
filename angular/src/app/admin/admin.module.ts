@@ -1,3 +1,4 @@
+import { Ng2FilterPipe } from 'ng2-filter-pipe';
 import { UserService } from 'src/app/shared/user.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -42,13 +43,15 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     AdminRoutingModule,
     HttpClientModule,
     FormsModule,
+    
     NgxPaginationModule,
     Ng2SearchPipeModule,
     Ng2OrderModule,
     MatTabsModule,
     ReactiveFormsModule,
     MatInputModule,
-    RouterModule
+    RouterModule,
+  
 
   ], providers: [UserService, ProductsService, CategoryService, CartService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,

@@ -1,4 +1,4 @@
-import { Observable, of, ReplaySubject } from 'rxjs';
+import { Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -78,14 +78,18 @@ export class UserService {
 
   boolean!: false;
   isCustomer(): Observable<boolean> {
-    return this.getCurrentUser().pipe(
-      map((res) => {
-        if (res.role === 'Customer') {
-          return true;
-        } else {
-          return false;
+    const result = new Subject<boolean>();
+    this.getCurrentUser().pipe(take(1)).subscribe(
+      res =>{
+        if(res.role === "Customer"){
+          result.next(true);
+          result.complete();
+        }else{
+          result.next(false);
+          result.complete();
         }
-      })
+      }
     );
+    return result.asObservable();
   }
 }

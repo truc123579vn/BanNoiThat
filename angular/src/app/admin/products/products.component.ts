@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   idDelete: number = 1;
   listStatus = ["Còn hàng", "Hết hàng"]
   productUpdate!: productModel;
+  productModelItem!: productModel;
 
   addProductForm = this.fb.group({
     nameAdd: ['', [Validators.required]],
@@ -33,6 +34,8 @@ export class ProductsComponent implements OnInit {
     statusAdd: ['', [Validators.required]],
     categoryIdAdd: ['', [Validators.required]],
   });
+
+  
 
   constructor(
     public fb: FormBuilder,
@@ -129,24 +132,28 @@ export class ProductsComponent implements OnInit {
   }
 
   loadUpdate(id: number) {
-    // this.productService.getProductById(id).subscribe( products => {
-    //   id,
-    //   this.addProductForm.controls['nameUpdate'].setValue(products.Name);
-    //   this.addProductForm.controls['amountUpdate'].setValue(products.Amount);
-    //   this.addProductForm.controls['priceUpdate'].setValue(products.Price);
-    //   this.addProductForm.controls['detailsUpdate'].setValue(products.Details);
-    //   this.addProductForm.controls['imageUpdate'].setValue(products.Image);
-    //   this.addProductForm.controls['statusUpdate'].setValue(products.Status);
-    //   this.addProductForm.controls['categoryIdUpdate'].setValue(products.Category_Id);
-    // });
+    this.productService.getProductById(id).subscribe( product => {
+      console.log(product);
+      this.addProductForm.controls['nameAdd'].setValue(product.name);
+      this.addProductForm.controls['amountAdd'].setValue(product.amount);
+      this.addProductForm.controls['priceAdd'].setValue(product.price);
+      this.addProductForm.controls['detailsAdd'].setValue(product.details);
+      this.addProductForm.controls['imageAdd'].setValue(product.image);
+      this.addProductForm.controls['statusAdd'].setValue(product.status);
+      this.addProductForm.controls['categoryIdAdd'].setValue(product.category_Id);
+      console.log(this.addProductForm.value);
+    });
+   
+     
   }
 
   onUpdateProductFormSubmit(id: number) {
+    
     const file = this.fileToUpload;
     console.log(file);
     if (file) {
 
-      this.productUpdate = new productModel(
+      this.productModelItem = new productModel(
         id,
         this.addProductForm.get('nameAdd')?.value,
         this.addProductForm.get('amountAdd')?.value,
@@ -155,23 +162,21 @@ export class ProductsComponent implements OnInit {
         file.name,
         this.fileToUpload,
         this.addProductForm.get('statusAdd')?.value,
-        this.categorySelected
+        this.addProductForm.get('categoryIdAdd')?.value
       );
+      console.log(this.productModelItem);
 
       var formData = new FormData();
       formData.append("Id", id.toString());
-      formData.append("Name", this.productUpdate.Name);
-      formData.append("Amount", this.productUpdate.Amount.toString());
-      formData.append("Price", this.productUpdate.Price.toString());
-      formData.append("Image", this.productUpdate.Image);
-      formData.append("ImageFile", this.productUpdate.ImageFile);
-      formData.append("Details", this.productUpdate.Details);
-      formData.append("Status", this.productUpdate.Status);
-      formData.append("Category_Id", this.productUpdate.Category_Id.toString());
-
-
-
-
+      formData.append("Name", this.productModelItem.Name);
+      formData.append("Amount", this.productModelItem.Amount.toString());
+      formData.append("Price", this.productModelItem.Price.toString());
+      formData.append("Image", this.productModelItem.Image);
+      formData.append("ImageFile",this.productModelItem.ImageFile);
+      formData.append("Details",this.productModelItem.Details);
+      formData.append("Status", this.productModelItem.Status);
+      formData.append("Category_Id", this.productModelItem.Category_Id.toString());
+      
       this.productService.updateProduct(formData).subscribe((res) => {
         console.log(res);
         if (res) {

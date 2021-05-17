@@ -110,7 +110,7 @@
                           <th>Họ</th>
                           <th>Tên</th>
                         </tr>
-                        <tr *ngFor="let customer of customers | orderBy: keyCustomer : reverseCustomer | paginate: {itemsPerPage:2, currentPage:pageStartCustomer}; ">                          
+                        <tr *ngFor="let customer of customers | orderBy: keyCustomer : reverseCustomer | paginate: {itemsPerPage:4, currentPage:pageStartCustomer}; ">                          
                           <td>{{customer.userName}}</td>
                           <td>{{customer.lastName}}</td>
                           <td>{{customer.firstName}}</td>                                                                          
@@ -181,7 +181,7 @@
           </div>
   
           <div class="modal-footer" style="padding-right: 35%;">
-            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success" >
+            <button type="submit" [disabled]="!addManagerForm.valid" class="btn btn-success"  >
               Thêm
             </button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>

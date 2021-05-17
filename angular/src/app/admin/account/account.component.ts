@@ -5,6 +5,7 @@ import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { registerModel } from 'src/app/models/register.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-account',
@@ -44,7 +45,9 @@ export class AccountComponent implements OnInit {
     });  
 
 
-  constructor(private accountService: AccountService, private excelService: ExcelService){}
+  constructor(private accountService: AccountService,   
+     private toastr: ToastrService,
+    private excelService: ExcelService){}
 
   ngOnInit(): void {
     this.GetManagers();
@@ -78,7 +81,12 @@ export class AccountComponent implements OnInit {
       this.addManagerForm.value.PasswordAdd
     );
     this.accountService.createAccountManager(manager).subscribe(
-      ()=>{this.GetManagers();});
+      ()=>{this.GetManagers();
+        $("#AddModal").hide()
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove() 
+        this.toastr.success("Thêm tài khoản thành công", "Thông báo thành công");
+      });
     this.addManagerForm.reset();
     
   }
@@ -106,7 +114,13 @@ export class AccountComponent implements OnInit {
         token : "",
         role : ""
       }
-      this.accountService.updateAccount(manager).subscribe( () => this.GetManagers());
+      this.accountService.updateAccount(manager).subscribe( () => {
+        this.GetManagers();
+        $("#UpdateModal").hide()
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove() 
+        this.toastr.success("Cập nhật tài khoản thành công", "Thông báo thành công");
+      });
       this.updateManagerForm.reset();
   }
 
@@ -117,7 +131,17 @@ export class AccountComponent implements OnInit {
   
   deleteManager()
   {
-      this.accountService.deleteAccount(this.usernameToDelete).subscribe( () => this.GetManagers());
+      this.accountService.deleteAccount(this.usernameToDelete).subscribe( () => {
+        this.GetManagers()
+
+        $("#DeleteModal").hide()
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove() 
+
+        this.toastr.success("Xóa Thành Công", "Thông báo thành công");
+
+      }
+      );
   }
 
   reset(form:FormGroup)

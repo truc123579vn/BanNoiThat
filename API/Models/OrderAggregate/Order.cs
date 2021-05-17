@@ -14,7 +14,7 @@ namespace Models
         {
             this.AppUser = appUser;
             Address = address;
-            DateCreated = DateTime.Now.ToString("dd/MM/yyyy");
+            DateCreated = DateTime.Now.ToString("dd-MM-yyyy");
             Status = "Chưa Duyệt";
         }
         public int Id { get; set; }

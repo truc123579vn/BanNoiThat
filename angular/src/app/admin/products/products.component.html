@@ -219,8 +219,8 @@
 
 <!-- Modal for delete products -->
 
-<div *ngFor="let product of products" class="modal fade" [attr.id]="'UpdateModal'+product.id" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div *ngFor="let product of products" class="modal fade" [attr.id]="'UpdateModal'+product.id" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="padding-left: 40%; padding-bottom: 5px;">
@@ -238,7 +238,6 @@
               <div class="col-md-9" style="padding-top: 10%; padding-left: 15%;">
                 <input #Image id="image" type="file" style="margin-left: 10px" (change)="onSelect($event)"
                   accept="image/*" value="{{product}}" formControlName="imageAdd">
-                {{addProductForm.get('imageAdd')}}
               </div>
             </div><br>
             <div class="row" style="padding: 5%;">
@@ -251,18 +250,21 @@
             <div class="row" style="padding: 5%;">
               <tr>
                 <td class="col md-6" style="font-size: 17px; font-weight:500;">Tên sản phẩm :</td>
-                <td class="col md-6" style="padding-left: 45px ;"><input formControlName="nameAdd" type="text"
-                    placeholder="Tên sản phẩm" style="width: 200px;" value={{product.Name}}></td>
+                <td class="col md-6" style="padding-left: 45px ;"><input type="text" style="width: 200px;"
+                    formControlName="nameAdd"></td>
+                {{productModelItem?.name}}
               </tr>
             </div>
             <div class="row" style="padding: 5%;">
               <tr>
+                {{product.category_Id}}
                 <td class="col md-6" style="font-size: 17px; font-weight:500;">Loại sản phẩm :</td>
                 <td class="col md-6" style="padding-left: 50px ;">
                   <select formControlName="categoryIdAdd" style="width:200px; cursor: pointer;" data-sortorder="">
-                    <option *ngFor="let category of categories" [selected]="category.id=== product.categoryId"
-                      value={{category.id}}>{{category.name}}{{product.Category_Id}}</option>
+                    <option *ngFor="let category of categories" [selected]="category.id===product.category_Id"
+                      value={{category.id}}>{{category.name}}</option>
                   </select>
+                  {{product.categoryId}}
                 </td>
               </tr>
             </div>

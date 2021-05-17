@@ -130,12 +130,8 @@ namespace Controllers
                 {
                     productDTO.Image = folder;
                     string serverFolder = Path.Combine(_webHostEnvironment.ContentRootPath, "../angular/src/assets/picture" + folder);
-
                     productDTO.ImageFile.CopyTo(new FileStream(serverFolder, FileMode.Create));
                 }
-
-
-
             }
             var product = await _context.Products.FindAsync(productDTO.Id);
 
@@ -143,18 +139,18 @@ namespace Controllers
 
             _mapper.Map<ProductDTO, Product>(productDTO, product);
             _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+            // try
+            // {
+            //     await _context.SaveChangesAsync();
 
-            try
-            {
-                await _context.SaveChangesAsync();
+            // }
+            // catch (DbUpdateConcurrencyException) when (!ProductExists(product.Id))
+            // {
+            //     return NotFound();
+            // }
 
-            }
-            catch (DbUpdateConcurrencyException) when (!ProductExists(product.Id))
-            {
-                return NotFound();
-            }
-
-            return NoContent();
+            return Ok(product);
         }
 
         [HttpDelete("{id}")]

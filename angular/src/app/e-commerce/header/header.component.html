@@ -46,14 +46,15 @@
                 <div class="search">
                     <input type="text" placeholder="Search" value="Search" name="productName" [(ngModel)]="productName" (click)="toggleProductDropdown()">
                     <button (click)="navigatePage(productName)"><i class="fa fa-search"></i></button>
-                    <div *ngIf="showDropDown" class="product-container-dropdown">
+                    <div style="margin-top: 10px;" *ngIf="showDropDown" class="product-container-dropdown">
                         <div (click)="setValue(product?.name)" class="product-auto-complete"  *ngFor="let product of filterList | filter:productName"> 
                             <table style="width:100%">
                                 <thead>
                                     <tr style="font-size: 16px; background-color:#ffffff;">
                                         <th>{{product.name}}</th>
-                                        <th>{{product.price}} VND</th>
-                                        <th><img src= "../assets/picture/{{product.image}}" alt= {{product.name}} style="width: 80px; height: 80px;"></th>
+                                    </tr>
+                                    <tr>
+                                        <br>
                                     </tr>
                                 </thead>
                             </table>

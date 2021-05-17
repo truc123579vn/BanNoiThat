@@ -46,8 +46,9 @@ export class OrdersComponent implements OnInit {
     this.orderStatus1 = this.orderStatus1.filter(item => item.id != id);
     this.orderService.updateOrderStatus(id).subscribe(
       res => {
-        this.orderStatus2.push(res);
+        this.orderStatus2.push(res);        
         this.toastr.success("Đã duyệt đơn hàng thành công");
+        location.reload();
       },
       err => {
         console.log(err);

@@ -6,6 +6,7 @@ import { AccountService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
 import { isTemplateExpression } from 'typescript';
 import { loadTranslations } from '@angular/localize';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -27,7 +28,11 @@ export class StatisticsComponent implements OnInit {
   endToSearch:string="";
 
 
-  constructor(private service:OrderService, private accountService: AccountService,public datePipe: DatePipe) 
+  constructor(private service:OrderService,
+     private accountService: AccountService,
+     public datePipe: DatePipe,
+     private toastr: ToastrService,
+     ) 
   { 
   }
 
@@ -96,6 +101,8 @@ export class StatisticsComponent implements OnInit {
       this.service.thongkehoadontheongay(start,end).subscribe(
         data=>{
           this.listOrder  = data;
+          this.toastr.success("Tìm kiếm thành công", "Thông báo thành công");
+
           this.tongDoanhthu();
         }
       )
